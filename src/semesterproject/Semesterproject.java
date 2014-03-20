@@ -17,6 +17,7 @@ public class Semesterproject {
      */
     public static void main(String[] args) {
         String test = "Hejsa";
+        String test2 = "test";
     }
     
 }
