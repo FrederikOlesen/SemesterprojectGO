@@ -20,6 +20,7 @@ public class Semesterproject {
         
         
         String test2 = "weeee";
+        String test3 = "weeee2";
     }
     
 }
