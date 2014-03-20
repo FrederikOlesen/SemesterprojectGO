@@ -12,4 +12,6 @@ package semesterproject;
  */
 public class Person {
     
+    String hej = "sasdasd";
+    
 }
