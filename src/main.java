@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 
-package dataSource;
-
 /**
  *
  * @author frederikolesen
  */
-public class BookingMapper {
+public class main {
     
-    
-    
+    public static void main(String[] args) {
+        
+    }
 }
