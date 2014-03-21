@@ -1,20 +1,22 @@
-
 package domain;
 
 import java.util.ArrayList;
 
-public class Customers {
+public class Customers
+{
+
     // Variables for the customers
     private String FirstName;
     private String LastName;
     private String Country;
     private String Email;
     private int Phone;
+    private String Address;
     private String ReservationNumber;
-    private int NumberofGuests; 
-    private ArrayList<Customers> customers;  
-    
-    
+    private int NumberofGuests;
+    private ArrayList<Customers> customers;
+    private String TravelAgency;
+
     //Constructor for a customer, needs all the variables that makes a customer
     public Customers(String FirstName, String LastName, String Country, String Email, int Phone, String ReservationNumber, int NumberofGuests)
     {
@@ -23,12 +25,13 @@ public class Customers {
         this.Country = Country;
         this.Email = Email;
         this.Phone = Phone;
+        this.Address = Address;
         this.ReservationNumber = ReservationNumber;
         this.NumberofGuests = NumberofGuests;
-        customers = new ArrayList<Customers>(); 
+        this.TravelAgency = TravelAgency;
+        customers = new ArrayList<Customers>();
     }
-    
-    
+
     //Getters and setters for the variables 
     public String getFirstName()
     {
@@ -80,6 +83,16 @@ public class Customers {
         this.Phone = Phone;
     }
 
+    public String getAddress()
+    {
+        return Address;
+    }
+
+    public void setAdress(String Address)
+    {
+        this.Address = Address;
+    }
+
     public String getReservationNumber()
     {
         return ReservationNumber;
@@ -99,16 +112,22 @@ public class Customers {
     {
         this.NumberofGuests = NumberofGuests;
     }
-    
-    
+
+    public String getTravelAgency()
+    {
+        return TravelAgency;
+    }
+
+    public void setTravelAgency(String TravelAgency)
+    {
+        this.TravelAgency = TravelAgency;
+    }
+
     //toString method
     @Override
     public String toString()
     {
         return "Customers{" + "Phone=" + Phone + ", NumberofGuests=" + NumberofGuests + '}';
     }
-    
-    
-    
-    
+
 }
