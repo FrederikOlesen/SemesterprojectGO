@@ -4,12 +4,16 @@ import java.sql.Date;
 
 public class Booking {
     
+    //Created all the variables.
+    
     private Date arrival;
     private Date departure;
     private String resNumber;
     private String roomType;
     private boolean payment;
 
+    //Created getters and setters for the variables above.
+    
     public Date getArrival() {
         return arrival;
     }
@@ -46,6 +50,7 @@ public class Booking {
         this.payment = payment;
     }
 
+    //Created a toString-method, which returns a String representation of the object.
     @Override
     public String toString() {
         return "Booking{" + "arrival=" + arrival + ", departure=" + departure + ", resNumber=" + resNumber + ", roomType=" + roomType + ", payment=" + payment + '}';
