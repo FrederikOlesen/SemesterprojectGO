@@ -12,19 +12,20 @@ import java.text.SimpleDateFormat;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author frederikolesen
  */
 public class main {
-    
+
     public static void main(String[] args) {
         
+        BookingMapper bm = new BookingMapper();
+        
+        Booking b = new Booking();
+        
         DBConnector dbc = new DBConnector();
-    try {    
-        bm.getReservationnumber(b.getBooking(), dbc.getConnection());
-    }
-    catch(SQLException sql){System.out.println(sql);}
+        
+        bm.getNextResNumber(dbc.getConnection());
     }
 }

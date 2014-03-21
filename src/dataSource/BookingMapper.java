@@ -47,45 +47,21 @@ public class BookingMapper {
         return (rowsInserted == cu.size());
     }
     
-//    public boolean updateBooking(ArrayList<Booking> bu, Connection conn) throws SQLException {
-//        int rowsInserted = 0;
-//        String SQLString = "update booking set (?,?,?,?,?,?,?,?)";
-//        String SQLString1 = "insert into booking values (?,?,?,?,?,?,?,?,?,?,?,?)";
-//        PreparedStatement statement = null;
-//        PreparedStatement statement1 = null;
-//        statement = conn.prepareStatement(SQLString);
-//        statement = conn.prepareStatement(SQLString1);
-//
-//        for (int i = 0; i < cu.size(); i++) {
-//            Customers c = cu.get(i);
-//            statement.setString(1, c.getFirstName());
-//            statement.setString(2, c.getLastName());
-//            statement.setString(3, c.getCountry());
-//            statement.setString(4, c.getEmail());
-//            statement.setInt(5, c.getPhone());
-//            statement.setInt(6, c.getReservationNumber() + 1);
-//            statement.setString(7, c.getAddress());
-//            statement.setInt(8, c.getNumberofGuests());
-//            
-//            
-//            rowsInserted += statement.executeUpdate();
-//            rowsInserted += statement1.executeUpdate();
-//        }
-//        if (testRun) {
-//            System.out.println("insertOrders(): " + (rowsInserted == cu.size())); // for test
-//        }
-//        return (rowsInserted == cu.size());
-//    }
-    
-     public int getReservationnumber(ArrayList<Booking> bl, Connection conn) throws SQLException {
-        String SQLString = "select max(reservationsnumber) from booking";
+    public int getNextResNumber(Connection conn) {
+        int nextRes = 0;
+        String SQLString = "select SEQ_RESERVATIONSNUMBER.NEXTVAL " + "from DUAL";
         PreparedStatement statement = null;
-        statement = conn.prepareStatement(SQLString);
-ResultSet rs = statement.getResultSet();
-        while (rs.next()) {
-            tmp = rs.getInt("reservationnumber");
+        try {
+            statement = conn.prepareStatement(SQLString);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                nextRes = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Fail in OrderMapper - getNextOrderNo");
+            System.out.println(e.getMessage());
         }
-         System.out.println(tmp);
-         return tmp;
+        System.out.println(nextRes);
+        return nextRes;
     }
 }
