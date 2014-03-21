@@ -5,6 +5,7 @@ import domain.Booking;
 import domain.Customers;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -80,12 +81,9 @@ public class BookingMapper {
         String SQLString = "select max(reservationsnumber) from booking";
         PreparedStatement statement = null;
         statement = conn.prepareStatement(SQLString);
-
-        for (int i = 0; i < bl.size(); i++) {
-            Booking b = bl.get(i);
-            statement.setInt(1,tmp);
-            b.setResNumber(tmp);
-            
+ResultSet rs = statement.getResultSet();
+        while (rs.next()) {
+            tmp = rs.getInt("reservationnumber");
         }
          System.out.println(tmp);
          return tmp;
