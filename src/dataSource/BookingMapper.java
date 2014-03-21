@@ -49,7 +49,7 @@ public class BookingMapper {
     
     public int getNextResNumber(Connection conn) {
         int nextRes = 0;
-        String SQLString = "select SEQ_RESERVATIONSNUMBER.NEXTVAL " + "from DUAL";
+        String SQLString = "select BOOKING_RESNUMBER_SEQ.NEXTVAL " + "from DUAL";
         PreparedStatement statement = null;
         try {
             statement = conn.prepareStatement(SQLString);
