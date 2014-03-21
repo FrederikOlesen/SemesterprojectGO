@@ -4,17 +4,12 @@
  * and open the template in the editor.
  */
 
-package domain;
+package dataSource;
 
 /**
  *
  * @author frederikolesen
  */
-public class Person {
-    
-    String hej = "sasdasd";
-    String ikkehej = "dsadsadas";
-    String tilmads = "Mads";
-    String tilalle = "Hej alle sammen";
+public class UOWPBook {
     
 }
