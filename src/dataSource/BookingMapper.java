@@ -58,7 +58,7 @@ public class BookingMapper {
                 nextRes = rs.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Fail in OrderMapper - getNextOrderNo");
+            System.out.println("Fail in BookingMapper - getNextResNumber");
             System.out.println(e.getMessage());
         }
         System.out.println(nextRes);
