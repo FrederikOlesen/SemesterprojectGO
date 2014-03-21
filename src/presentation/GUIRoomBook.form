@@ -268,7 +268,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Check-In"/>
+            <Property name="text" type="java.lang.String" value="Check-In date"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="Checkinfield">

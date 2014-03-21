@@ -4,10 +4,10 @@ public class Rooms {
     
     private String roomType;
     private int price;
-    private int roomNumber;
+    private String roomNumber;
 
     //Here be constructer
-    public Rooms(String roomType, int price, int roomNumber) {
+    public Rooms(String roomType, int price, String roomNumber) {
         this.roomType = roomType;
         this.price = price;
         this.roomNumber = roomNumber;
@@ -21,7 +21,7 @@ public class Rooms {
         return price;
     }
 
-    public int getRoomNumber() {
+    public String getRoomNumber() {
         return roomNumber;
     }
 
