@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package semesterproject;
+package domain;
 
 /**
  *
@@ -12,6 +12,9 @@ package semesterproject;
  */
 public class Person {
     
-    String M = "Michael";
+    String hej = "sasdasd";
+    String ikkehej = "dsadsadas";
+    String tilmads = "Mads";
+    String tilalle = "Hej alle sammen";
     
 }
