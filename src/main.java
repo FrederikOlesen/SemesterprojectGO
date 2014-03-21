@@ -4,17 +4,13 @@
  * and open the template in the editor.
  */
 
-package domain;
-
 /**
  *
  * @author frederikolesen
  */
-public class Person {
+public class main {
     
-    String hej = "sasdasd";
-    String ikkehej = "dsadsadas";
-    String tilmads = "Mads";
-    String tilalle = "Hej alle sammen";
-    
+    public static void main(String[] args) {
+        
+    }
 }

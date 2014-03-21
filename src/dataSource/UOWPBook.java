@@ -2,6 +2,6 @@
 package dataSource;
 
 
-public class BookingMapper {
+public class UOWPBook {
     
 }
