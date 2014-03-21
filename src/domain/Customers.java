@@ -12,9 +12,8 @@ package domain;
  */
 public class Customers {
     
-    String hej = "sasdasd";
-    String ikkehej = "dsadsadas";
-    String tilmads = "Mads";
-    String tilalle = "Hej alle sammen";
+    private String FirstName;
+    private String LastName;
+    
     
 }
