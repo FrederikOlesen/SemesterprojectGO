@@ -1,7 +1,11 @@
 
 import dataSource.BookingMapper;
+import dataSource.DBConnector;
 import domain.Booking;
-import java.sql.Connection;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,10 +20,11 @@ import java.sql.Connection;
 public class main {
     
     public static void main(String[] args) {
-        BookingMapper bm = new BookingMapper();
-        Booking b = new Booking();
         
-        
-        
+        DBConnector dbc = new DBConnector();
+    try {    
+        bm.getReservationnumber(b.getBooking(), dbc.getConnection());
+    }
+    catch(SQLException sql){System.out.println(sql);}
     }
 }
