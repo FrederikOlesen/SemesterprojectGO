@@ -12,13 +12,13 @@ public class Customers
     private String Email;
     private int Phone;
     private String Address;
-    private String ReservationNumber;
+    private int ReservationNumber;
     private int NumberofGuests;
     private ArrayList<Customers> customers;
     private String TravelAgency;
 
     //Constructor for a customer, needs all the variables that makes a customer
-    public Customers(String FirstName, String LastName, String Country, String Email, int Phone, String ReservationNumber, int NumberofGuests)
+    public Customers(String FirstName, String LastName, String Country, String Email, int Phone, int ReservationNumber, int NumberofGuests)
     {
         this.FirstName = FirstName;
         this.LastName = LastName;
@@ -31,7 +31,7 @@ public class Customers
         this.TravelAgency = TravelAgency;
         customers = new ArrayList<Customers>();
     }
-
+    
     //Getters and setters for the variables 
     public String getFirstName()
     {
@@ -93,12 +93,12 @@ public class Customers
         this.Address = Address;
     }
 
-    public String getReservationNumber()
+    public int getReservationNumber()
     {
         return ReservationNumber;
     }
 
-    public void setReservationNumber(String ReservationNumber)
+    public void setReservationNumber(int ReservationNumber)
     {
         this.ReservationNumber = ReservationNumber;
     }
@@ -129,5 +129,6 @@ public class Customers
     {
         return "Customers{" + "Phone=" + Phone + ", NumberofGuests=" + NumberofGuests + '}';
     }
+    
 
 }
