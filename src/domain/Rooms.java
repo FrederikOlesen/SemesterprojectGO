@@ -27,5 +27,10 @@ public class Rooms {
     public int getRoomNumber() {
         return roomNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Rooms{" + "roomType=" + roomType + ", price=" + price + ", roomNumber=" + roomNumber + '}';
+    }
     
 }

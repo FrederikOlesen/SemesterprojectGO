@@ -38,10 +38,6 @@ public class Booking {
         return roomType;
     }
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
     public boolean isPayment() {
         return payment;
     }
@@ -49,4 +45,10 @@ public class Booking {
     public void setPayment(boolean payment) {
         this.payment = payment;
     }
+
+    @Override
+    public String toString() {
+        return "Booking{" + "arrival=" + arrival + ", departure=" + departure + ", resNumber=" + resNumber + ", roomType=" + roomType + ", payment=" + payment + '}';
+    }
+    
 }
