@@ -98,7 +98,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Check-In");
+        jLabel7.setText("Check-In date");
 
         jLabel8.setText("Travel Agency");
 
