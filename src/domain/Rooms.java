@@ -1,12 +1,18 @@
 package domain;
 
 public class Rooms {
-    //Here be constructer
+    
     private String roomType;
     private int price;
     private int roomNumber;
+
+    //Here be constructer
+    public Rooms(String roomType, int price, int roomNumber) {
+        this.roomType = roomType;
+        this.price = price;
+        this.roomNumber = roomNumber;
+    }
     
-    //Constructor
     public String getRoomType() {
         return roomType;
     }
