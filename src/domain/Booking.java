@@ -1,6 +1,7 @@
 package domain;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Booking {
     
@@ -8,9 +9,14 @@ public class Booking {
     
     private Date arrival;
     private Date departure;
-    private String resNumber;
+    private int resNumber;
     private String roomType;
     private boolean payment;
+    private ArrayList<Booking> booking = new ArrayList<Booking>();
+
+    public ArrayList<Booking> getBooking() {
+        return booking;
+    }
 
     //Created getters and setters for the variables above.
     
@@ -30,11 +36,11 @@ public class Booking {
         this.departure = departure;
     }
 
-    public String getResNumber() {
+    public int getResNumber() {
         return resNumber;
     }
 
-    public void setResNumber(String resNumber) {
+    public void setResNumber(int resNumber) {
         this.resNumber = resNumber;
     }
 
