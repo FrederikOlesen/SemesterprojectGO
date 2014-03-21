@@ -19,7 +19,7 @@ public class Rooms {
         return roomNumber;
     }
 
-    //toString method added which returns a string of informations frmo contructor
+    //toString method added which returns a string of informations from contructor
     @Override
     public String toString() {
         return "Rooms{" + "roomType=" + roomType + ", price=" + price + ", roomNumber=" + roomNumber + '}';
