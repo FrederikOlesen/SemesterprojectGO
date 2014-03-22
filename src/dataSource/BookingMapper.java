@@ -15,9 +15,8 @@ public class BookingMapper {
     // returns true if all elements were inserted successfully
     
     static boolean testRun = false;
-    private int tmp = 0;
     
-    public boolean addNewBooking(ArrayList<Customers> cu, Connection conn) throws SQLException {
+    public boolean addNewBooking(ArrayList<Customers> cu, ArrayList<Booking> bl, Connection conn) throws SQLException {
         int rowsInserted = 0;
         String SQLString = "insert into customers values (?,?,?,?,?,?,?,?)";
         String SQLString1 = "insert into booking values (?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -33,7 +32,7 @@ public class BookingMapper {
             statement.setString(3, c.getCountry());
             statement.setString(4, c.getEmail());
             statement.setInt(5, c.getPhone());
-            statement.setInt(6, c.getReservationNumber() + 1);
+            statement.setInt(6, this.getNextResNumber(conn));
             statement.setString(7, c.getAddress());
             statement.setInt(8, c.getNumberofGuests());
             
@@ -46,6 +45,30 @@ public class BookingMapper {
         }
         return (rowsInserted == cu.size());
     }
+    
+    public boolean updateBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
+        int rowsUpdated = 0;
+        String SQLString = "update booking "
+                + "set arrival = ?, departure = ?"
+                + "where reservationsnumber = ?";
+        PreparedStatement statement = null;
+
+        statement = conn.prepareStatement(SQLString);
+        for (int i = 0; i < bl.size(); i++) {
+            Booking b = bl.get(i);
+            statement.setDate(1, b.getArrival());
+            statement.setDate(2, b.getDeparture());
+            int tupleUpdated = statement.executeUpdate();
+            if (tupleUpdated == 1) {
+            }
+            rowsUpdated += tupleUpdated;
+        }
+        if (testRun) {
+            System.out.println("updateOrders: " + (rowsUpdated == bl.size())); // for test
+        }
+        return (rowsUpdated == bl.size());    // false if any conflict in version number             
+    }
+    
     
     public int getNextResNumber(Connection conn) {
         int nextRes = 0;

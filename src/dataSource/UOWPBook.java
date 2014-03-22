@@ -43,7 +43,7 @@ public class UOWPBook {
             BookingMapper bm = new BookingMapper();
 
             status = status && bm.addNewBooking(newBooking, conn);
-            status = status && bm.modifyBooking(modifiedBooking, conn);
+            status = status && bm.updateBooking(modifiedBooking, conn);
             status = status && bm.deleteBooking(deleteBooking, conn);
             if (!status) {
                 throw new Exception("Business Transaction aborted");
