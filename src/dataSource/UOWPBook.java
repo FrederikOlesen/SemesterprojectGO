@@ -73,10 +73,10 @@ public class UOWPBook {
 
     }
 
-    public void registerDeleteOrder(Order o) {
-        if (!newOrders.contains(o) && // if not allready registered in any list
-                !deleteOrders.contains(o)) {
-            dirtyOrders.add(o);
+    public void registerDeletedBooking(Booking b) {
+        if (!newBooking.contains(b) && // if not allready registered in any list
+                !deleteBooking.contains(b)) {
+            modifiedBooking.add(b);
         }
     }
 }

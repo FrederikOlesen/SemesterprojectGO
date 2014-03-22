@@ -18,7 +18,7 @@ public class BookingMapper {
     
     public boolean addNewBooking(ArrayList<Customers> cu, ArrayList<Booking> bl, Connection conn) throws SQLException {
         int rowsInserted = 0;
-        String SQLString = "insert into customers values (?,?,?,?,?,?,?,?)";
+        String SQLString = "insert into customers values (?,?,?,?,?,?,?)";
         String SQLString1 = "insert into booking values (?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement statement = null;
         PreparedStatement statement1 = null;
