@@ -7,11 +7,11 @@ public class Rooms {
     private String roomNumber;
 
     //Here be constructer
-    public Rooms(String roomType, int price, String roomNumber) {
-        this.roomType = roomType;
-        this.price = price;
-        this.roomNumber = roomNumber;
-    }
+//    public Rooms(String roomType, int price, String roomNumber) {
+//        this.roomType = roomType;
+//        this.price = price;
+//        this.roomNumber = roomNumber;
+//    }
     
     public String getRoomType() {
         return roomType;
