@@ -57,7 +57,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="Countryfield" min="-2" pref="86" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="Noofnightsfield" min="-2" pref="86" max="-2" attributes="0"/>
+                                  <Component id="Depature" min="-2" pref="86" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
@@ -102,7 +102,7 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="Checkinfield" min="-2" pref="86" max="-2" attributes="0"/>
+                                                  <Component id="Arrival" min="-2" pref="86" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
@@ -170,7 +170,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Fnamefield" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Snamefield" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Checkinfield" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Arrival" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -182,7 +182,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Addressfield" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Countryfield" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Noofnightsfield" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Depature" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -268,17 +268,17 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Check-In date"/>
+            <Property name="text" type="java.lang.String" value="Arrival"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="Checkinfield">
+        <Component class="javax.swing.JTextField" name="Arrival">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="text" type="java.lang.String" value="Travel Agency"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="Noofnightsfield">
+        <Component class="javax.swing.JTextField" name="Depature">
         </Component>
         <Component class="javax.swing.JComboBox" name="Travelagencycombobox">
           <Properties>
@@ -297,13 +297,16 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
-            <Property name="text" type="java.lang.String" value="No. of Nights"/>
+            <Property name="text" type="java.lang.String" value="Departure"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="Bookbutton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Book"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BookbuttonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Undobutton">
           <Properties>

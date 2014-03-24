@@ -1,12 +1,17 @@
 package presentation;
 
+import domain.Control;
+import java.sql.Date;
+
 public class GUIRoomBook extends javax.swing.JFrame {
 
     /**
      * Creates new form GUIRoomBook
      */
+    Control con = new Control();
     public GUIRoomBook() {
         initComponents();
+        
     }
 
     /**
@@ -32,9 +37,9 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         Emailfield = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        Checkinfield = new javax.swing.JTextField();
+        Arrival = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        Noofnightsfield = new javax.swing.JTextField();
+        Depature = new javax.swing.JTextField();
         Travelagencycombobox = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -86,15 +91,20 @@ public class GUIRoomBook extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Check-In date");
+        jLabel7.setText("Arrival");
 
         jLabel8.setText("Travel Agency");
 
         Travelagencycombobox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None", "BestTravel", "AwesomeAdventure", "DeluxeVacation", "Sun&Spa Agency" }));
 
-        jLabel10.setText("No. of Nights");
+        jLabel10.setText("Departure");
 
         Bookbutton.setText("Book");
+        Bookbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookbuttonActionPerformed(evt);
+            }
+        });
 
         Undobutton.setText("Undo Book");
 
@@ -134,7 +144,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Countryfield, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Noofnightsfield, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Depature, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(52, 52, 52)
@@ -168,7 +178,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(Checkinfield, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(Arrival, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(7, 7, 7)
                                                 .addComponent(jLabel7))
@@ -215,7 +225,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Fnamefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Snamefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Checkinfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Arrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -225,7 +235,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Addressfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Countryfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Noofnightsfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Depature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -283,16 +293,20 @@ public class GUIRoomBook extends javax.swing.JFrame {
         
         Fnamefield.setText("");
         Snamefield.setText("");
-        Checkinfield.setText("");
+        Arrival.setText("");
         Addressfield.setText("");
         Countryfield.setText("");
-        Noofnightsfield.setText("");
+        Depature.setText("");
         Phonefield.setText("");
         Emailfield.setText("");
         Noofguestfield.setText("");
         Statuslabel.setText("All fields are clear");
         
     }//GEN-LAST:event_ClearfieldsbuttonActionPerformed
+
+    private void BookbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbuttonActionPerformed
+        con.newBooking(Fnamefield.getText(), Snamefield.getText(), Countryfield.getText(), Emailfield.getText(), Integer.parseInt(Phonefield.getText()), Addressfield.getText(), Integer.parseInt(Noofguestfield.getText()), Arrival.getText(), Depature.getText(), Roomtypecombobox.getSelectedIndex());
+    }//GEN-LAST:event_BookbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,14 +345,14 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Addressfield;
+    private javax.swing.JTextField Arrival;
     private javax.swing.JButton Bookbutton;
-    private javax.swing.JTextField Checkinfield;
     private javax.swing.JButton Clearfieldsbutton;
     private javax.swing.JTextField Countryfield;
+    private javax.swing.JTextField Depature;
     private javax.swing.JTextField Emailfield;
     private javax.swing.JTextField Fnamefield;
     private javax.swing.JTextField Noofguestfield;
-    private javax.swing.JTextField Noofnightsfield;
     private javax.swing.JTextField Phonefield;
     private javax.swing.JComboBox Roomtypecombobox;
     private javax.swing.JTextField Snamefield;
