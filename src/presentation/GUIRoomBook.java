@@ -305,6 +305,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
     }//GEN-LAST:event_ClearfieldsbuttonActionPerformed
 
     private void BookbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbuttonActionPerformed
+        //comment
         con.newBooking(Fnamefield.getText(), Snamefield.getText(), Countryfield.getText(), Emailfield.getText(), Integer.parseInt(Phonefield.getText()), Addressfield.getText(), Integer.parseInt(Noofguestfield.getText()), Arrival.getText(), Depature.getText(), Roomtypecombobox.getSelectedIndex());
     }//GEN-LAST:event_BookbuttonActionPerformed
 
