@@ -14,7 +14,6 @@ public class Customers
     private String Address;
     private int ReservationNumber;
     private int NumberofGuests;
-    private ArrayList<Customers> customers;
     private String TravelAgency;
 
     //Constructor for a customer, needs all the variables that makes a customer
@@ -29,7 +28,6 @@ public class Customers
         this.ReservationNumber = ReservationNumber;
         this.NumberofGuests = NumberofGuests;
         this.TravelAgency = TravelAgency;
-        customers = new ArrayList<Customers>();
     }
     
     //Getters and setters for the variables 
