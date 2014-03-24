@@ -15,6 +15,7 @@ public class BookingMapper {
     // returns true if all elements were inserted successfully
     
     static boolean testRun = false;
+    private int nextRes = 0;
     
     public boolean addNewBooking(ArrayList<Customers> cu, ArrayList<Booking> bl, Connection conn) throws SQLException {
         int rowsInserted = 0;
@@ -32,7 +33,7 @@ public class BookingMapper {
             statement.setString(3, c.getCountry());
             statement.setString(4, c.getEmail());
             statement.setInt(5, c.getPhone());
-            statement.setInt(6, this.getNextResNumber(conn));
+            statement.setInt(6, nextRes);
             statement.setString(7, c.getAddress());
             statement.setInt(8, c.getNumberofGuests());
             
@@ -71,7 +72,7 @@ public class BookingMapper {
     
     
     public int getNextResNumber(Connection conn) {
-        int nextRes = 0;
+        nextRes = 0;
         String SQLString = "select BOOKING_RESNUMBER_SEQ.NEXTVAL " + "from DUAL";
         PreparedStatement statement = null;
         try {
