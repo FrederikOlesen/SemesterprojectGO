@@ -19,12 +19,12 @@ public class BookingMapper {
     
     public boolean addNewBooking(ArrayList<Customers> cu, ArrayList<Booking> bl, Connection conn) throws SQLException {
         int rowsInserted = 0;
-        String SQLString = "insert into customers values (?,?,?,?,?,?,?)";
-        String SQLString1 = "insert into booking values (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String SQLString = "insert into customers values (?,?,?,?,?,?,?,?)";
+        String SQLString1 = "insert into booking values (?,?,?,?,?)";
         PreparedStatement statement = null;
         PreparedStatement statement1 = null;
         statement = conn.prepareStatement(SQLString);
-        statement = conn.prepareStatement(SQLString1);
+        statement1 = conn.prepareStatement(SQLString1);
 
         for (int i = 0; i < cu.size(); i++) {
             Customers c = cu.get(i);
@@ -39,12 +39,23 @@ public class BookingMapper {
             
             
             rowsInserted += statement.executeUpdate();
-            rowsInserted += statement1.executeUpdate();
         }
+        
+         for (int j = 0; j < bl.size(); j++)
+         {
+             Booking b = bl.get(j);
+             statement1.setDate(1, b.getArrival());
+             statement1.setDate(2, b.getDeparture());
+             statement1.setInt(3, b.getResNumber());
+             statement1.setInt(4, b.getRoomNumber());
+             statement1.setInt(5, b.getPayment());
+             
+             rowsInserted += statement1.executeUpdate();
+         }
         if (testRun) {
-            System.out.println("insertOrders(): " + (rowsInserted == cu.size())); // for test
+            System.out.println("insertBooking(): " + (rowsInserted == cu.size() && rowsInserted == bl.size())); // for test
         }
-        return (rowsInserted == cu.size());
+        return (rowsInserted == cu.size() && rowsInserted == bl.size());
     }
     
     public boolean updateBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {

@@ -11,7 +11,8 @@ public class Booking {
     private Date departure;
     private int resNumber;
     private String roomType;
-    private boolean payment;
+    private int payment;
+    private int roomNumber;
     private ArrayList<Booking> booking = new ArrayList<Booking>();
 
     public ArrayList<Booking> getBooking() {
@@ -22,6 +23,10 @@ public class Booking {
     
     public Date getArrival() {
         return arrival;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
     }
 
     public void setArrival(Date arrival) {
@@ -48,14 +53,15 @@ public class Booking {
         return roomType;
     }
 
-    public boolean isPayment() {
+    public int getPayment() {
         return payment;
     }
 
-    public void setPayment(boolean payment) {
+    public void setPayment(int payment) {
         this.payment = payment;
     }
 
+    
     //Created a toString-method, which returns a String representation of the object.
     @Override
     public String toString() {

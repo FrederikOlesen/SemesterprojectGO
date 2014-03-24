@@ -1,7 +1,7 @@
 
 package dataSource;
 
-import domain.Booking;
+import domain.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,11 +11,15 @@ public class UOWPBook {
     private ArrayList<Booking> newBooking;
     private ArrayList<Booking> modifiedBooking;
     private ArrayList<Booking> deleteBooking;
+    private ArrayList<Customers> newCustomers;
+    
+    
 
     public UOWPBook() {
         newBooking = new ArrayList<Booking>(); // will never exceed 1 element
         modifiedBooking = new ArrayList<Booking>(); // will never exceed 1 element
         deleteBooking = new ArrayList<Booking>();
+        newCustomers = new ArrayList<Customers>();
     }
   //====== Methods to register changes ==========================
 
@@ -42,9 +46,9 @@ public class UOWPBook {
             conn.setAutoCommit(false);
             BookingMapper bm = new BookingMapper();
 
-            status = status && bm.addNewBooking(newBooking, conn);
-            status = status && bm.updateBooking(modifiedBooking, conn);
-            status = status && bm.deleteBooking(deleteBooking, conn);
+            status = status && bm.addNewBooking(newCustomers, newBooking, conn);
+//            status = status && bm.updateBooking(modifiedBooking, conn);
+//            status = status && bm.deleteBooking(deleteBooking, conn);
             if (!status) {
                 throw new Exception("Business Transaction aborted");
             }
@@ -61,17 +65,17 @@ public class UOWPBook {
     }
 
   //====== Methods to read from DB ===================================================
-    public Order getOrder(int ono, Connection con) {
-        Order o = null;;
-        try {
-            o = new OrderMapper().getOrder(ono, con);
-        } catch (Exception e) {
-            System.out.println("fail in UnitOfWork - getOrder()");
-            System.err.println(e);
-        }
-        return o;
-
-    }
+//    public Order getOrder(int ono, Connection con) {
+//        Order o = null;;
+//        try {
+//            o = new OrderMapper().getOrder(ono, con);
+//        } catch (Exception e) {
+//            System.out.println("fail in UnitOfWork - getOrder()");
+//            System.err.println(e);
+//        }
+//        return o;
+//
+//    }
 
     public void registerDeletedBooking(Booking b) {
         if (!newBooking.contains(b) && // if not allready registered in any list
