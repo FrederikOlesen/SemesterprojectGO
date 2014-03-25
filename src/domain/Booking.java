@@ -1,14 +1,14 @@
 package domain;
 
-import java.sql.Date;
+
 import java.util.ArrayList;
 
 public class Booking {
     
     //Created all the variables.
     
-    private Date arrival;
-    private Date departure;
+    private String arrival;
+    private String departure;
     private int resNumber;
     private String roomType;
     private int payment;
@@ -21,23 +21,23 @@ public class Booking {
 
     //Created getters and setters for the variables above.
     
-    public Date getArrival() {
+    public String getArrival() {
         return arrival;
     }
 
     public int getRoomNumber() {
-        return roomNumber;
+        return roomNumber = 1;
     }
 
-    public void setArrival(Date arrival) {
+    public void setArrival(String arrival) {
         this.arrival = arrival;
     }
 
-    public Date getDeparture() {
+    public String getDeparture() {
         return departure;
     }
 
-    public void setDeparture(Date departure) {
+    public void setDeparture(String departure) {
         this.departure = departure;
     }
 

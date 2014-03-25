@@ -1,4 +1,3 @@
-
 package dataSource;
 
 import domain.*;
@@ -6,55 +5,72 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+public class UOWPBook
+{
 
-public class UOWPBook {
-    private ArrayList<Booking> newBooking;
+//    public ArrayList<Booking> getNewBooking()
+//    {
+//        return newBooking;
+//    }
+
+//    public ArrayList<Customers> getNewCustomers()
+//    {
+//        return newCustomers;
+//    }
     private ArrayList<Booking> modifiedBooking;
     private ArrayList<Booking> deleteBooking;
-    private ArrayList<Customers> newCustomers;
-    
-    
+    private ArrayList<Booking> newBooking;
 
-    public UOWPBook() {
+   // private ArrayList<Customers> newCustomers;
+    public UOWPBook()
+    {
         newBooking = new ArrayList<Booking>(); // will never exceed 1 element
         modifiedBooking = new ArrayList<Booking>(); // will never exceed 1 element
         deleteBooking = new ArrayList<Booking>();
-        newCustomers = new ArrayList<Customers>();
-    }
-  //====== Methods to register changes ==========================
+       // newCustomers = new ArrayList<Customers>();
 
-    public void registerNewBooking(Booking b) {
+    }
+    //====== Methods to register changes ==========================
+
+    public void registerNewBooking(Booking b)
+    {
         if (!newBooking.contains(b) && // if not allready registered in any list
-                !modifiedBooking.contains(b)) {
+                !modifiedBooking.contains(b))
+        {
             newBooking.add(b);
         }
     }
 
-    public void registerDirtyBooking(Booking b) {
+    public void registerDirtyBooking(Booking b)
+    {
         if (!newBooking.contains(b) && // if not allready registered in any list
-                !modifiedBooking.contains(b)) {
+                !modifiedBooking.contains(b))
+        {
             modifiedBooking.add(b);
         }
     }
 
-
-  //====== Method to save changes to DB ===============================
-    public boolean commit(Connection conn) throws SQLException {
+    //====== Method to save changes to DB ===============================
+    public boolean commit(Connection conn) throws SQLException
+    {
         boolean status = true;
-        try {
+        try
+        {
             //=== system transaction - start
             conn.setAutoCommit(false);
             BookingMapper bm = new BookingMapper();
 
-            status = status && bm.addNewBooking(newCustomers, newBooking, conn);
+            status = status && bm.addNewBooking(newBooking, conn);
 //            status = status && bm.updateBooking(modifiedBooking, conn);
 //            status = status && bm.deleteBooking(deleteBooking, conn);
-            if (!status) {
+            if (!status)
+            {
                 throw new Exception("Business Transaction aborted");
             }
             //=== system transaction - end with success
             conn.commit();
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println("fail in UnitOfWork - commit()");
             System.err.println(e);
             //=== system transaction - end with roll back
@@ -76,10 +92,11 @@ public class UOWPBook {
 //        return o;
 //
 //    }
-
-    public void registerDeletedBooking(Booking b) {
+    public void registerDeletedBooking(Booking b)
+    {
         if (!newBooking.contains(b) && // if not allready registered in any list
-                !deleteBooking.contains(b)) {
+                !deleteBooking.contains(b))
+        {
             modifiedBooking.add(b);
         }
     }

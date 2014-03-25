@@ -6,77 +6,91 @@
 
 package dataSource;
 
-import domain.Booking;
+import domain.*;
 import java.sql.Connection;
 
 /**
  *
  * @author frederikolesen
  */
-public class DBFacade {
+public class DBFacade
+{
+
     private UOWPBook uow;
     private Connection con;
     private Booking b;
-    
+    private Customers c;
+
     //=====	Singleton
     private static DBFacade instance;
-
-    private DBFacade() {
+    
+    public DBFacade()
+    {
         con = new DBConnector().getConnection();  // the connection will be released upon program 
     }
-
-    public static DBFacade getInstance() {
-        if (instance == null) {
+    
+    public static DBFacade getInstance()
+    {
+        if (instance == null)
+        {
             instance = new DBFacade();
         }
         return instance;
     }
 
     //======	Methods to retrieve data 
-    public Order getOrder(int ono) {
-        Order o = null;
-        o = new OrderMapper().getOrder(ono, con);
-        return o;
-    }
-
-    public int getNextOrderNo() {
-        int nextOno = 0;
-        nextOno = new BookingMapper().getNextOrderNo(con);
-        return nextOno;
+//    public Booking getReservation() {
+//        Booking b = null;
+//        b = new BookingMapper().addNewBooking(uow.getNewCustomers(),uow.getNewBooking(), con);
+//        return b;
+//    }
+    public int getNextResnr()
+    {
+        int nextResnr = 0;
+        nextResnr = new BookingMapper().getNextResNumber(con);
+        return nextResnr;
     }
 
     //=====	Methods to register changes	in UnitOfWork  
-    public void registerNewBooking(Booking b) {
-        if (uow != null) {
+    public void registerNewBooking(Booking b)
+    {
+        if (uow != null)
+        {
             uow.registerNewBooking(b);
         }
     }
-
-    public void registerDirtyBooking(Booking b) {
-        if (uow != null) {
+    
+    public void registerDirtyBooking(Booking b)
+    {
+        if (uow != null)
+        {
             uow.registerDirtyBooking(b);
         }
     }
 
-    public void registerNewOrderDetail(OrderDetail od) {
-        if (uow != null) {
-            uow.registerNewOrderDetail(od);
-        }
-    }
-
+//    public void registerNewOrderDetail(OrderDetail od) {
+//        if (uow != null) {
+//            uow.registerNewOrderDetail(od);
+//        }
+//    }
     //=== Methods to handle business transactions
     //=====	Ignore changes after last commit
-    public void startNewBusinessTransaction() {
+    public void startNewBusinessTransaction()
+    {
         uow = new UOWPBook();
     }
 
     //=====	Save all changes
-    public boolean commitBusinessTransaction() {
+    public boolean commitBusinessTransaction()
+    {
         boolean status = false;
-        if (uow != null) {
-            try {
+        if (uow != null)
+        {
+            try
+            {
                 status = uow.commit(con);
-            } catch (Exception e) {
+            } catch (Exception e)
+            {
                 System.out.println("Fail in DBFacade - commitBusinessTransaction");
                 System.err.println(e);
             }
@@ -86,10 +100,9 @@ public class DBFacade {
     }
 
     //=== connection specifics
-
-    public void registerDeleteOrder(Order o) {
-        if (uow !=null) {
-            uow.registerDeleteOrder(o);
-        }
-    }   
+//    public void registerDeleteOrder(Order o) {
+//        if (uow !=null) {
+//            uow.registerDeleteOrder(o);
+//        }
+//    }   
 }
