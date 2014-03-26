@@ -52,14 +52,14 @@ public class BookingMapper
         for (int i = 0; i < cu.size(); i++)
         {
             Customers c = cu.get(i);
-            statement.setString(1, "palle");
-            statement.setString(2, "palle");
-            statement.setString(3, "palle");
-            statement.setString(4, "palle");
-            statement.setInt(5, 88888);
-            statement.setString(6, "palle");
-            statement.setInt(7, 10);
-            statement.setInt(8, 10);
+            statement.setString(1, c.getFirstName());
+            statement.setString(2, c.getLastName());
+            statement.setString(3, c.getCountry());
+            statement.setString(4, c.getEmail());
+            statement.setInt(5, c.getPhone());
+            statement.setString(6, c.getAddress());
+            statement.setInt(7, nextRes);
+            statement.setInt(8, c.getNumberofGuests());
             rowsInserted += statement.executeUpdate();
         }
 

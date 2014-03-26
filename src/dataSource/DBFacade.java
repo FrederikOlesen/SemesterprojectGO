@@ -116,8 +116,10 @@ public class DBFacade
      public boolean commitBusinessTransactionCustomer()
     {
         boolean status = false;
+        System.out.println("TEST1");
         if (uow != null)
         {
+            System.out.println("TEST2");
             try
             {
                 status = uow.commitCustomers(con);

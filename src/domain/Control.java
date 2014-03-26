@@ -62,7 +62,7 @@ public class Control
         {
             return null;
         }
-        dbFacade.startNewBusinessTransaction();
+        //dbFacade.startNewBusinessTransaction();
         //int newResnr = dbFacade.getNextResnr();// rDB-generated unique ID
         if (nextResNr != 0)
         {
@@ -99,8 +99,10 @@ public class Control
     public boolean saveCustomer()
     {
         boolean status = false;
+        System.out.println("Test Customer");
         if (processingCustomer)
         {
+            System.out.println("Test Customer 1");
             //== ends ongoing business transaction
             status = dbFacade.commitBusinessTransactionCustomer();
             processingCustomer = false;
