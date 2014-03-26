@@ -19,6 +19,14 @@ public class Booking {
         return booking;
     }
 
+    public Booking(String arrival, String departure, int resNumber)
+    {
+        this.arrival = arrival;
+        this.departure = departure;
+        this.resNumber = resNumber;
+    }
+    
+
     //Created getters and setters for the variables above.
     
     public String getArrival() {

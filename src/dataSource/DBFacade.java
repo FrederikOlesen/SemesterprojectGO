@@ -18,8 +18,7 @@ public class DBFacade
 
     private UOWPBook uow;
     private Connection con;
-    private Booking b;
-    private Customers c;
+  
 
     //=====	Singleton
     private static DBFacade instance;
@@ -67,6 +66,22 @@ public class DBFacade
             uow.registerDirtyBooking(b);
         }
     }
+    
+    public void registerNewCustomer(Customers c)
+    {
+        if (uow != null)
+        {
+            uow.registerNewCustomers(c);
+        }
+    }
+    
+    public void registerDirtyCustomer(Customers c)
+    {
+        if (uow != null)
+        {
+            uow.registerDirtyCustomers(c);
+        }
+    }
 
 //    public void registerNewOrderDetail(OrderDetail od) {
 //        if (uow != null) {
@@ -81,7 +96,7 @@ public class DBFacade
     }
 
     //=====	Save all changes
-    public boolean commitBusinessTransaction()
+    public boolean commitBusinessTransactionBooking()
     {
         boolean status = false;
         if (uow != null)
@@ -89,6 +104,23 @@ public class DBFacade
             try
             {
                 status = uow.commit(con);
+            } catch (Exception e)
+            {
+                System.out.println("Fail in DBFacade - commitBusinessTransaction");
+                System.err.println(e);
+            }
+            uow = null;
+        }
+        return status;
+    }
+     public boolean commitBusinessTransactionCustomer()
+    {
+        boolean status = false;
+        if (uow != null)
+        {
+            try
+            {
+                status = uow.commitCustomers(con);
             } catch (Exception e)
             {
                 System.out.println("Fail in DBFacade - commitBusinessTransaction");

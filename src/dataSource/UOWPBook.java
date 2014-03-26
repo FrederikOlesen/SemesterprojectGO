@@ -7,27 +7,22 @@ import java.util.ArrayList;
 
 public class UOWPBook
 {
+    private final ArrayList<Booking> modifiedBooking;
+    private final ArrayList<Booking> deleteBooking;
+    private final ArrayList<Booking> newBooking;
+    private final ArrayList<Customers> modifiedCustomers;
+    private final ArrayList<Customers> deleteCustomers;
+    private final ArrayList<Customers> newCustomers;
 
-//    public ArrayList<Booking> getNewBooking()
-//    {
-//        return newBooking;
-//    }
-
-//    public ArrayList<Customers> getNewCustomers()
-//    {
-//        return newCustomers;
-//    }
-    private ArrayList<Booking> modifiedBooking;
-    private ArrayList<Booking> deleteBooking;
-    private ArrayList<Booking> newBooking;
-
-   // private ArrayList<Customers> newCustomers;
+    // private ArrayList<Customers> newCustomers;
     public UOWPBook()
     {
-        newBooking = new ArrayList<Booking>(); // will never exceed 1 element
-        modifiedBooking = new ArrayList<Booking>(); // will never exceed 1 element
-        deleteBooking = new ArrayList<Booking>();
-       // newCustomers = new ArrayList<Customers>();
+        newBooking = new ArrayList<>(); // will never exceed 1 element
+        modifiedBooking = new ArrayList<>(); // will never exceed 1 element
+        deleteBooking = new ArrayList<>();
+        newCustomers = new ArrayList<>();
+        deleteCustomers = new ArrayList<>();
+        modifiedCustomers = new ArrayList<>();
 
     }
     //====== Methods to register changes ==========================
@@ -50,6 +45,24 @@ public class UOWPBook
         }
     }
 
+    public void registerNewCustomers(Customers c)
+    {
+        if (!newCustomers.contains(c) && // if not allready registered in any list
+                !modifiedCustomers.contains(c))
+        {
+            newCustomers.add(c);
+        }
+    }
+
+    public void registerDirtyCustomers(Customers c)
+    {
+        if (!newCustomers.contains(c) && // if not allready registered in any list
+                !modifiedCustomers.contains(c))
+        {
+            modifiedCustomers.add(c);
+        }
+    }
+
     //====== Method to save changes to DB ===============================
     public boolean commit(Connection conn) throws SQLException
     {
@@ -59,7 +72,7 @@ public class UOWPBook
             //=== system transaction - start
             conn.setAutoCommit(false);
             BookingMapper bm = new BookingMapper();
-
+            
             status = status && bm.addNewBooking(newBooking, conn);
 //            status = status && bm.updateBooking(modifiedBooking, conn);
 //            status = status && bm.deleteBooking(deleteBooking, conn);
@@ -80,7 +93,37 @@ public class UOWPBook
         return status;
     }
 
-  //====== Methods to read from DB ===================================================
+    public boolean commitCustomers(Connection conn) throws SQLException
+    {
+        boolean status = true;
+        try
+        {
+            //=== system transaction - start
+            conn.setAutoCommit(false);
+            BookingMapper bm = new BookingMapper();
+            
+            status = status && bm.addNewCustomer(newCustomers, conn);
+//            status = status && bm.updateBooking(modifiedBooking, conn);
+//            status = status && bm.deleteBooking(deleteBooking, conn);
+            if (!status)
+            {
+                throw new Exception("Business Transaction aborted");
+            }
+            //=== system transaction - end with success
+            conn.commit();
+        } catch (Exception e)
+        {
+            System.out.println("fail in UnitOfWork - commit()");
+            System.err.println(e);
+            //=== system transaction - end with roll back
+            conn.rollback();
+            status = false;// rettelse
+        }
+        return status;
+    }
+
+    
+    //====== Methods to read from DB ===================================================
 //    public Order getOrder(int ono, Connection con) {
 //        Order o = null;;
 //        try {

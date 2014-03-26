@@ -4,21 +4,24 @@ import dataSource.*;
 
 public class Control
 {
-
-    Customers Cum = new Customers();
+   
     //DBFacade facade = new DBFacade();
     Rooms rooms = new Rooms();
-    Booking booking = new Booking();
     UOWPBook uow = new UOWPBook();
-
+    
     private boolean processingBooking;	// state of business transaction
     private Booking currentBooking;       	// Order in focus
     private DBFacade dbFacade;
-
+    private boolean processingCustomer;
+    private Customers currentCustomer;
+    
+    int nextResNr;
     public Control()
     {
         processingBooking = false;
         currentBooking = null;
+        processingCustomer = false;
+        currentCustomer = null;
         dbFacade = DBFacade.getInstance();
     }
 //
@@ -31,19 +34,19 @@ public class Control
 //        //DBinstance.registerNewBooking(booking);
 //    }
 
-    public Booking createNewBooking(String fname, String lname, String country, String email, int phone, String address, int noOfGuest, String arrival, String departure, int roomNumber)
+    public Booking createNewBooking(String arrival, String departure, int roomNumber)
     {
-        roomNumber = 1; 
+        roomNumber = 1;
         if (processingBooking)
         {
             return null;
         }
         dbFacade.startNewBusinessTransaction();
-        int newResnr = dbFacade.getNextResnr();// rDB-generated unique ID
-        if (newResnr != 0)
+        nextResNr = dbFacade.getNextResnr();// rDB-generated unique ID
+        if (nextResNr != 0)
         {
             processingBooking = true;
-            currentBooking = new Booking();
+            currentBooking = new Booking(arrival, departure, roomNumber);
             dbFacade.registerNewBooking(currentBooking);
         } else
         {
@@ -53,21 +56,62 @@ public class Control
         return currentBooking;
     }
 
+    public Customers createNewCustomer(String FirstName, String LastName, String Country, String Email,String Address, int Phone, int NumberofGuests)
+    {
+        if (processingCustomer)
+        {
+            return null;
+        }
+        dbFacade.startNewBusinessTransaction();
+        //int newResnr = dbFacade.getNextResnr();// rDB-generated unique ID
+        if (nextResNr != 0)
+        {
+            processingCustomer = true;
+            currentCustomer = new Customers(FirstName,LastName,Country,Email,Address,Phone,NumberofGuests);
+            dbFacade.registerNewCustomer(currentCustomer);
+        } else
+        {
+            processingCustomer = false;
+            currentCustomer = null;
+        }
+        return currentCustomer;
+    }
+
     public boolean saveBooking()
     {
         boolean status = false;
         if (processingBooking)
         {
             //== ends ongoing business transaction
-            status = dbFacade.commitBusinessTransaction();
+            status = dbFacade.commitBusinessTransactionBooking();
             processingBooking = false;
             currentBooking = null;
         }
         return status;
     }
-    
-    public void resetBooking() {
+
+    public void resetBooking()
+    {
         processingBooking = false;
         currentBooking = null;
+    }
+
+    public boolean saveCustomer()
+    {
+        boolean status = false;
+        if (processingCustomer)
+        {
+            //== ends ongoing business transaction
+            status = dbFacade.commitBusinessTransactionCustomer();
+            processingCustomer = false;
+            currentCustomer = null;
+        }
+        return status;
+    }
+
+    public void resetCustomer()
+    {
+        processingCustomer = false;
+        currentCustomer = null;
     }
 }

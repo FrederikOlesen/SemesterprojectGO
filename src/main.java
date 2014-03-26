@@ -20,12 +20,6 @@ public class main {
 
     public static void main(String[] args) {
         
-        BookingMapper bm = new BookingMapper();
-        
-        Booking b = new Booking();
-        
-        DBConnector dbc = new DBConnector();
-        
-        bm.getNextResNumber(dbc.getConnection());
+
     }
 }

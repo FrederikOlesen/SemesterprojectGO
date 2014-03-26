@@ -15,21 +15,21 @@ public class Customers
     private int ReservationNumber;
     private int NumberofGuests;
     private String TravelAgency;
-
+    ArrayList<Customers> cu = new ArrayList<>();
     //Constructor for a customer, needs all the variables that makes a customer
-//    public Customers(String FirstName, String LastName, String Country, String Email, int Phone, int ReservationNumber, int NumberofGuests)
-//    {
-//        this.FirstName = FirstName;
-//        this.LastName = LastName;
-//        this.Country = Country;
-//        this.Email = Email;
-//        this.Phone = Phone;
-//        this.Address = Address;
-//        this.ReservationNumber = ReservationNumber;
-//        this.NumberofGuests = NumberofGuests;
-//        this.TravelAgency = TravelAgency;
-//    }
-    
+    public Customers(String FirstName, String LastName, String Country, String Email,String Address, int Phone, int NumberofGuests)
+    {
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+        this.Country = Country;
+        this.Email = Email;
+        this.Phone = Phone;
+        this.Address = Address;
+        
+        this.NumberofGuests = NumberofGuests;
+        this.TravelAgency = TravelAgency;
+    }
+
     //Getters and setters for the variables 
     public String getFirstName()
     {
@@ -127,6 +127,5 @@ public class Customers
     {
         return "Customers{" + "Phone=" + Phone + ", NumberofGuests=" + NumberofGuests + '}';
     }
-    
 
 }
