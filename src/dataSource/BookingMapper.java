@@ -16,6 +16,7 @@ public class BookingMapper
     // returns true if all elements were inserted successfully
     static boolean testRun = false;
     private int nextRes = 0;
+    private int nextCustomerID = 0;
     
     public boolean addNewBooking(ArrayList<Booking> bl, Connection conn) throws SQLException
     {
@@ -117,5 +118,27 @@ public class BookingMapper
         }
         System.out.println(nextRes);
         return nextRes;
+    }
+    
+     public int getNextCustomerID(Connection conn)
+    {
+        nextCustomerID = 0;
+        String SQLString = "select CUSTOMER_CUSTOMERID_SEQ.NEXTVAL " + "from DUAL";
+        PreparedStatement statement = null;
+        try
+        {
+            statement = conn.prepareStatement(SQLString);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next())
+            {
+                nextCustomerID = rs.getInt(1);
+            }
+        } catch (SQLException e)
+        {
+            System.out.println("Fail in BookingMapper - getNextCustomerID");
+            System.out.println(e.getMessage());
+        }
+        System.out.println(nextCustomerID);
+        return nextCustomerID;
     }
 }
