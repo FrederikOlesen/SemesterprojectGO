@@ -17,15 +17,14 @@ public class BookingMapper
     static boolean testRun = false;
     private int nextRes = 0;
     private int nextCustomerID = 0;
-    
+
     public boolean addNewBooking(ArrayList<Booking> bl, Connection conn) throws SQLException
     {
-        
+
         int rowsInserted = 0;
-        String SQLString = "insert into booking values (to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?,?)";
+        String SQLString = "insert into booking values (to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?,?,?,?)";
         PreparedStatement statement = null;
         statement = conn.prepareStatement(SQLString);
-        //for (int i = 0; i <= bl.size(); i++)
         for (Booking b : bl)
         {
             statement.setString(1, b.getArrival());
@@ -33,6 +32,8 @@ public class BookingMapper
             statement.setInt(3, nextRes);
             statement.setInt(4, b.getRoomNumber());
             statement.setInt(5, 1);
+            statement.setInt(6, b.getCustomerID());
+            statement.setInt(7, b.getNumberOfGuests());
             rowsInserted += statement.executeUpdate();
         }
         if (testRun)
@@ -45,22 +46,21 @@ public class BookingMapper
 
     public boolean addNewCustomer(ArrayList<Customers> cu, Connection conn) throws SQLException
     {
-        System.out.println("TEST!!!!!!!!!!!!!!");
+        System.out.println("Entered AddNewCustomer " + nextCustomerID);
         int rowsInserted = 0;
-        String SQLString = "insert into customer values (?,?,?,?,?,?,?,?)";
+        String SQLString = "insert into customer values (?,?,?,?,?,?,?)";
         PreparedStatement statement = null;
         statement = conn.prepareStatement(SQLString);
         for (int i = 0; i < cu.size(); i++)
         {
             Customers c = cu.get(i);
-            statement.setString(1, c.getFirstName());
-            statement.setString(2, c.getLastName());
-            statement.setString(3, c.getCountry());
-            statement.setString(4, c.getEmail());
-            statement.setInt(5, c.getPhone());
-            statement.setString(6, c.getAddress());
-            statement.setInt(7, nextRes);
-            statement.setInt(8, c.getNumberofGuests());
+            statement.setInt(1, nextRes);
+            statement.setString(2, c.getFirstName());
+            statement.setString(3, c.getLastName());
+            statement.setString(4, c.getCountry());
+            statement.setString(5, c.getEmail());
+            statement.setInt(6, c.getPhone());
+            statement.setString(7, c.getAddress());
             rowsInserted += statement.executeUpdate();
         }
 
@@ -68,8 +68,10 @@ public class BookingMapper
         {
             System.out.println("insertBooking(): " + (rowsInserted == cu.size())); // for test
         }
-        System.out.println("cu.size " + cu.size());
-        return (rowsInserted == cu.size());
+        System.out.println("cu.size " + cu.size() + "Customer ID "+ nextCustomerID);
+        
+            return (rowsInserted == cu.size());
+        
     }
 
     public boolean updateBooking(ArrayList<Booking> bl, Connection conn) throws SQLException
@@ -119,14 +121,15 @@ public class BookingMapper
         System.out.println(nextRes);
         return nextRes;
     }
-    
-     public int getNextCustomerID(Connection conn)
+
+    public int getNextCustomerID(Connection conn)
     {
         nextCustomerID = 0;
-        String SQLString = "select CUSTOMER_CUSTOMERID_SEQ.NEXTVAL " + "from DUAL";
+        String SQLString = "select SEQ_CUSTOMERID.NEXTVAL " + "from DUAL";
         PreparedStatement statement = null;
         try
         {
+            
             statement = conn.prepareStatement(SQLString);
             ResultSet rs = statement.executeQuery();
             if (rs.next())
@@ -138,7 +141,8 @@ public class BookingMapper
             System.out.println("Fail in BookingMapper - getNextCustomerID");
             System.out.println(e.getMessage());
         }
-        System.out.println(nextCustomerID);
+        System.out.println("CustomerID from nextCustomerID method" + nextCustomerID);
+        
         return nextCustomerID;
     }
 }

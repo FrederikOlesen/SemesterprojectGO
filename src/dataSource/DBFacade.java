@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package dataSource;
 
 import domain.*;
@@ -16,18 +15,20 @@ import java.sql.Connection;
 public class DBFacade
 {
 
-    private UOWPBook uow;
+    private UOWPBook uowb;
+    private UOWPBook uowc;
     private Connection con;
-  
+    private int nextResNr;
+    private int nextCustomerID; 
 
     //=====	Singleton
     private static DBFacade instance;
-    
+
     public DBFacade()
     {
         con = new DBConnector().getConnection();  // the connection will be released upon program 
     }
-    
+
     public static DBFacade getInstance()
     {
         if (instance == null)
@@ -45,41 +46,47 @@ public class DBFacade
 //    }
     public int getNextResnr()
     {
-        int nextResnr = 0;
-        nextResnr = new BookingMapper().getNextResNumber(con);
-        return nextResnr;
+        
+        nextResNr = new BookingMapper().getNextResNumber(con);
+        return nextResNr;
+    }
+    
+    public int getNextCustomerID()
+    {
+        nextCustomerID = new BookingMapper().getNextCustomerID(con);
+        return nextCustomerID; 
     }
 
     //=====	Methods to register changes	in UnitOfWork  
     public void registerNewBooking(Booking b)
     {
-        if (uow != null)
+        if (uowb != null)
         {
-            uow.registerNewBooking(b);
+            uowb.registerNewBooking(b);
         }
     }
-    
+
     public void registerDirtyBooking(Booking b)
     {
-        if (uow != null)
+        if (uowb != null)
         {
-            uow.registerDirtyBooking(b);
+            uowb.registerDirtyBooking(b);
         }
     }
-    
+
     public void registerNewCustomer(Customers c)
     {
-        if (uow != null)
+        if (uowc != null)
         {
-            uow.registerNewCustomers(c);
+            uowc.registerNewCustomers(c);
         }
     }
-    
+
     public void registerDirtyCustomer(Customers c)
     {
-        if (uow != null)
+        if (uowc != null)
         {
-            uow.registerDirtyCustomers(c);
+            uowc.registerDirtyCustomers(c);
         }
     }
 
@@ -90,45 +97,51 @@ public class DBFacade
 //    }
     //=== Methods to handle business transactions
     //=====	Ignore changes after last commit
-    public void startNewBusinessTransaction()
+    public void startNewBusinessTransactionBook()
     {
-        uow = new UOWPBook();
+        uowb = new UOWPBook();
+    }
+
+    public void startNewBusinessTransactionCus()
+    {
+        uowc = new UOWPBook();
     }
 
     //=====	Save all changes
     public boolean commitBusinessTransactionBooking()
     {
         boolean status = false;
-        if (uow != null)
+        if (uowb != null)
         {
             try
             {
-                status = uow.commit(con);
+                status = uowb.commit(con);
             } catch (Exception e)
             {
                 System.out.println("Fail in DBFacade - commitBusinessTransaction");
                 System.err.println(e);
             }
-            uow = null;
+            uowb = null;
         }
         return status;
     }
-     public boolean commitBusinessTransactionCustomer()
+
+    public boolean commitBusinessTransactionCustomer()
     {
         boolean status = false;
-        System.out.println("TEST1");
-        if (uow != null)
+        System.out.println("CommitBTC out if");
+        if (uowc != null)
         {
-            System.out.println("TEST2");
+            System.out.println("CommitBTC in if");
             try
             {
-                status = uow.commitCustomers(con);
+                status = uowc.commitCustomers(con);
             } catch (Exception e)
             {
                 System.out.println("Fail in DBFacade - commitBusinessTransaction");
                 System.err.println(e);
             }
-            uow = null;
+            uowc = null;
         }
         return status;
     }

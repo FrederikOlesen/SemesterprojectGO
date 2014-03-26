@@ -13,17 +13,35 @@ public class Booking {
     private String roomType;
     private int payment;
     private int roomNumber;
+    private int customerID; 
+
+    public int getNumberOfGuests()
+    {
+        return numberOfGuests;
+    }
+
+    public int getCustomerID()
+    {
+        return customerID;
+    }
+
+    public void setNumberOfGuests(int numberOfGuests)
+    {
+        this.numberOfGuests = numberOfGuests;
+    }
+    private int numberOfGuests;
     private ArrayList<Booking> booking = new ArrayList<Booking>();
 
     public ArrayList<Booking> getBooking() {
         return booking;
     }
 
-    public Booking(String arrival, String departure, int resNumber)
+    public Booking(String arrival, String departure, int numberOfGuests)
     {
         this.arrival = arrival;
         this.departure = departure;
         this.resNumber = resNumber;
+        this.numberOfGuests = numberOfGuests;
     }
     
 

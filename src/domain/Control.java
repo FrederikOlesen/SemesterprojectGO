@@ -1,21 +1,16 @@
 package domain;
 
 import dataSource.*;
-
 public class Control
 {
    
-    //DBFacade facade = new DBFacade();
-    Rooms rooms = new Rooms();
     UOWPBook uow = new UOWPBook();
-    
     private boolean processingBooking;	// state of business transaction
     private Booking currentBooking;       	// Order in focus
     private DBFacade dbFacade;
     private boolean processingCustomer;
     private Customers currentCustomer;
-    
-    int nextResNr;
+    BookingMapper bm = new BookingMapper(); 
     public Control()
     {
         processingBooking = false;
@@ -24,29 +19,19 @@ public class Control
         currentCustomer = null;
         dbFacade = DBFacade.getInstance();
     }
-//
-//    public void newBooking(String fname, String lname, String country, String email, int phone, String address, int noOfGuest, String arrival, String departure, int roomNumber)
-//    {
-//
-//        uow.getNewBooking().add(booking);
-//        // System.out.println(fname+" "+lname+" "+country+" "+email+" "+phone+" "+address+" "+noOfGuest+" "+arrival+" "+departure+" "+roomNumber);
-//        dbFacade.startNewBusinessTransaction();
-//        //DBinstance.registerNewBooking(booking);
-//    }
 
-    public Booking createNewBooking(String arrival, String departure, int roomNumber)
+    public Booking createNewBooking(String arrival, String departure, int numberOfGuests,int roomNumber)
     {
-        roomNumber = 1;
         if (processingBooking)
         {
             return null;
         }
-        dbFacade.startNewBusinessTransaction();
-        nextResNr = dbFacade.getNextResnr();// rDB-generated unique ID
+        dbFacade.startNewBusinessTransactionBook();
+        int nextResNr = dbFacade.getNextResnr();// rDB-generated unique ID
         if (nextResNr != 0)
         {
             processingBooking = true;
-            currentBooking = new Booking(arrival, departure, roomNumber);
+            currentBooking = new Booking(arrival, departure, numberOfGuests);
             dbFacade.registerNewBooking(currentBooking);
         } else
         {
@@ -56,18 +41,22 @@ public class Control
         return currentBooking;
     }
 
-    public Customers createNewCustomer(String FirstName, String LastName, String Country, String Email,String Address, int Phone, int NumberofGuests)
+    public Customers createNewCustomer(String FirstName, String LastName, String Country, String Email,  int Phone,String Address)
     {
         if (processingCustomer)
         {
             return null;
         }
-        //dbFacade.startNewBusinessTransaction();
+        dbFacade.startNewBusinessTransactionCus();
         //int newResnr = dbFacade.getNextResnr();// rDB-generated unique ID
-        if (nextResNr != 0)
+        int customerID = dbFacade.getNextCustomerID();
+        System.out.println("createNewCustomer out if");
+        System.out.println("customerID from createNewCustomer :" + customerID);
+        if (customerID != 0)
         {
+                  System.out.println("createNewCustomer in if");
             processingCustomer = true;
-            currentCustomer = new Customers(FirstName,LastName,Country,Email,Address,Phone,NumberofGuests);
+            currentCustomer = new Customers(FirstName,LastName,Country,Email,Phone,Address);
             dbFacade.registerNewCustomer(currentCustomer);
         } else
         {
@@ -99,10 +88,10 @@ public class Control
     public boolean saveCustomer()
     {
         boolean status = false;
-        System.out.println("Test Customer");
+        System.out.println("SaveCustomer out if");
         if (processingCustomer)
         {
-            System.out.println("Test Customer 1");
+            System.out.println("SaveCustomer in if");
             //== ends ongoing business transaction
             status = dbFacade.commitBusinessTransactionCustomer();
             processingCustomer = false;

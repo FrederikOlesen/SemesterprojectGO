@@ -101,7 +101,7 @@ public class UOWPBook
             //=== system transaction - start
             conn.setAutoCommit(false);
             BookingMapper bm = new BookingMapper();
-            System.out.println("TEST!!!!!!!!!!!!!!!!!");
+            System.out.println("CommitCustomer");
             status = status && bm.addNewCustomer(newCustomers, conn);
 //            status = status && bm.updateBooking(modifiedBooking, conn);
 //            status = status && bm.deleteBooking(deleteBooking, conn);

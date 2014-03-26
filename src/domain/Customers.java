@@ -6,18 +6,15 @@ public class Customers
 {
 
     // Variables for the customers
+    private int CustomerID;
     private String FirstName;
     private String LastName;
     private String Country;
     private String Email;
     private int Phone;
     private String Address;
-    private int ReservationNumber;
-    private int NumberofGuests;
-    private String TravelAgency;
     ArrayList<Customers> cu = new ArrayList<>();
-    //Constructor for a customer, needs all the variables that makes a customer
-    public Customers(String FirstName, String LastName, String Country, String Email,String Address, int Phone, int NumberofGuests)
+    public Customers(String FirstName, String LastName, String Country, String Email, int Phone, String Address)
     {
         this.FirstName = FirstName;
         this.LastName = LastName;
@@ -25,9 +22,17 @@ public class Customers
         this.Email = Email;
         this.Phone = Phone;
         this.Address = Address;
-        
-        this.NumberofGuests = NumberofGuests;
-        this.TravelAgency = TravelAgency;
+    }
+
+    public void setCustomerID(int CustomerID)
+    {
+        this.CustomerID = CustomerID;
+    }
+
+    //Constructor for a customer, needs all the variables that makes a customer
+    public int getCustomerID()
+    {
+        return CustomerID;
     }
 
     //Getters and setters for the variables 
@@ -91,41 +96,6 @@ public class Customers
         this.Address = Address;
     }
 
-    public int getReservationNumber()
-    {
-        return ReservationNumber;
-    }
 
-    public void setReservationNumber(int ReservationNumber)
-    {
-        this.ReservationNumber = ReservationNumber;
-    }
-
-    public int getNumberofGuests()
-    {
-        return NumberofGuests;
-    }
-
-    public void setNumberofGuests(int NumberofGuests)
-    {
-        this.NumberofGuests = NumberofGuests;
-    }
-
-    public String getTravelAgency()
-    {
-        return TravelAgency;
-    }
-
-    public void setTravelAgency(String TravelAgency)
-    {
-        this.TravelAgency = TravelAgency;
-    }
-
-    //toString method
-    @Override
-    public String toString()
-    {
-        return "Customers{" + "Phone=" + Phone + ", NumberofGuests=" + NumberofGuests + '}';
-    }
 
 }
