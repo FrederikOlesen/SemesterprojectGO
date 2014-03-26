@@ -46,7 +46,7 @@ public class BookingMapper
 
     public boolean addNewCustomer(ArrayList<Customers> cu, Connection conn) throws SQLException
     {
-        System.out.println("Entered AddNewCustomer " + nextCustomerID);
+        System.out.println("Entered AddNewCustomer ");
         int rowsInserted = 0;
         String SQLString = "insert into customer values (?,?,?,?,?,?,?)";
         PreparedStatement statement = null;
@@ -54,7 +54,7 @@ public class BookingMapper
         for (int i = 0; i < cu.size(); i++)
         {
             Customers c = cu.get(i);
-            statement.setInt(1, nextRes);
+            statement.setInt(1, c.getCustomerID());
             statement.setString(2, c.getFirstName());
             statement.setString(3, c.getLastName());
             statement.setString(4, c.getCountry());
@@ -68,7 +68,7 @@ public class BookingMapper
         {
             System.out.println("insertBooking(): " + (rowsInserted == cu.size())); // for test
         }
-        System.out.println("cu.size " + cu.size() + "Customer ID "+ nextCustomerID);
+        System.out.println("cu.size " + cu.size());
         
             return (rowsInserted == cu.size());
         
@@ -135,14 +135,13 @@ public class BookingMapper
             if (rs.next())
             {
                 nextCustomerID = rs.getInt(1);
+                
             }
         } catch (SQLException e)
         {
             System.out.println("Fail in BookingMapper - getNextCustomerID");
             System.out.println(e.getMessage());
         }
-        System.out.println("CustomerID from nextCustomerID method" + nextCustomerID);
-        
         return nextCustomerID;
     }
 }

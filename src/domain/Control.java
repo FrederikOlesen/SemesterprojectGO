@@ -1,16 +1,18 @@
 package domain;
 
 import dataSource.*;
+
 public class Control
 {
-   
+
     UOWPBook uow = new UOWPBook();
     private boolean processingBooking;	// state of business transaction
     private Booking currentBooking;       	// Order in focus
     private DBFacade dbFacade;
     private boolean processingCustomer;
     private Customers currentCustomer;
-    BookingMapper bm = new BookingMapper(); 
+    BookingMapper bm = new BookingMapper();
+    Customers c = new Customers(1,"","","","",1,""); 
     public Control()
     {
         processingBooking = false;
@@ -20,7 +22,7 @@ public class Control
         dbFacade = DBFacade.getInstance();
     }
 
-    public Booking createNewBooking(String arrival, String departure, int numberOfGuests,int roomNumber)
+    public Booking createNewBooking(String arrival, String departure, int numberOfGuests, int roomNumber)
     {
         if (processingBooking)
         {
@@ -41,7 +43,7 @@ public class Control
         return currentBooking;
     }
 
-    public Customers createNewCustomer(String FirstName, String LastName, String Country, String Email,  int Phone,String Address)
+    public Customers createNewCustomer(String FirstName, String LastName, String Country, String Email, int Phone, String Address)
     {
         if (processingCustomer)
         {
@@ -49,14 +51,14 @@ public class Control
         }
         dbFacade.startNewBusinessTransactionCus();
         //int newResnr = dbFacade.getNextResnr();// rDB-generated unique ID
+        System.out.println("Entered createNewCustomer");
+
         int customerID = dbFacade.getNextCustomerID();
-        System.out.println("createNewCustomer out if");
-        System.out.println("customerID from createNewCustomer :" + customerID);
         if (customerID != 0)
         {
-                  System.out.println("createNewCustomer in if");
+            System.out.println("createNewCustomer in if CustomerID ");
             processingCustomer = true;
-            currentCustomer = new Customers(FirstName,LastName,Country,Email,Phone,Address);
+            currentCustomer = new Customers(customerID, FirstName, LastName, Country, Email, Phone, Address);
             dbFacade.registerNewCustomer(currentCustomer);
         } else
         {
@@ -88,7 +90,7 @@ public class Control
     public boolean saveCustomer()
     {
         boolean status = false;
-        System.out.println("SaveCustomer out if");
+        System.out.println("Enteered saveCustomer if");
         if (processingCustomer)
         {
             System.out.println("SaveCustomer in if");

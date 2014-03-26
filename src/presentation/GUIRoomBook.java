@@ -307,8 +307,8 @@ public class GUIRoomBook extends javax.swing.JFrame
 
     private void jButtonAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCustomerActionPerformed
         // TODO add your handling code here:
-        con.createNewCustomer(Fnamefield.getText(),Snamefield.getText(),Countryfield.getText(),Emailfield.getText(), Integer.parseInt(Phonefield.getText()),Addressfield.getText());
-        
+        con.createNewCustomer(Fnamefield.getText(), Snamefield.getText(), Countryfield.getText(), Emailfield.getText(), Integer.parseInt(Phonefield.getText()), Addressfield.getText());
+
         boolean status = con.saveCustomer();
         if (status)
         {
@@ -337,11 +337,8 @@ public class GUIRoomBook extends javax.swing.JFrame
 
     private void BookbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbuttonActionPerformed
         //comment
-        
-        con.createNewBooking(Arrival.getText(), Depature.getText(),Integer.parseInt(Noofguestfield.getText()),1);
-        
+        con.createNewBooking(Arrival.getText(), Depature.getText(), Integer.parseInt(Noofguestfield.getText()), 1);
         boolean status = con.saveBooking();
-        
         if (status)
         {
             Statuslabel.setText("Order saved");

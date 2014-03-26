@@ -14,8 +14,11 @@ public class Customers
     private int Phone;
     private String Address;
     ArrayList<Customers> cu = new ArrayList<>();
-    public Customers(String FirstName, String LastName, String Country, String Email, int Phone, String Address)
+    
+    
+    public Customers(int CustomerID, String FirstName, String LastName, String Country, String Email, int Phone, String Address)
     {
+        this.CustomerID = CustomerID; 
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.Country = Country;
