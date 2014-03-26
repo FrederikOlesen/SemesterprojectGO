@@ -15,24 +15,33 @@ public class BookingMapper
     // Insert a list of new orders
     // returns true if all elements were inserted successfully
     static boolean testRun = false;
-    private int nextRes = 0;
-    private int nextCustomerID = 0;
+    private int nextRes;
+    private int nextCustomerID;
+    Customers c;
+    Booking b;
 
     public boolean addNewBooking(ArrayList<Booking> bl, Connection conn) throws SQLException
     {
-
+        System.out.println("Entered addNewBooking");
         int rowsInserted = 0;
         String SQLString = "insert into booking values (to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?,?,?,?)";
         PreparedStatement statement = null;
         statement = conn.prepareStatement(SQLString);
-        for (Booking b : bl)
+        for (int i = 0; i < bl.size(); i++)
         {
+            b = bl.get(i);
             statement.setString(1, b.getArrival());
             statement.setString(2, b.getDeparture());
             statement.setInt(3, nextRes);
+            System.out.println("BM nextRes " + b.getResNumber());
+
+            System.out.println("TEST");
             statement.setInt(4, b.getRoomNumber());
+
+            System.out.println("TEST12312");
             statement.setInt(5, 1);
-            statement.setInt(6, b.getCustomerID());
+
+            statement.setInt(6, nextCustomerID);
             statement.setInt(7, b.getNumberOfGuests());
             rowsInserted += statement.executeUpdate();
         }
@@ -53,7 +62,7 @@ public class BookingMapper
         statement = conn.prepareStatement(SQLString);
         for (int i = 0; i < cu.size(); i++)
         {
-            Customers c = cu.get(i);
+            c = cu.get(i);
             statement.setInt(1, c.getCustomerID());
             statement.setString(2, c.getFirstName());
             statement.setString(3, c.getLastName());
@@ -69,35 +78,9 @@ public class BookingMapper
             System.out.println("insertBooking(): " + (rowsInserted == cu.size())); // for test
         }
         System.out.println("cu.size " + cu.size());
-        
-            return (rowsInserted == cu.size());
-        
-    }
 
-    public boolean updateBooking(ArrayList<Booking> bl, Connection conn) throws SQLException
-    {
-        int rowsUpdated = 0;
-        String SQLString = "update booking "
-                + "set arrival = ?, departure = ?"
-                + "where reservationsnumber = ?";
-        PreparedStatement statement = null;
+        return (rowsInserted == cu.size());
 
-        statement = conn.prepareStatement(SQLString);
-        for (Booking b : bl)
-        {
-            statement.setString(1, b.getArrival());
-            statement.setString(2, b.getDeparture());
-            int tupleUpdated = statement.executeUpdate();
-            if (tupleUpdated == 1)
-            {
-            }
-            rowsUpdated += tupleUpdated;
-        }
-        if (testRun)
-        {
-            System.out.println("updateOrders: " + (rowsUpdated == bl.size())); // for test
-        }
-        return (rowsUpdated == bl.size());    // false if any conflict in version number             
     }
 
     public int getNextResNumber(Connection conn)
@@ -118,7 +101,7 @@ public class BookingMapper
             System.out.println("Fail in BookingMapper - getNextResNumber");
             System.out.println(e.getMessage());
         }
-        System.out.println(nextRes);
+        System.out.println("nextRes from sequence "+nextRes);
         return nextRes;
     }
 
@@ -129,13 +112,13 @@ public class BookingMapper
         PreparedStatement statement = null;
         try
         {
-            
+
             statement = conn.prepareStatement(SQLString);
             ResultSet rs = statement.executeQuery();
             if (rs.next())
             {
                 nextCustomerID = rs.getInt(1);
-                
+
             }
         } catch (SQLException e)
         {

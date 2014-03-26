@@ -338,6 +338,7 @@ public class GUIRoomBook extends javax.swing.JFrame
     private void BookbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbuttonActionPerformed
         //comment
         con.createNewBooking(Arrival.getText(), Depature.getText(), Integer.parseInt(Noofguestfield.getText()), 1);
+        
         boolean status = con.saveBooking();
         if (status)
         {

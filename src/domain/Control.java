@@ -11,8 +11,7 @@ public class Control
     private DBFacade dbFacade;
     private boolean processingCustomer;
     private Customers currentCustomer;
-    BookingMapper bm = new BookingMapper();
-    Customers c = new Customers(1,"","","","",1,""); 
+    BookingMapper bm = new BookingMapper(); 
     public Control()
     {
         processingBooking = false;
@@ -33,7 +32,7 @@ public class Control
         if (nextResNr != 0)
         {
             processingBooking = true;
-            currentBooking = new Booking(arrival, departure, numberOfGuests);
+            currentBooking = new Booking(arrival, departure,nextResNr, numberOfGuests);
             dbFacade.registerNewBooking(currentBooking);
         } else
         {

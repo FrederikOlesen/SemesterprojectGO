@@ -36,11 +36,11 @@ public class Booking {
         return booking;
     }
 
-    public Booking(String arrival, String departure, int numberOfGuests)
+    public Booking(String arrival, String departure,int nextResNr, int numberOfGuests)
     {
         this.arrival = arrival;
         this.departure = departure;
-        this.resNumber = resNumber;
+        this.resNumber = nextResNr;
         this.numberOfGuests = numberOfGuests;
     }
     
