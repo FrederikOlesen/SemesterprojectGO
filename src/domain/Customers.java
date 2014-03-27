@@ -2,8 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 
-public class Customers
-{
+public class Customers {
 
     // Variables for the customers
     private int CustomerID;
@@ -14,11 +13,9 @@ public class Customers
     private int Phone;
     private String Address;
     ArrayList<Customers> cu = new ArrayList<>();
-    
-    
-    public Customers(int CustomerID, String FirstName, String LastName, String Country, String Email, int Phone, String Address)
-    {
-        this.CustomerID = CustomerID; 
+
+    public Customers(int CustomerID, String FirstName, String LastName, String Country, String Email, int Phone, String Address) {
+        this.CustomerID = CustomerID;
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.Country = Country;
@@ -27,78 +24,62 @@ public class Customers
         this.Address = Address;
     }
 
-    public void setCustomerID(int CustomerID)
-    {
+    public void setCustomerID(int CustomerID) {
         this.CustomerID = CustomerID;
     }
 
     //Constructor for a customer, needs all the variables that makes a customer
-    public int getCustomerID()
-    {
+    public int getCustomerID() {
         return CustomerID;
     }
 
     //Getters and setters for the variables 
-    public String getFirstName()
-    {
+    public String getFirstName() {
         return FirstName;
     }
 
-    public void setFirstName(String FirstName)
-    {
+    public void setFirstName(String FirstName) {
         this.FirstName = FirstName;
     }
 
-    public String getLastName()
-    {
+    public String getLastName() {
         return LastName;
     }
 
-    public void setLastName(String LastName)
-    {
+    public void setLastName(String LastName) {
         this.LastName = LastName;
     }
 
-    public String getCountry()
-    {
+    public String getCountry() {
         return Country;
     }
 
-    public void setCountry(String Country)
-    {
+    public void setCountry(String Country) {
         this.Country = Country;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         return Email;
     }
 
-    public void setEmail(String Email)
-    {
+    public void setEmail(String Email) {
         this.Email = Email;
     }
 
-    public int getPhone()
-    {
+    public int getPhone() {
         return Phone;
     }
 
-    public void setPhone(int Phone)
-    {
+    public void setPhone(int Phone) {
         this.Phone = Phone;
     }
 
-    public String getAddress()
-    {
+    public String getAddress() {
         return Address;
     }
 
-    public void setAdress(String Address)
-    {
+    public void setAdress(String Address) {
         this.Address = Address;
     }
-
-
 
 }

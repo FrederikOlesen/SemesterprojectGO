@@ -2,8 +2,7 @@ package domain;
 
 import dataSource.*;
 
-public class Control
-{
+public class Control {
 
     UOWPBook uow = new UOWPBook();
     private boolean processingBooking;	// state of business transaction
@@ -11,67 +10,60 @@ public class Control
     private DBFacade dbFacade;
     private boolean processingCustomer;
     private Customers currentCustomer;
-    BookingMapper bm = new BookingMapper(); 
-    public Control()
-    {
+    BookingMapper bm = new BookingMapper();
+
+    public Control() {
         processingBooking = false;
         currentBooking = null;
         processingCustomer = false;
         currentCustomer = null;
+        
         dbFacade = DBFacade.getInstance();
     }
 
-    public Booking createNewBooking(String arrival, String departure, int numberOfGuests, int roomNumber)
-    {
-        if (processingBooking)
-        {
+    public Booking createNewBooking(String arrival, String departure, int numberOfGuests, int roomType) {
+        if (processingBooking) {
             return null;
         }
         dbFacade.startNewBusinessTransactionBook();
         int nextResNr = dbFacade.getNextResnr();// rDB-generated unique ID
-        if (nextResNr != 0)
-        {
+        int payment = 1;
+        int roomNumber = 1;
+        int customerID = dbFacade.getNextCustomerID();
+        
+        if (nextResNr != 0) {
             processingBooking = true;
-            currentBooking = new Booking(arrival, departure,nextResNr, numberOfGuests);
+            currentBooking = new Booking(arrival, departure, nextResNr, roomNumber, payment, roomNumber, customerID, numberOfGuests);
             dbFacade.registerNewBooking(currentBooking);
-        } else
-        {
+        } else {
             processingBooking = false;
             currentBooking = null;
         }
         return currentBooking;
     }
 
-    public Customers createNewCustomer(String FirstName, String LastName, String Country, String Email, int Phone, String Address)
-    {
-        if (processingCustomer)
-        {
+    public Customers createNewCustomer(String FirstName, String LastName, String Country, String Email, int Phone, String Address) {
+        if (processingCustomer) {
             return null;
         }
         dbFacade.startNewBusinessTransactionCus();
         //int newResnr = dbFacade.getNextResnr();// rDB-generated unique ID
-        System.out.println("Entered createNewCustomer");
 
         int customerID = dbFacade.getNextCustomerID();
-        if (customerID != 0)
-        {
-            System.out.println("createNewCustomer in if CustomerID ");
+        if (customerID != 0) {
             processingCustomer = true;
             currentCustomer = new Customers(customerID, FirstName, LastName, Country, Email, Phone, Address);
             dbFacade.registerNewCustomer(currentCustomer);
-        } else
-        {
+        } else {
             processingCustomer = false;
             currentCustomer = null;
         }
         return currentCustomer;
     }
 
-    public boolean saveBooking()
-    {
+    public boolean saveBooking() {
         boolean status = false;
-        if (processingBooking)
-        {
+        if (processingBooking) {
             //== ends ongoing business transaction
             status = dbFacade.commitBusinessTransactionBooking();
             processingBooking = false;
@@ -80,19 +72,14 @@ public class Control
         return status;
     }
 
-    public void resetBooking()
-    {
+    public void resetBooking() {
         processingBooking = false;
         currentBooking = null;
     }
 
-    public boolean saveCustomer()
-    {
+    public boolean saveCustomer() {
         boolean status = false;
-        System.out.println("Enteered saveCustomer if");
-        if (processingCustomer)
-        {
-            System.out.println("SaveCustomer in if");
+        if (processingCustomer) {
             //== ends ongoing business transaction
             status = dbFacade.commitBusinessTransactionCustomer();
             processingCustomer = false;
@@ -101,8 +88,7 @@ public class Control
         return status;
     }
 
-    public void resetCustomer()
-    {
+    public void resetCustomer() {
         processingCustomer = false;
         currentCustomer = null;
     }

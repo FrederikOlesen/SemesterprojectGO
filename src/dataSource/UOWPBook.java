@@ -65,14 +65,14 @@ public class UOWPBook
 
     //====== Method to save changes to DB ===============================
     public boolean commit(Connection conn) throws SQLException
-    {
+    {   
         boolean status = true;
         try
+            
         {
             //=== system transaction - start
             conn.setAutoCommit(false);
-            BookingMapper bm = new BookingMapper();
-            
+            BookingMapper bm = new BookingMapper();    
             status = status && bm.addNewBooking(newBooking, conn);
 //            status = status && bm.updateBooking(modifiedBooking, conn);
 //            status = status && bm.deleteBooking(deleteBooking, conn);

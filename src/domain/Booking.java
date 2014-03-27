@@ -1,52 +1,49 @@
 package domain;
 
-
 import java.util.ArrayList;
 
 public class Booking {
-    
+
     //Created all the variables.
-    
     private String arrival;
     private String departure;
     private int resNumber;
-    private String roomType;
+    private int roomType;
     private int payment;
     private int roomNumber;
-    private int customerID; 
+    private int customerID;
+    ArrayList<Booking> booking = new ArrayList<Booking>();
 
-    public int getNumberOfGuests()
-    {
+    public Booking(String arrival, String departure, int resNumber, int roomType, int payment, int roomNumber, int customerID, int numberOfGuests) {
+        this.departure = departure;
+        this.resNumber = resNumber;
+        this.roomType = roomType;
+        this.payment = payment;
+        this.roomNumber = roomNumber;
+        this.customerID = customerID;
+        this.numberOfGuests = numberOfGuests;
+        this.arrival = arrival;
+        
+    }
+
+    public int getNumberOfGuests() {
         return numberOfGuests;
     }
 
-    public int getCustomerID()
-    {
+    public int getCustomerID() {
         return customerID;
     }
 
-    public void setNumberOfGuests(int numberOfGuests)
-    {
+    public void setNumberOfGuests(int numberOfGuests) {
         this.numberOfGuests = numberOfGuests;
     }
     private int numberOfGuests;
-    private ArrayList<Booking> booking = new ArrayList<Booking>();
 
     public ArrayList<Booking> getBooking() {
         return booking;
     }
 
-    public Booking(String arrival, String departure,int nextResNr, int numberOfGuests)
-    {
-        this.arrival = arrival;
-        this.departure = departure;
-        this.resNumber = nextResNr;
-        this.numberOfGuests = numberOfGuests;
-    }
-    
-
     //Created getters and setters for the variables above.
-    
     public String getArrival() {
         return arrival;
     }
@@ -75,7 +72,7 @@ public class Booking {
         this.resNumber = resNumber;
     }
 
-    public String getRoomType() {
+    public int getRoomType() {
         return roomType;
     }
 
@@ -87,11 +84,4 @@ public class Booking {
         this.payment = payment;
     }
 
-    
-    //Created a toString-method, which returns a String representation of the object.
-    @Override
-    public String toString() {
-        return "Booking{" + "arrival=" + arrival + ", departure=" + departure + ", resNumber=" + resNumber + ", roomType=" + roomType + ", payment=" + payment + '}';
-    }
-    
 }

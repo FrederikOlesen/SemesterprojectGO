@@ -322,15 +322,15 @@ public class GUIRoomBook extends javax.swing.JFrame
     private void ClearfieldsbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearfieldsbuttonActionPerformed
         // TODO add your handling code here:
 
-        Fnamefield.setText("");
-        Snamefield.setText("");
-        Arrival.setText("");
-        Addressfield.setText("");
-        Countryfield.setText("");
-        Depature.setText("");
-        Phonefield.setText("");
-        Emailfield.setText("");
-        Noofguestfield.setText("");
+        Fnamefield.setText("Test");
+        Snamefield.setText("Test");
+        Arrival.setText("2014-1-1");
+        Addressfield.setText("Test");
+        Countryfield.setText("Test");
+        Depature.setText("2014-1-1");
+        Phonefield.setText("1");
+        Emailfield.setText("Test");
+        Noofguestfield.setText("1");
         Statuslabel.setText("All fields are clear");
         con.resetBooking();
     }//GEN-LAST:event_ClearfieldsbuttonActionPerformed
@@ -338,7 +338,6 @@ public class GUIRoomBook extends javax.swing.JFrame
     private void BookbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbuttonActionPerformed
         //comment
         con.createNewBooking(Arrival.getText(), Depature.getText(), Integer.parseInt(Noofguestfield.getText()), 1);
-        
         boolean status = con.saveBooking();
         if (status)
         {
