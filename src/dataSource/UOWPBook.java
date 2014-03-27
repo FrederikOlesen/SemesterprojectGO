@@ -10,9 +10,9 @@ public class UOWPBook
     private final ArrayList<Booking> modifiedBooking;
     private final ArrayList<Booking> deleteBooking;
     private final ArrayList<Booking> newBooking;
-    private final ArrayList<Customers> modifiedCustomers;
-    private final ArrayList<Customers> deleteCustomers;
-    private final ArrayList<Customers> newCustomers;
+    private final ArrayList<Customer> modifiedCustomers;
+    private final ArrayList<Customer> deleteCustomers;
+    private final ArrayList<Customer> newCustomers;
 
     // private ArrayList<Customers> newCustomers;
     public UOWPBook()
@@ -45,7 +45,7 @@ public class UOWPBook
         }
     }
 
-    public void registerNewCustomers(Customers c)
+    public void registerNewCustomers(Customer c)
     {
         if (!newCustomers.contains(c) && // if not allready registered in any list
                 !modifiedCustomers.contains(c))
@@ -54,7 +54,7 @@ public class UOWPBook
         }
     }
 
-    public void registerDirtyCustomers(Customers c)
+    public void registerDirtyCustomers(Customer c)
     {
         if (!newCustomers.contains(c) && // if not allready registered in any list
                 !modifiedCustomers.contains(c))
@@ -123,18 +123,18 @@ public class UOWPBook
     }
 
     
-    //====== Methods to read from DB ===================================================
-//    public Order getOrder(int ono, Connection con) {
-//        Order o = null;;
-//        try {
-//            o = new OrderMapper().getOrder(ono, con);
-//        } catch (Exception e) {
-//            System.out.println("fail in UnitOfWork - getOrder()");
-//            System.err.println(e);
-//        }
-//        return o;
-//
-//    }
+//    ====== Methods to read from DB ===================================================
+    public Customer getCustomers(String lname, Connection con) {
+        Customer c = null;;
+        try {
+            c = new BookingMapper().getCustomer(lname, con);
+        } catch (Exception e) {
+            System.out.println("fail in UnitOfWork - getOrder()");
+            System.err.println(e);
+        }
+        return c;
+
+    }
     public void registerDeletedBooking(Booking b)
     {
         if (!newBooking.contains(b) && // if not allready registered in any list

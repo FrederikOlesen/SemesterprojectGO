@@ -1,6 +1,7 @@
 package domain;
 
 import dataSource.*;
+import java.util.ArrayList;
 
 public class Control {
 
@@ -9,7 +10,7 @@ public class Control {
     private Booking currentBooking;       	// Order in focus
     private DBFacade dbFacade;
     private boolean processingCustomer;
-    private Customers currentCustomer;
+    private Customer currentCustomer;
     BookingMapper bm = new BookingMapper();
 
     public Control() {
@@ -42,7 +43,7 @@ public class Control {
         return currentBooking;
     }
 
-    public Customers createNewCustomer(String FirstName, String LastName, String Country, String Email, int Phone, String Address) {
+    public Customer createNewCustomer(String FirstName, String LastName, String Country, String Email, int Phone, String Address) {
         if (processingCustomer) {
             return null;
         }
@@ -52,7 +53,7 @@ public class Control {
         int customerID = dbFacade.getNextCustomerID();
         if (customerID != 0) {
             processingCustomer = true;
-            currentCustomer = new Customers(customerID, FirstName, LastName, Country, Email, Phone, Address);
+            currentCustomer = new Customer(customerID, FirstName, LastName, Country, Email, Phone, Address);
             dbFacade.registerNewCustomer(currentCustomer);
         } else {
             processingCustomer = false;
@@ -91,5 +92,15 @@ public class Control {
     public void resetCustomer() {
         processingCustomer = false;
         currentCustomer = null;
+    }
+    
+        public Customer getCustomer(String lname) {
+        if (processingCustomer) {
+            return null;
+        }
+        dbFacade.startNewBusinessTransactionCus();
+        processingCustomer = true;
+        currentCustomer = dbFacade.getCustomer(lname);
+        return currentCustomer;
     }
 }

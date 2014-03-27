@@ -7,6 +7,7 @@ package dataSource;
 
 import domain.*;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  *
@@ -74,7 +75,7 @@ public class DBFacade
         }
     }
 
-    public void registerNewCustomer(Customers c)
+    public void registerNewCustomer(Customer c)
     {
         if (uowc != null)
         {
@@ -82,7 +83,7 @@ public class DBFacade
         }
     }
 
-    public void registerDirtyCustomer(Customers c)
+    public void registerDirtyCustomer(Customer c)
     {
         if (uowc != null)
         {
@@ -144,6 +145,11 @@ public class DBFacade
             uowc = null;
         }
         return status;
+    }
+        public Customer getCustomer(String lname) {
+        Customer c = null;
+        c = new BookingMapper().getCustomer(lname, con);
+        return c;
     }
 
     //=== connection specifics

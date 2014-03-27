@@ -1,7 +1,7 @@
 package dataSource;
 
 import domain.Booking;
-import domain.Customers;
+import domain.Customer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,13 +13,11 @@ public class BookingMapper {
     //====== Methods to save to DB =========================================================
     // Insert a list of new orders
     // returns true if all elements were inserted successfully
-    
     static boolean testRun = false;
     private int nextRes;
     private int nextCustomerID;
-    Customers c;
+    Customer c;
     Booking b;
-   
 
     public boolean addNewBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
         System.out.println("In addNewBooking");
@@ -34,7 +32,7 @@ public class BookingMapper {
             statement.setInt(3, b.getResNumber());
             statement.setInt(4, b.getRoomNumber());
             statement.setInt(5, 1);
-            statement.setInt(6, nextCustomerID);  
+            statement.setInt(6, nextCustomerID);
             statement.setInt(7, b.getNumberOfGuests());
 
             rowsInserted += statement.executeUpdate();
@@ -45,7 +43,7 @@ public class BookingMapper {
         return (rowsInserted == bl.size());
     }
 
-    public boolean addNewCustomer(ArrayList<Customers> cu, Connection conn) throws SQLException {
+    public boolean addNewCustomer(ArrayList<Customer> cu, Connection conn) throws SQLException {
         int rowsInserted = 0;
         String SQLString = "insert into customer values (?,?,?,?,?,?,?)";
         PreparedStatement statement = null;
@@ -104,16 +102,16 @@ public class BookingMapper {
             System.out.println(e.getMessage());
         }
         return nextCustomerID;
-        
+
     }
-    
-    public Customers getCustomer(ArrayList<Customers> cu, Connection conn) {
-        Customers c = null;
+
+    public Customer getCustomer(String lname, Connection conn) {
+        Customer c = null;
         String SQLString1 = // get order
                 "select * "
                 + "from customer "
                 + "where lname like '?%'";
-        
+
         PreparedStatement statement = null;
 
         try {
@@ -121,26 +119,23 @@ public class BookingMapper {
             statement = conn.prepareStatement(SQLString1);
             statement.setString(1, c.getLastName());
             ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                c = new Customers(
-  
-                
-            rs.getInt(1, c.getCustomerID());
-            rs.getString(2, c.getFirstName());
-            rs.getString(3, c.getLastName());
-            rs.getString(4, c.getCountry());
-            rs.getString(5, c.getEmail());
-            rs.getInt(6, c.getPhone());
-            rs.getString(7, c.getAddress());
-            
+            while (rs.next()) {
+                c = new Customer(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getString(7));
             }
         } catch (Exception e) {
-            System.out.println("Fail in OrderMapper - getOrder");
+            System.out.println("Fail in BookingMapper - getOrder");
             System.out.println(e.getMessage());
         }
         if (testRun) {
-            System.out.println("Retrieved Order: " + o);
+            System.out.println("Retrieved Order: " + c);
         }
-        return o;
+        return c;
     }
 }

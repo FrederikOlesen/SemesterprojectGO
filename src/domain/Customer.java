@@ -2,7 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 
-public class Customers {
+public class Customer {
 
     // Variables for the customers
     private int CustomerID;
@@ -12,9 +12,9 @@ public class Customers {
     private String Email;
     private int Phone;
     private String Address;
-    ArrayList<Customers> cu = new ArrayList<>();
+    ArrayList<Customer> cu = new ArrayList<>();
 
-    public Customers(int CustomerID, String FirstName, String LastName, String Country, String Email, int Phone, String Address) {
+    public Customer(int CustomerID, String FirstName, String LastName, String Country, String Email, int Phone, String Address) {
         this.CustomerID = CustomerID;
         this.FirstName = FirstName;
         this.LastName = LastName;
@@ -80,6 +80,11 @@ public class Customers {
 
     public void setAdress(String Address) {
         this.Address = Address;
+    }
+
+    @Override
+    public String toString() {
+        return "Customers{" + "CustomerID=" + CustomerID + ", FirstName=" + FirstName + ", LastName=" + LastName + ", Country=" + Country + ", Email=" + Email + ", Phone=" + Phone + ", Address=" + Address + '}';
     }
 
 }
