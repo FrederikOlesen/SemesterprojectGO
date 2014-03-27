@@ -32,8 +32,10 @@ public class BookingMapper {
             statement.setInt(3, b.getResNumber());
             statement.setInt(4, b.getRoomNumber());
             statement.setInt(5, 1);
-            statement.setInt(6, nextCustomerID);
+            System.out.println("BookingMapper CustomerID: "+b.getCustomerID());
+            statement.setInt(6, b.getCustomerID());
             statement.setInt(7, b.getNumberOfGuests());
+            
 
             rowsInserted += statement.executeUpdate();
         }
@@ -81,8 +83,7 @@ public class BookingMapper {
         } catch (SQLException e) {
             System.out.println("Fail in BookingMapper - getNextResNumber");
             System.out.println(e.getMessage());
-        }
-        return nextRes;
+        }        return nextRes;
     }
 
     public int getNextCustomerID(Connection conn) {

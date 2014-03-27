@@ -78,6 +78,7 @@ public class UOWPBook
 //            status = status && bm.deleteBooking(deleteBooking, conn);
             if (!status)
             {
+                
                 throw new Exception("Business Transaction aborted");
             }
             //=== system transaction - end with success

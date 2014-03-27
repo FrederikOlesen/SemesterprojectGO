@@ -22,7 +22,7 @@ public class Control {
         dbFacade = DBFacade.getInstance();
     }
 
-    public Booking createNewBooking(String arrival, String departure, int numberOfGuests, int roomType) {
+    public Booking createNewBooking(String arrival, String departure, int numberOfGuests, int roomType, int CustomerID) {
         if (processingBooking) {
             return null;
         }
@@ -30,11 +30,11 @@ public class Control {
         int nextResNr = dbFacade.getNextResnr();// rDB-generated unique ID
         int payment = 1;
         int roomNumber = 1;
-        int customerID = dbFacade.getNextCustomerID();
+//        int customerID = dbFacade.getNextCustomerID();
         
         if (nextResNr != 0) {
             processingBooking = true;
-            currentBooking = new Booking(arrival, departure, nextResNr, roomNumber, payment, roomNumber, customerID, numberOfGuests);
+            currentBooking = new Booking(arrival, departure, nextResNr, roomNumber, payment, roomNumber, CustomerID, numberOfGuests);
             dbFacade.registerNewBooking(currentBooking);
         } else {
             processingBooking = false;
