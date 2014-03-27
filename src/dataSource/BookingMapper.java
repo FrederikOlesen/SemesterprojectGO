@@ -106,4 +106,36 @@ public class BookingMapper {
         return nextCustomerID;
         
     }
+    
+    public Customers getCustomer(String name, Connection conn) {
+        Customers c = null;
+        String SQLString1 = // get order
+                "select * "
+                + "from customer "
+                + "where fname or lname like '%?%'";
+        
+        PreparedStatement statement = null;
+
+        try {
+            //=== get order
+            statement = conn.prepareStatement(SQLString1);
+            statement.setString(1, c.);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                o = new Order(ono,
+                        rs.getInt(2),
+                        rs.getInt(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6));
+            }
+        } catch (Exception e) {
+            System.out.println("Fail in OrderMapper - getOrder");
+            System.out.println(e.getMessage());
+        }
+        if (testRun) {
+            System.out.println("Retrieved Order: " + o);
+        }
+        return o;
+    }
 }
