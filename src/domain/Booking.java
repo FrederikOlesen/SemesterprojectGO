@@ -23,7 +23,7 @@ public class Booking {
         this.customerID = customerID;
         this.numberOfGuests = numberOfGuests;
         this.arrival = arrival;
-        
+
     }
 
     public int getNumberOfGuests() {

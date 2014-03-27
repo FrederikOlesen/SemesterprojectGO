@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class BookingMapper {
 
     //====== Methods to save to DB =========================================================
-    // Insert a list of new orders
+    // Insert a list of new customers
     // returns true if all elements were inserted successfully
     static boolean testRun = false;
     private int nextRes;
@@ -20,7 +20,6 @@ public class BookingMapper {
     Booking b;
 
     public boolean addNewBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
-        System.out.println("In addNewBooking");
         int rowsInserted = 0;
         String SQLString = "insert into booking values (to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?,?,?,?)";
         PreparedStatement statement = null;
@@ -32,10 +31,8 @@ public class BookingMapper {
             statement.setInt(3, b.getResNumber());
             statement.setInt(4, b.getRoomNumber());
             statement.setInt(5, 1);
-            System.out.println("BookingMapper CustomerID: "+b.getCustomerID());
             statement.setInt(6, b.getCustomerID());
             statement.setInt(7, b.getNumberOfGuests());
-            
 
             rowsInserted += statement.executeUpdate();
         }
@@ -83,11 +80,11 @@ public class BookingMapper {
         } catch (SQLException e) {
             System.out.println("Fail in BookingMapper - getNextResNumber");
             System.out.println(e.getMessage());
-        }        return nextRes;
+        }
+        return nextRes;
     }
 
     public int getNextCustomerID(Connection conn) {
-        System.out.println("Enter getNextCustomerID in BM");
         nextCustomerID = 0;
         String SQLString = "select SEQ_CUSTOMERID.NEXTVAL " + "from DUAL";
         PreparedStatement statement = null;
@@ -108,7 +105,7 @@ public class BookingMapper {
 
     public Customer getCustomer(String lname, Connection conn) {
         Customer c = null;
-        String SQLString = // get order
+        String SQLString = // get Customer
                 "select * "
                 + "from customer "
                 + "where lname like ?";
@@ -116,9 +113,9 @@ public class BookingMapper {
         PreparedStatement statement = null;
 
         try {
-            //=== get order
+            //=== get Customer
             statement = conn.prepareStatement(SQLString);
-            statement.setString(1, lname+"%");
+            statement.setString(1, lname + "%");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 c = new Customer(
@@ -131,11 +128,11 @@ public class BookingMapper {
                         rs.getString(7));
             }
         } catch (Exception e) {
-            System.out.println("Fail in BookingMapper - getOrder");
+            System.out.println("Fail in BookingMapper - getCustomer");
             System.out.println(e.getMessage());
         }
         if (testRun) {
-            System.out.println("Retrieved Order: " + c);
+            System.out.println("Retrieved Customer: ");
         }
         return c;
     }

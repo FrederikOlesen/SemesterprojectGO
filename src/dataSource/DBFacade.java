@@ -7,118 +7,86 @@ package dataSource;
 
 import domain.*;
 import java.sql.Connection;
-import java.util.ArrayList;
 
 /**
  *
  * @author frederikolesen
  */
-public class DBFacade
-{
+public class DBFacade {
 
     private UOWPBook uowb;
     private UOWPBook uowc;
     private Connection con;
     private int nextResNr;
-    private int nextCustomerID; 
+    private int nextCustomerID;
 
     //=====	Singleton
     private static DBFacade instance;
 
-    public DBFacade()
-    {
+    public DBFacade() {
         con = new DBConnector().getConnection();  // the connection will be released upon program 
     }
 
-    public static DBFacade getInstance()
-    {
-        if (instance == null)
-        {
+    public static DBFacade getInstance() {
+        if (instance == null) {
             instance = new DBFacade();
         }
         return instance;
     }
 
-    //======	Methods to retrieve data 
-//    public Booking getReservation() {
-//        Booking b = null;
-//        b = new BookingMapper().addNewBooking(uow.getNewCustomers(),uow.getNewBooking(), con);
-//        return b;
-//    }
-    public int getNextResnr()
-    {
-        
+    public int getNextResnr() {
+
         nextResNr = new BookingMapper().getNextResNumber(con);
         return nextResNr;
     }
-    
-    public int getNextCustomerID()
-    {
+
+    public int getNextCustomerID() {
         nextCustomerID = new BookingMapper().getNextCustomerID(con);
-        return nextCustomerID; 
+        return nextCustomerID;
     }
 
     //=====	Methods to register changes	in UnitOfWork  
-    public void registerNewBooking(Booking b)
-    {
-        if (uowb != null)
-        {
+    public void registerNewBooking(Booking b) {
+        if (uowb != null) {
             uowb.registerNewBooking(b);
         }
     }
 
-    public void registerDirtyBooking(Booking b)
-    {
-        if (uowb != null)
-        {
+    public void registerDirtyBooking(Booking b) {
+        if (uowb != null) {
             uowb.registerDirtyBooking(b);
         }
     }
 
-    public void registerNewCustomer(Customer c)
-    {
-        if (uowc != null)
-        {
+    public void registerNewCustomer(Customer c) {
+        if (uowc != null) {
             uowc.registerNewCustomers(c);
         }
     }
 
-    public void registerDirtyCustomer(Customer c)
-    {
-        if (uowc != null)
-        {
+    public void registerDirtyCustomer(Customer c) {
+        if (uowc != null) {
             uowc.registerDirtyCustomers(c);
         }
     }
 
-//    public void registerNewOrderDetail(OrderDetail od) {
-//        if (uow != null) {
-//            uow.registerNewOrderDetail(od);
-//        }
-//    }
     //=== Methods to handle business transactions
     //=====	Ignore changes after last commit
-    public void startNewBusinessTransactionBook()
-    {
+    public void startNewBusinessTransactionBook() {
         uowb = new UOWPBook();
     }
 
-    public void startNewBusinessTransactionCus()
-    {
+    public void startNewBusinessTransactionCus() {
         uowc = new UOWPBook();
     }
 
     //=====	Save all changes
-    public boolean commitBusinessTransactionBooking()
-    {
+    public boolean commitBusinessTransactionBooking() {
         boolean status = false;
-        if (uowb != null)
-        {
-            try
-            {
+        if (uowb != null) {
+            try {
                 status = uowb.commit(con);
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Fail in DBFacade - commitBusinessTransaction");
                 System.err.println(e);
             }
@@ -127,18 +95,14 @@ public class DBFacade
         return status;
     }
 
-    public boolean commitBusinessTransactionCustomer()
-    {
+    public boolean commitBusinessTransactionCustomer() {
         boolean status = false;
         System.out.println("CommitBTC out if");
-        if (uowc != null)
-        {
+        if (uowc != null) {
             System.out.println("CommitBTC in if");
-            try
-            {
+            try {
                 status = uowc.commitCustomers(con);
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Fail in DBFacade - commitBusinessTransaction");
                 System.err.println(e);
             }
@@ -146,16 +110,10 @@ public class DBFacade
         }
         return status;
     }
-        public Customer getCustomer(String lname) {
+
+    public Customer getCustomer(String lname) {
         Customer c = null;
         c = new BookingMapper().getCustomer(lname, con);
         return c;
     }
-
-    //=== connection specifics
-//    public void registerDeleteOrder(Order o) {
-//        if (uow !=null) {
-//            uow.registerDeleteOrder(o);
-//        }
-//    }   
 }

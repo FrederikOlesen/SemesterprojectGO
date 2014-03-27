@@ -1,7 +1,6 @@
 package domain;
 
 import dataSource.*;
-import java.util.ArrayList;
 
 public class Control {
 
@@ -18,7 +17,7 @@ public class Control {
         currentBooking = null;
         processingCustomer = false;
         currentCustomer = null;
-        
+
         dbFacade = DBFacade.getInstance();
     }
 
@@ -30,8 +29,7 @@ public class Control {
         int nextResNr = dbFacade.getNextResnr();// rDB-generated unique ID
         int payment = 1;
         int roomNumber = 1;
-//        int customerID = dbFacade.getNextCustomerID();
-        
+
         if (nextResNr != 0) {
             processingBooking = true;
             currentBooking = new Booking(arrival, departure, nextResNr, roomNumber, payment, roomNumber, CustomerID, numberOfGuests);
@@ -48,7 +46,6 @@ public class Control {
             return null;
         }
         dbFacade.startNewBusinessTransactionCus();
-        //int newResnr = dbFacade.getNextResnr();// rDB-generated unique ID
 
         int customerID = dbFacade.getNextCustomerID();
         if (customerID != 0) {
@@ -93,8 +90,8 @@ public class Control {
         processingCustomer = false;
         currentCustomer = null;
     }
-    
-        public Customer getCustomer(String lname) {
+
+    public Customer getCustomer(String lname) {
         if (processingCustomer) {
             return null;
         }

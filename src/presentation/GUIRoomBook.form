@@ -139,7 +139,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jButtonAddCustomer" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jSeparator1" alignment="0" pref="406" max="32767" attributes="0"/>
+                          <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                           <Component id="jTextFieldgetCustomer" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
