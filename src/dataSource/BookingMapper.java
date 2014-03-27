@@ -107,27 +107,32 @@ public class BookingMapper {
         
     }
     
-    public Customers getCustomer(String name, Connection conn) {
+    public Customers getCustomer(ArrayList<Customers> cu, Connection conn) {
         Customers c = null;
         String SQLString1 = // get order
                 "select * "
                 + "from customer "
-                + "where fname or lname like '%?%'";
+                + "where lname like '?%'";
         
         PreparedStatement statement = null;
 
         try {
             //=== get order
             statement = conn.prepareStatement(SQLString1);
-            statement.setString(1, c.);
+            statement.setString(1, c.getLastName());
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                o = new Order(ono,
-                        rs.getInt(2),
-                        rs.getInt(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getInt(6));
+                c = new Customers(
+  
+                
+            rs.getInt(1, c.getCustomerID());
+            rs.getString(2, c.getFirstName());
+            rs.getString(3, c.getLastName());
+            rs.getString(4, c.getCountry());
+            rs.getString(5, c.getEmail());
+            rs.getInt(6, c.getPhone());
+            rs.getString(7, c.getAddress());
+            
             }
         } catch (Exception e) {
             System.out.println("Fail in OrderMapper - getOrder");
