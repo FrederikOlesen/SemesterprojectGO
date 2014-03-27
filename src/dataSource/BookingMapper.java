@@ -107,17 +107,17 @@ public class BookingMapper {
 
     public Customer getCustomer(String lname, Connection conn) {
         Customer c = null;
-        String SQLString1 = // get order
+        String SQLString = // get order
                 "select * "
                 + "from customer "
-                + "where lname like '?%'";
+                + "where lname like ?";
 
         PreparedStatement statement = null;
 
         try {
             //=== get order
-            statement = conn.prepareStatement(SQLString1);
-            statement.setString(1, c.getLastName());
+            statement = conn.prepareStatement(SQLString);
+            statement.setString(1, lname+"%");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 c = new Customer(
