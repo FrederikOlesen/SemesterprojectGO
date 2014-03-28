@@ -136,4 +136,40 @@ public class BookingMapper {
         }
         return c;
     }
+
+    public Booking getBookingList(Connection conn) {
+        Booking b = null;
+        String SQLString = // get Booking
+                "select * "
+                + "from booking "
+                + "select * from booking where arrival between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd');";
+
+        PreparedStatement statement = null;
+
+        try {
+            //=== get Customer
+            statement = conn.prepareStatement(SQLString);
+            statement.setString(1, b.getArrival());
+            statement.setString(2, b.getDeparture());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                b = new Booking(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        rs.getInt(6),
+                        rs.getInt(7),
+                        rs.getInt(8));
+            }
+        } catch (Exception e) {
+            System.out.println("Fail in BookingMapper - getBookingList");
+            System.out.println(e.getMessage());
+        }
+        if (testRun) {
+            System.out.println("Retrieved BookingList: ");
+        }
+        return b;
+    }
 }

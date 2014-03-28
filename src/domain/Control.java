@@ -100,4 +100,14 @@ public class Control {
         currentCustomer = dbFacade.getCustomer(lname);
         return currentCustomer;
     }
+    
+    public Booking getBookingList(String arrival, String departure) {
+        if (processingBooking) {
+            return null;
+        }
+        dbFacade.startNewBusinessTransactionBook();
+        processingBooking = true;
+        currentBooking = dbFacade.getBookingList(arrival, departure);
+        return currentBooking;
+    }
 }

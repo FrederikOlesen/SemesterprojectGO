@@ -116,4 +116,10 @@ public class DBFacade {
         c = new BookingMapper().getCustomer(lname, con);
         return c;
     }
+    
+    public Booking getBookingList(String arrival, String departure) {
+        Booking b = null;
+        b = new BookingMapper().getBookingList(con);
+        return b;
+    }
 }

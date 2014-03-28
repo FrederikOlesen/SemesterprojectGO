@@ -117,6 +117,18 @@ public class UOWPBook {
         return c;
 
     }
+    
+    public Booking getBookingList(Connection con) {
+        Booking b = null;
+        try {
+            b = new BookingMapper().getBookingList(con);
+        } catch (Exception e) {
+            System.out.println("fail in UnitOfWork - getBookingList");
+            System.err.println(e);
+        }
+        return b;
+
+    }
 
     public void registerDeletedBooking(Booking b) {
         if (!newBooking.contains(b) && // if not allready registered in any list
