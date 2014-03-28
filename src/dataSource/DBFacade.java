@@ -119,7 +119,7 @@ public class DBFacade {
     
     public Booking getBookingList(String arrival, String departure) {
         Booking b = null;
-        b = new BookingMapper().getBookingList(con);
+        b = new BookingMapper().getBookingList(arrival, departure, con);
         return b;
     }
 }

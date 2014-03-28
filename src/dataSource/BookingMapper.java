@@ -137,20 +137,18 @@ public class BookingMapper {
         return c;
     }
 
-    public Booking getBookingList(Connection conn) {
+    public Booking getBookingList(String arrival, String departure, Connection conn) {
         Booking b = null;
         String SQLString = // get Booking
-                "select * "
-                + "from booking "
-                + "select * from booking where arrival between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd');";
+                "select * from booking where arrival between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')";
 
         PreparedStatement statement = null;
 
         try {
             //=== get Customer
             statement = conn.prepareStatement(SQLString);
-            statement.setString(1, b.getArrival());
-            statement.setString(2, b.getDeparture());
+            statement.setString(1, arrival);
+            statement.setString(2, departure);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 b = new Booking(

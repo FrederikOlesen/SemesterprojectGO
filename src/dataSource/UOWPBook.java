@@ -118,10 +118,10 @@ public class UOWPBook {
 
     }
     
-    public Booking getBookingList(Connection con) {
+    public Booking getBookingList(String arrival, String departure, Connection con) {
         Booking b = null;
         try {
-            b = new BookingMapper().getBookingList(con);
+            b = new BookingMapper().getBookingList(arrival, departure, con);
         } catch (Exception e) {
             System.out.println("fail in UnitOfWork - getBookingList");
             System.err.println(e);

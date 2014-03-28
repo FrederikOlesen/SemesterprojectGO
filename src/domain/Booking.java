@@ -84,4 +84,9 @@ public class Booking {
         this.payment = payment;
     }
 
+    @Override
+    public String toString() {
+        return "Booking{" + "arrival=" + arrival + ", departure=" + departure + ", resNumber=" + resNumber + ", roomType=" + roomType + ", roomNumber=" + roomNumber + ", numberOfGuests=" + numberOfGuests + '}';
+    }
+    
 }

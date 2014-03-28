@@ -1,5 +1,6 @@
 package presentation;
 
+import domain.Booking;
 import domain.Control;
 import domain.Customer;
 
@@ -10,6 +11,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
      */
     Control con = new Control();
     Customer k;
+    Booking b;
 
     public GUIRoomBook() {
         initComponents();
@@ -317,7 +319,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
                         .addComponent(Bookbutton)
                         .addComponent(Undobutton)
                         .addComponent(Clearfieldsbutton)))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Statuslabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Statuslabeldontchange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -331,6 +332,11 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButtongetArrivals.setText("Get Arrivals");
+        jButtongetArrivals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtongetArrivalsActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("Arrival");
 
@@ -465,6 +471,19 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private void FnamefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FnamefieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FnamefieldActionPerformed
+
+    private void jButtongetArrivalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtongetArrivalsActionPerformed
+       String arrival = jTextFieldgetArrival.getText();
+       String departure = jTextFieldgetDepature.getText();
+
+        b = con.getBookingList(arrival, departure);
+        if (b != null) {
+            jTextArea1.setText(b.toString());
+
+        } else {
+            Statuslabel.setText("Could not get Customer");
+        }
+    }//GEN-LAST:event_jButtongetArrivalsActionPerformed
 
     /**
      * @param args the command line arguments
