@@ -32,7 +32,7 @@ public class Control {
 
         if (nextResNr != 0) {
             processingBooking = true;
-            currentBooking = new Booking(arrival, departure, nextResNr, roomNumber, payment, roomNumber, CustomerID, numberOfGuests);
+            currentBooking = new Booking(arrival, departure, nextResNr, payment, roomNumber, CustomerID, numberOfGuests);
             dbFacade.registerNewBooking(currentBooking);
         } else {
             processingBooking = false;

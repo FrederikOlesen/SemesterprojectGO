@@ -102,7 +102,7 @@ public class BookingMapper {
         return nextCustomerID;
 
     }
-
+    
     public Customer getCustomer(String lname, Connection conn) {
         Customer c = null;
         String SQLString = // get Customer
@@ -158,8 +158,7 @@ public class BookingMapper {
                         rs.getInt(4),
                         rs.getInt(5),
                         rs.getInt(6),
-                        rs.getInt(7),
-                        rs.getInt(8));
+                        rs.getInt(7));
             }
         } catch (Exception e) {
             System.out.println("Fail in BookingMapper - getBookingList");

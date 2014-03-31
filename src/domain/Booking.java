@@ -8,16 +8,14 @@ public class Booking {
     private String arrival;
     private String departure;
     private int resNumber;
-    private int roomType;
     private int payment;
     private int roomNumber;
     private int customerID;
     ArrayList<Booking> booking = new ArrayList<Booking>();
 
-    public Booking(String arrival, String departure, int resNumber, int roomType, int payment, int roomNumber, int customerID, int numberOfGuests) {
+    public Booking(String arrival, String departure, int resNumber, int payment, int roomNumber, int customerID, int numberOfGuests) {
         this.departure = departure;
         this.resNumber = resNumber;
-        this.roomType = roomType;
         this.payment = payment;
         this.roomNumber = roomNumber;
         this.customerID = customerID;
@@ -72,10 +70,6 @@ public class Booking {
         this.resNumber = resNumber;
     }
 
-    public int getRoomType() {
-        return roomType;
-    }
-
     public int getPayment() {
         return payment;
     }
@@ -86,7 +80,7 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Booking{" + "arrival=" + arrival + ", departure=" + departure + ", resNumber=" + resNumber + ", roomType=" + roomType + ", roomNumber=" + roomNumber + ", numberOfGuests=" + numberOfGuests + '}';
+        return "Booking{" + "arrival=" + arrival + ", departure=" + departure + ", resNumber=" + resNumber + ", roomNumber=" + roomNumber + ", numberOfGuests=" + numberOfGuests + '}';
     }
     
 }
