@@ -80,7 +80,7 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Booking{" + "arrival=" + arrival + ", departure=" + departure + ", resNumber=" + resNumber + ", roomNumber=" + roomNumber + ", numberOfGuests=" + numberOfGuests + '}';
+        return arrival + "\n" + departure + "\n" + resNumber + "\n" + roomNumber + "\n" + numberOfGuests;
     }
     
 }
