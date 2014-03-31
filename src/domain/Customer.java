@@ -2,89 +2,119 @@ package domain;
 
 import java.util.ArrayList;
 
-public class Customer {
+public class Customer
+{
 
     // Variables for the customers
-    private int CustomerID;
-    private String FirstName;
-    private String LastName;
-    private String Country;
-    private String Email;
-    private int Phone;
-    private String Address;
+    private int customerID;
+    private String firstName;
+    private String lastName;
+    private String country;
+    private String email;
+    private int phone;
+    private String address;
+    // Customer ArrayList used to store customer objects.
     ArrayList<Customer> cu = new ArrayList<>();
 
-    public Customer(int CustomerID, String FirstName, String LastName, String Country, String Email, int Phone, String Address) {
-        this.CustomerID = CustomerID;
-        this.FirstName = FirstName;
-        this.LastName = LastName;
-        this.Country = Country;
-        this.Email = Email;
-        this.Phone = Phone;
-        this.Address = Address;
+    // Constructor
+    public Customer(int customerID, String firstName, String lastName, String country, String email, int phone, String address)
+    {
+        this.customerID = customerID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
     }
 
-    public void setCustomerID(int CustomerID) {
-        this.CustomerID = CustomerID;
+    // Getters and settets
+    public int getCustomerID()
+    {
+        return customerID;
     }
 
-    //Constructor for a customer, needs all the variables that makes a customer
-    public int getCustomerID() {
-        return CustomerID;
+    public void setCustomerID(int customerID)
+    {
+        this.customerID = customerID;
     }
 
-    //Getters and setters for the variables 
-    public String getFirstName() {
-        return FirstName;
+    public String getFirstName()
+    {
+        return firstName;
     }
 
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return LastName;
+    public String getLastName()
+    {
+        return lastName;
     }
 
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
     }
 
-    public String getCountry() {
-        return Country;
+    public String getCountry()
+    {
+        return country;
     }
 
-    public void setCountry(String Country) {
-        this.Country = Country;
+    public void setCountry(String country)
+    {
+        this.country = country;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getEmail()
+    {
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email)
+    {
+        this.email = email;
     }
 
-    public int getPhone() {
-        return Phone;
+    public int getPhone()
+    {
+        return phone;
     }
 
-    public void setPhone(int Phone) {
-        this.Phone = Phone;
+    public void setPhone(int phone)
+    {
+        this.phone = phone;
     }
 
-    public String getAddress() {
-        return Address;
+    public String getAddress()
+    {
+        return address;
     }
 
-    public void setAdress(String Address) {
-        this.Address = Address;
+    public void setAddress(String address)
+    {
+        this.address = address;
     }
 
+    public ArrayList<Customer> getCu()
+    {
+        return cu;
+    }
+
+    public void setCu(ArrayList<Customer> cu)
+    {
+        this.cu = cu;
+    }
+    // End of getters and setters
+
+    // toString method
     @Override
-    public String toString() {
-        return "CustomerID=" + CustomerID + ", FirstName=" + FirstName + ", LastName=" + LastName + ", Country=" + Country + ", Email=" + Email + ", Phone=" + Phone + ", Address=" + Address + '}';
+    public String toString()
+    {
+        return "CustomerID=" + customerID + ", FirstName=" + firstName + ", LastName=" + lastName + ", Country=" + country + ", Email=" + email + ", Phone=" + phone + ", Address=" + address + '}';
     }
 
 }

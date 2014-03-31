@@ -1,28 +1,38 @@
 package domain;
 
-import dataSource.*;
+import dataSource.BookingMapper;
+import dataSource.DBFacade;
+import dataSource.UOWPBook;
 
-public class Control {
+public class Control
+{
 
-    UOWPBook uow = new UOWPBook();
-    private boolean processingBooking;	// state of business transaction
-    private Booking currentBooking;       	// Order in focus
-    private DBFacade dbFacade;
+    // Booleans and objects used to keep track of bussiness transactions.
+    private boolean processingBooking;
     private boolean processingCustomer;
     private Customer currentCustomer;
+    private Booking currentBooking;
+
+    // Instances of classes needed in methods 
+    UOWPBook uow = new UOWPBook();
+    private DBFacade dbFacade;
     BookingMapper bm = new BookingMapper();
 
-    public Control() {
+    // Contructor
+    public Control()
+    {
         processingBooking = false;
         currentBooking = null;
         processingCustomer = false;
         currentCustomer = null;
-
         dbFacade = DBFacade.getInstance();
     }
 
-    public Booking createNewBooking(String arrival, String departure, int numberOfGuests, int roomType, int CustomerID) {
-        if (processingBooking) {
+    // Method for creating a new booking, returns a booking object.
+    public Booking createNewBooking(String arrival, String departure, int numberOfGuests, int roomType, int CustomerID)
+    {
+        if (processingBooking)
+        {
             return null;
         }
         dbFacade.startNewBusinessTransactionBook();
@@ -30,38 +40,48 @@ public class Control {
         int payment = 1;
         int roomNumber = 1;
 
-        if (nextResNr != 0) {
+        if (nextResNr != 0)
+        {
             processingBooking = true;
             currentBooking = new Booking(arrival, departure, nextResNr, payment, roomNumber, CustomerID, numberOfGuests);
             dbFacade.registerNewBooking(currentBooking);
-        } else {
+        } else
+        {
             processingBooking = false;
             currentBooking = null;
         }
         return currentBooking;
     }
 
-    public Customer createNewCustomer(String FirstName, String LastName, String Country, String Email, int Phone, String Address) {
-        if (processingCustomer) {
+    // Method for creating a new customer. Returns a customer object.
+    public Customer createNewCustomer(String FirstName, String LastName, String Country, String Email, int Phone, String Address)
+    {
+        if (processingCustomer)
+        {
             return null;
         }
         dbFacade.startNewBusinessTransactionCus();
 
         int customerID = dbFacade.getNextCustomerID();
-        if (customerID != 0) {
+        if (customerID != 0)
+        {
             processingCustomer = true;
             currentCustomer = new Customer(customerID, FirstName, LastName, Country, Email, Phone, Address);
             dbFacade.registerNewCustomer(currentCustomer);
-        } else {
+        } else
+        {
             processingCustomer = false;
             currentCustomer = null;
         }
         return currentCustomer;
     }
 
-    public boolean saveBooking() {
+    // Method for saving the curent booking, returns true if succesfull
+    public boolean saveBooking()
+    {
         boolean status = false;
-        if (processingBooking) {
+        if (processingBooking)
+        {
             //== ends ongoing business transaction
             status = dbFacade.commitBusinessTransactionBooking();
             processingBooking = false;
@@ -70,14 +90,18 @@ public class Control {
         return status;
     }
 
-    public void resetBooking() {
+    public void resetBooking()
+    {
         processingBooking = false;
         currentBooking = null;
     }
 
-    public boolean saveCustomer() {
+    // Method for saving the curent customer, returns true if succesfull
+    public boolean saveCustomer()
+    {
         boolean status = false;
-        if (processingCustomer) {
+        if (processingCustomer)
+        {
             //== ends ongoing business transaction
             status = dbFacade.commitBusinessTransactionCustomer();
             processingCustomer = false;
@@ -86,13 +110,17 @@ public class Control {
         return status;
     }
 
-    public void resetCustomer() {
+    public void resetCustomer()
+    {
         processingCustomer = false;
         currentCustomer = null;
     }
 
-    public Customer getCustomer(String lname) {
-        if (processingCustomer) {
+    //Method used for getting customer data from database, returns customer object
+    public Customer getCustomer(String lname)
+    {
+        if (processingCustomer)
+        {
             return null;
         }
         dbFacade.startNewBusinessTransactionCus();
@@ -100,9 +128,12 @@ public class Control {
         currentCustomer = dbFacade.getCustomer(lname);
         return currentCustomer;
     }
-    
-    public Booking getBookingList(String arrival, String departure) {
-        if (processingBooking) {
+
+    // Gets a list of bookings between the 2 dates. Returns a booking object
+    public Booking getBookingList(String arrival, String departure)
+    {
+        if (processingBooking)
+        {
             return null;
         }
         dbFacade.startNewBusinessTransactionBook();
