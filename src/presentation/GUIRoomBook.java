@@ -533,6 +533,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
             String selected = jList1.getSelectedValue().toString(); 
             System.out.println(selected);
         }
+        con.resetCustomer();
         
 //               String arrival = jTextFieldgetArrival.getText();
 //       String departure = jTextFieldgetDepature.getText();
@@ -624,11 +625,13 @@ public class GUIRoomBook extends javax.swing.JFrame {
             for(int i = 0; i < b.size(); i++) {
                 
             dfl.addElement(b.get(i).toString());
+            
             }
             
         } else {
             Statuslabel.setText("Could not get Customer");
         }
+        
     }//GEN-LAST:event_jButtongetArrivalsActionPerformed
 
     private void jButtonResetBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetBookingActionPerformed
@@ -654,6 +657,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
             jList2.setModel(df2);
             //for(int i = 0; i < id.size(); i++) {
                 df2.addElement(id.toString());
+                
             //}
 
         } else {
@@ -662,6 +666,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
             String selected = jList1.getSelectedValue().toString(); 
             System.out.println(selected);
         }       
+        con.resetCustomer();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
