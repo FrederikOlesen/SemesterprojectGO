@@ -103,7 +103,8 @@ public class BookingMapper {
 
     }
 
-    public Customer getCustomer(String lname, Connection conn) {
+    public ArrayList getCustomer(String lname, Connection conn) {
+        ArrayList customerList = new ArrayList();
         Customer c = null;
         String SQLString = // get Customer
                 "select * "
@@ -126,6 +127,7 @@ public class BookingMapper {
                         rs.getString(5),
                         rs.getInt(6),
                         rs.getString(7));
+                customerList.add(c);
             }
         } catch (Exception e) {
             System.out.println("Fail in BookingMapper - getCustomer");
@@ -134,7 +136,7 @@ public class BookingMapper {
         if (testRun) {
             System.out.println("Retrieved Customer: ");
         }
-        return c;
+        return customerList;
     }
 
     public ArrayList getBookingList(String arrival, String departure, Connection conn) {

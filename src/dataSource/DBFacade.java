@@ -112,8 +112,8 @@ public class DBFacade {
         return status;
     }
 
-    public Customer getCustomer(String lname) {
-        Customer c = null;
+    public ArrayList getCustomer(String lname) {
+        ArrayList c = null;
         c = new BookingMapper().getCustomer(lname, con);
         return c;
     }

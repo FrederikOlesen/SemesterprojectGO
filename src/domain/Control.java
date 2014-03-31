@@ -20,6 +20,7 @@ public class Control
     private DBFacade dbFacade;
     BookingMapper bm = new BookingMapper();
     ArrayList currentBookingList = new ArrayList();
+    ArrayList currentCustomerList = new ArrayList();
 
     // Contructor
     public Control()
@@ -120,7 +121,7 @@ public class Control
     }
 
     //Method used for getting customer data from database, returns customer object
-    public Customer getCustomer(String lname)
+    public ArrayList getCustomer(String lname)
     {
         if (processingCustomer)
         {
@@ -128,8 +129,8 @@ public class Control
         }
         dbFacade.startNewBusinessTransactionCus();
         processingCustomer = true;
-        currentCustomer = dbFacade.getCustomer(lname);
-        return currentCustomer;
+        currentCustomerList = dbFacade.getCustomer(lname);
+        return currentCustomerList;
     }
     
         public ArrayList getBookingList(String arrival, String departure)

@@ -106,8 +106,8 @@ public class UOWPBook {
     }
 
 //    ====== Methods to read from DB ===================================================
-    public Customer getCustomers(String lname, Connection con) {
-        Customer c = null;;
+    public ArrayList getCustomers(String lname, Connection con) {
+        ArrayList c = null;;
         try {
             c = new BookingMapper().getCustomer(lname, con);
         } catch (Exception e) {

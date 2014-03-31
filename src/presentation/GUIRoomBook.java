@@ -13,6 +13,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
     Control con = new Control();
     Customer k;
     ArrayList b;
+    ArrayList ka;
 
     public GUIRoomBook() {
         initComponents();
@@ -61,12 +62,15 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jButtonAddCustomer = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButtongetCustomer = new javax.swing.JButton();
-        jTextFieldgetCustomer = new javax.swing.JTextField();
         jTextFieldgetLastName = new javax.swing.JTextField();
         jTextFieldCustomerID = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList();
+        jButtonResetBooking = new javax.swing.JButton();
+        jButtonResetCustomer = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTextFieldgetArrival = new javax.swing.JTextField();
         jTextFieldgetDepature = new javax.swing.JTextField();
@@ -176,6 +180,22 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
         jLabel14.setText("Enter last name");
 
+        jScrollPane1.setViewportView(jList2);
+
+        jButtonResetBooking.setText("Reset Booking");
+        jButtonResetBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonResetBookingActionPerformed(evt);
+            }
+        });
+
+        jButtonResetCustomer.setText("Reset Customer");
+        jButtonResetCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonResetCustomerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -183,10 +203,13 @@ public class GUIRoomBook extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextFieldgetLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtongetCustomer))
+                        .addComponent(jButtongetCustomer)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonResetCustomer))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jLabel1))
@@ -240,28 +263,37 @@ public class GUIRoomBook extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12)
                                     .addComponent(Noofguestfield, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextFieldCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(131, 131, 131)
-                                .addComponent(jLabel9))))
-                    .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTextFieldCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(131, 131, 131)
+                                        .addComponent(jLabel9))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonResetBooking))))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(Statuslabeldontchange)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Statuslabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Statuslabel, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(208, 208, 208)
                             .addComponent(Phonefield, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButtonAddCustomer))
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextFieldgetCustomer, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator2)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jSeparator1))))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,22 +320,26 @@ public class GUIRoomBook extends javax.swing.JFrame {
                     .addComponent(Phonefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAddCustomer))
                 .addGap(15, 15, 15)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldgetCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel14)
+                        .addGap(2, 2, 2)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldgetLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtongetCustomer))
+                    .addComponent(jButtongetCustomer)
+                    .addComponent(jButtonResetCustomer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Roomtypecombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Travelagencycombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -326,7 +362,8 @@ public class GUIRoomBook extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Bookbutton)
                         .addComponent(Undobutton)
-                        .addComponent(Clearfieldsbutton)))
+                        .addComponent(Clearfieldsbutton)
+                        .addComponent(jButtonResetBooking)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Statuslabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Statuslabeldontchange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -451,15 +488,40 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private void jButtongetCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtongetCustomerActionPerformed
         String lname = jTextFieldgetLastName.getText();
 
-        k = con.getCustomer(lname);
-        String s = String.valueOf(k.getCustomerID());
-        jTextFieldCustomerID.setText(s);
-        if (k != null) {
-            jTextFieldgetCustomer.setText(k.toString());
+        ka = con.getCustomer(lname);
+        //String s = String.valueOf(k.getCustomerID());
+        //jTextFieldCustomerID.setText(s);
+        if (ka != null) {
+            DefaultListModel df2 = new DefaultListModel();
+            jList2.setModel(df2);
+            for(int i = 0; i < ka.size(); i++) {
+                df2.addElement(ka.get(i).toString());
+            }
 
         } else {
             Statuslabel.setText("Could not get Customer");
+            
+            String selected = jList1.getSelectedValue().toString(); 
+            System.out.println(selected);
         }
+        
+//               String arrival = jTextFieldgetArrival.getText();
+//       String departure = jTextFieldgetDepature.getText();
+//
+//        b = con.getBookingList(arrival, departure);
+//        if (b != null) {
+//            DefaultListModel dfl = new DefaultListModel();
+//            jList1.setModel(dfl);
+//            for(int i = 0; i < b.size(); i++) {
+//                
+//            dfl.addElement(b.get(i).toString());
+//            }
+//            
+//        } else {
+//            Statuslabel.setText("Could not get Customer");
+//        }
+//    }                                                  
+
     }//GEN-LAST:event_jButtongetCustomerActionPerformed
 
     private void jButtonAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCustomerActionPerformed
@@ -486,7 +548,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
         Statuslabel.setText("");
         jTextFieldCustomerID.setText("");
         jTextFieldgetLastName.setText("");
-        jTextFieldgetCustomer.setText("");
 
         con.resetBooking();
     }//GEN-LAST:event_ClearfieldsbuttonActionPerformed
@@ -524,7 +585,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
     }//GEN-LAST:event_FnamefieldActionPerformed
 
     private void jButtongetArrivalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtongetArrivalsActionPerformed
-        String arrival = jTextFieldgetArrival.getText();
+       String arrival = jTextFieldgetArrival.getText();
        String departure = jTextFieldgetDepature.getText();
 
         b = con.getBookingList(arrival, departure);
@@ -540,6 +601,14 @@ public class GUIRoomBook extends javax.swing.JFrame {
             Statuslabel.setText("Could not get Customer");
         }
     }//GEN-LAST:event_jButtongetArrivalsActionPerformed
+
+    private void jButtonResetBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetBookingActionPerformed
+        con.resetBooking();
+    }//GEN-LAST:event_jButtonResetBookingActionPerformed
+
+    private void jButtonResetCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetCustomerActionPerformed
+        con.resetCustomer();
+    }//GEN-LAST:event_jButtonResetCustomerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -594,6 +663,8 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JComboBox Travelagencycombobox;
     private javax.swing.JButton Undobutton;
     private javax.swing.JButton jButtonAddCustomer;
+    private javax.swing.JButton jButtonResetBooking;
+    private javax.swing.JButton jButtonResetCustomer;
     private javax.swing.JButton jButtongetArrivals;
     private javax.swing.JButton jButtongetCustomer;
     private javax.swing.JLabel jLabel1;
@@ -620,15 +691,16 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
+    private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldCustomerID;
     private javax.swing.JTextField jTextFieldgetArrival;
-    private javax.swing.JTextField jTextFieldgetCustomer;
     private javax.swing.JTextField jTextFieldgetDepature;
     private javax.swing.JTextField jTextFieldgetLastName;
     // End of variables declaration//GEN-END:variables
