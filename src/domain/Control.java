@@ -144,4 +144,15 @@ public class Control
         currentBookingList = dbFacade.getBookingList(arrival, departure);
         return currentBookingList;
     }
+        public ArrayList getCustomerID(String customerID)
+    {
+        if (processingCustomer)
+        {
+            return null;
+        }
+        dbFacade.startNewBusinessTransactionCus();
+        processingCustomer = true;
+        currentCustomerList = dbFacade.getCustomerID(customerID);
+        return currentCustomerList;
+    }
 }

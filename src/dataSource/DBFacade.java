@@ -117,6 +117,11 @@ public class DBFacade {
         c = new BookingMapper().getCustomer(lname, con);
         return c;
     }
+    public ArrayList getCustomerID(String customerID) {
+        ArrayList c = null;
+        c = new BookingMapper().getCustomerID(customerID, con);
+        return c;
+    }
     
     public ArrayList getBookingList(String arrival, String departure) {
         ArrayList b = null;

@@ -173,4 +173,39 @@ public class BookingMapper {
         }
         return bookingList;
     }
+        public ArrayList getCustomerID(String customerID, Connection conn) {
+        ArrayList customerList = new ArrayList();
+        Customer c = null;
+        String SQLString = // get Customer
+                "select * "
+                + "from customer "
+                + "where customerID like ?";
+
+        PreparedStatement statement = null;
+
+        try {
+            //=== get Customer
+            statement = conn.prepareStatement(SQLString);
+            statement.setString(1, customerID + "%");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                c = new Customer(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getString(7));
+                customerList.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println("Fail in BookingMapper - getCustomer");
+            System.out.println(e.getMessage());
+        }
+        if (testRun) {
+            System.out.println("Retrieved CustomerID: ");
+        }
+        return customerList;
+    }
 }
