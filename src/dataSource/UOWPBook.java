@@ -118,8 +118,8 @@ public class UOWPBook {
 
     }
     
-    public Booking getBookingList(String arrival, String departure, Connection con) {
-        Booking b = null;
+    public ArrayList getBookingList(String arrival, String departure, Connection con) {
+        ArrayList b = null;
         try {
             b = new BookingMapper().getBookingList(arrival, departure, con);
         } catch (Exception e) {

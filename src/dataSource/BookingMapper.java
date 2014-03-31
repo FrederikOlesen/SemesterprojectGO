@@ -102,7 +102,7 @@ public class BookingMapper {
         return nextCustomerID;
 
     }
-    
+
     public Customer getCustomer(String lname, Connection conn) {
         Customer c = null;
         String SQLString = // get Customer
@@ -137,7 +137,8 @@ public class BookingMapper {
         return c;
     }
 
-    public Booking getBookingList(String arrival, String departure, Connection conn) {
+    public ArrayList getBookingList(String arrival, String departure, Connection conn) {
+        ArrayList bookingList = new ArrayList();
         Booking b = null;
         String SQLString = // get Booking
                 "select * from booking where arrival between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')";
@@ -159,6 +160,7 @@ public class BookingMapper {
                         rs.getInt(5),
                         rs.getInt(6),
                         rs.getInt(7));
+                bookingList.add(b);
             }
         } catch (Exception e) {
             System.out.println("Fail in BookingMapper - getBookingList");
@@ -167,6 +169,6 @@ public class BookingMapper {
         if (testRun) {
             System.out.println("Retrieved BookingList: ");
         }
-        return b;
+        return bookingList;
     }
 }

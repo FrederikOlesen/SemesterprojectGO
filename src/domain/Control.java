@@ -1,5 +1,7 @@
 package domain;
 
+import dataSource.*;
+import java.util.ArrayList;
 import dataSource.BookingMapper;
 import dataSource.DBFacade;
 import dataSource.UOWPBook;
@@ -17,6 +19,7 @@ public class Control
     UOWPBook uow = new UOWPBook();
     private DBFacade dbFacade;
     BookingMapper bm = new BookingMapper();
+    ArrayList currentBookingList = new ArrayList();
 
     // Contructor
     public Control()
@@ -128,9 +131,8 @@ public class Control
         currentCustomer = dbFacade.getCustomer(lname);
         return currentCustomer;
     }
-
-    // Gets a list of bookings between the 2 dates. Returns a booking object
-    public Booking getBookingList(String arrival, String departure)
+    
+        public ArrayList getBookingList(String arrival, String departure)
     {
         if (processingBooking)
         {
@@ -138,7 +140,7 @@ public class Control
         }
         dbFacade.startNewBusinessTransactionBook();
         processingBooking = true;
-        currentBooking = dbFacade.getBookingList(arrival, departure);
-        return currentBooking;
+        currentBookingList = dbFacade.getBookingList(arrival, departure);
+        return currentBookingList;
     }
 }

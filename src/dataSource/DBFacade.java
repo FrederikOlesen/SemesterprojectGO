@@ -7,6 +7,7 @@ package dataSource;
 
 import domain.*;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  *
@@ -117,8 +118,8 @@ public class DBFacade {
         return c;
     }
     
-    public Booking getBookingList(String arrival, String departure) {
-        Booking b = null;
+    public ArrayList getBookingList(String arrival, String departure) {
+        ArrayList b = null;
         b = new BookingMapper().getBookingList(arrival, departure, con);
         return b;
     }

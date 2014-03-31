@@ -80,7 +80,7 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "arrival=" + arrival + ", departure=" + departure + ", resNumber=" + resNumber + ", payment=" + payment + ", roomNumber=" + roomNumber + ", numberOfGuests=" + numberOfGuests;
+        return arrival + "          " + departure + "                 " + resNumber + "                " + payment + "               " + roomNumber + "                     " + customerID + "                    " + numberOfGuests;
     }
     
     
