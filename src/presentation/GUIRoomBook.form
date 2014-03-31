@@ -123,21 +123,13 @@
                                       </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jTextFieldCustomerID" min="-2" pref="60" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
-                                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Component id="jButtonResetBooking" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldCustomerID" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -174,7 +166,7 @@
                                                   </Group>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="jButtonSearchCustomerID" alignment="0" max="32767" attributes="0"/>
                                                       <Component id="jButtongetCustomer" max="32767" attributes="0"/>
                                                       <Component id="jButtonResetCustomer" alignment="0" max="32767" attributes="0"/>
                                                   </Group>
@@ -221,7 +213,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonSearchCustomerID" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jTextFieldgetLastName" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -276,7 +268,6 @@
                               <Component id="Bookbutton" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Undobutton" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Clearfieldsbutton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonResetBooking" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -479,17 +470,9 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButtonResetBooking">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Reset Booking"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonResetBookingActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="jButtonResetCustomer">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Reset Customer"/>
+                <Property name="text" type="java.lang.String" value="Clear field"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonResetCustomerActionPerformed"/>
@@ -505,12 +488,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldgetcustomerIDActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="jButtonSearchCustomerID">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Search Customer ID"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSearchCustomerIDActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
