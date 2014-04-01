@@ -8,23 +8,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BookingMapper {
+public class BookingMapper
+{
 
-    //====== Methods to save to DB =========================================================
-    // Insert a list of new customers
-    // returns true if all elements were inserted successfully
+    // Variables used in class
     static boolean testRun = false;
     private int nextRes;
     private int nextCustomerID;
+    // Objects used in class
     Customer c;
     Booking b;
 
-    public boolean addNewBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
+    // Method for writing booking to database. Returns 1 / true 
+    public boolean addNewBooking(ArrayList<Booking> bl, Connection conn) throws SQLException
+    {
         int rowsInserted = 0;
         String SQLString = "insert into booking values (to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?,?,?,?)";
         PreparedStatement statement = null;
         statement = conn.prepareStatement(SQLString);
-        for (int i = 0; i < bl.size(); i++) {
+        for (int i = 0; i < bl.size(); i++)
+        {
             b = bl.get(i);
             statement.setString(1, b.getArrival());
             statement.setString(2, b.getDeparture());
@@ -36,18 +39,22 @@ public class BookingMapper {
 
             rowsInserted += statement.executeUpdate();
         }
-        if (testRun) {
+        if (testRun)
+        {
             System.out.println("insertBooking(): " + (rowsInserted == bl.size())); // for test
         }
         return (rowsInserted == bl.size());
     }
 
-    public boolean addNewCustomer(ArrayList<Customer> cu, Connection conn) throws SQLException {
+    // Method for writing customer to database. Returns 1 / true
+    public boolean addNewCustomer(ArrayList<Customer> cu, Connection conn) throws SQLException
+    {
         int rowsInserted = 0;
         String SQLString = "insert into customer values (?,?,?,?,?,?,?)";
         PreparedStatement statement = null;
         statement = conn.prepareStatement(SQLString);
-        for (int i = 0; i < cu.size(); i++) {
+        for (int i = 0; i < cu.size(); i++)
+        {
             c = cu.get(i);
             statement.setInt(1, c.getCustomerID());
             statement.setString(2, c.getFirstName());
@@ -59,7 +66,8 @@ public class BookingMapper {
             rowsInserted += statement.executeUpdate();
         }
 
-        if (testRun) {
+        if (testRun)
+        {
             System.out.println("insertBooking(): " + (rowsInserted == cu.size())); // for test
         }
 
@@ -67,35 +75,47 @@ public class BookingMapper {
 
     }
 
-    public int getNextResNumber(Connection conn) {
+    // Method to get next reservation number from database
+    // Sequencer on database counts up for each request
+    public int getNextResNumber(Connection conn)
+    {
         nextRes = 0;
         String SQLString = "select BOOKING_RESNUMBER_SEQ.NEXTVAL " + "from DUAL";
         PreparedStatement statement = null;
-        try {
+        try
+        {
             statement = conn.prepareStatement(SQLString);
             ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
+            {
                 nextRes = rs.getInt(1);
             }
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             System.out.println("Fail in BookingMapper - getNextResNumber");
             System.out.println(e.getMessage());
         }
         return nextRes;
     }
 
-    public int getNextCustomerID(Connection conn) {
+// Method to get next Customer ID from database
+// sequencer on database counts up for each request
+    public int getNextCustomerID(Connection conn)
+    {
         nextCustomerID = 0;
         String SQLString = "select SEQ_CUSTOMERID.NEXTVAL " + "from DUAL";
         PreparedStatement statement = null;
-        try {
+        try
+        {
 
             statement = conn.prepareStatement(SQLString);
             ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
+            {
                 nextCustomerID = rs.getInt(1);
             }
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             System.out.println("Fail in BookingMapper - getNextCustomerID");
             System.out.println(e.getMessage());
         }
@@ -103,7 +123,9 @@ public class BookingMapper {
 
     }
 
-    public ArrayList getCustomer(String lname, Connection conn) {
+  // Method to get data on customers with lname starting with ? 
+    public ArrayList getCustomer(String lname, Connection conn)
+    {
         ArrayList customerList = new ArrayList();
         Customer c = null;
         String SQLString = // get Customer
@@ -113,12 +135,14 @@ public class BookingMapper {
 
         PreparedStatement statement = null;
 
-        try {
+        try
+        {
             //=== get Customer
             statement = conn.prepareStatement(SQLString);
             statement.setString(1, lname + "%");
             ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
+            while (rs.next())
+            {
                 c = new Customer(
                         rs.getInt(1),
                         rs.getString(2),
@@ -129,17 +153,21 @@ public class BookingMapper {
                         rs.getString(7));
                 customerList.add(c);
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println("Fail in BookingMapper - getCustomer");
             System.out.println(e.getMessage());
         }
-        if (testRun) {
+        if (testRun)
+        {
             System.out.println("Retrieved Customer: ");
         }
         return customerList;
     }
 
-    public ArrayList getBookingList(String arrival, String departure, Connection conn) {
+    // Method to get data on bookings between 2 dates. 
+    public ArrayList getBookingList(String arrival, String departure, Connection conn)
+    {
         ArrayList bookingList = new ArrayList();
         Booking b = null;
         String SQLString = // get Booking
@@ -147,13 +175,15 @@ public class BookingMapper {
 
         PreparedStatement statement = null;
 
-        try {
+        try
+        {
             //=== get Customer
             statement = conn.prepareStatement(SQLString);
             statement.setString(1, arrival);
             statement.setString(2, departure);
             ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
+            while (rs.next())
+            {
                 b = new Booking(
                         rs.getString(1),
                         rs.getString(2),
@@ -164,16 +194,20 @@ public class BookingMapper {
                         rs.getInt(7));
                 bookingList.add(b);
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println("Fail in BookingMapper - getBookingList");
             System.out.println(e.getMessage());
         }
-        if (testRun) {
+        if (testRun)
+        {
             System.out.println("Retrieved BookingList: ");
         }
         return bookingList;
     }
-        public ArrayList getCustomerID(String customerID, Connection conn) {
+
+    public ArrayList getCustomerID(String customerID, Connection conn)
+    {
         ArrayList customerList = new ArrayList();
         Customer c = null;
         String SQLString = // get Customer
@@ -183,12 +217,14 @@ public class BookingMapper {
 
         PreparedStatement statement = null;
 
-        try {
+        try
+        {
             //=== get Customer
             statement = conn.prepareStatement(SQLString);
             statement.setString(1, customerID + "%");
             ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
+            while (rs.next())
+            {
                 c = new Customer(
                         rs.getInt(1),
                         rs.getString(2),
@@ -199,11 +235,13 @@ public class BookingMapper {
                         rs.getString(7));
                 customerList.add(c);
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println("Fail in BookingMapper - getCustomer");
             System.out.println(e.getMessage());
         }
-        if (testRun) {
+        if (testRun)
+        {
             System.out.println("Retrieved CustomerID: ");
         }
         return customerList;
