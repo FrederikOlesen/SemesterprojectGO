@@ -515,8 +515,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
         } else {
             Statuslabel.setText("Could not get Customer");
 
-            String selected = jList1.getSelectedValue().toString();
-            System.out.println(selected);
         }
         con.resetCustomer();
         jTextFieldgetLastName.setText("");
@@ -625,15 +623,12 @@ public class GUIRoomBook extends javax.swing.JFrame {
         if (id != null) {
             DefaultListModel df2 = new DefaultListModel();
             jList2.setModel(df2);
-            //for(int i = 0; i < id.size(); i++) {
-            df2.addElement(id.toString());
-
-            //}
+            for (int i = 0; i < id.size(); i++) {
+                df2.addElement(id.get(i).toString());
+            }
         } else {
             Statuslabel.setText("Could not get Customer");
 
-            String selected = jList1.getSelectedValue().toString();
-            System.out.println(selected);
         }
         con.resetCustomer();
         jTextFieldgetcustomerID.setText("");
