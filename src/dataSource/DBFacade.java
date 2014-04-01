@@ -160,4 +160,11 @@ public class DBFacade
         b = new BookingMapper().getBookingList(arrival, departure, con);
         return b;
     }
+    
+        public ArrayList getRoomsList(String arrival, String departure)
+    {
+        ArrayList r = null;
+        r = new BookingMapper().getBookingList(arrival, departure, con);
+        return r;
+    }
 }

@@ -2,6 +2,7 @@ package dataSource;
 
 import domain.Booking;
 import domain.Customer;
+import domain.Rooms;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ public class BookingMapper
     // Objects used in class
     Customer c;
     Booking b;
+    Rooms r;
 
     // Method for writing booking to database. Returns 1 / true 
     public boolean addNewBooking(ArrayList<Booking> bl, Connection conn) throws SQLException
@@ -245,5 +247,43 @@ public class BookingMapper
             System.out.println("Retrieved CustomerID: ");
         }
         return customerList;
+    }
+    
+    public ArrayList getRoomsList(String arrival, String departure, Connection conn)
+    {
+        ArrayList roomsList = new ArrayList();
+        Rooms r = null;
+        String SQLString = // get Booking
+        "select roomnumber,roomtypeid from rooms where roomnumber not in"
+                + " (select roomnumber from booking where arrival "
+                + "<= to_date(?,'yyyy-mm-dd') and departure"
+                + " >= to_date(?,'yyyy-mm-dd'))";
+
+        PreparedStatement statement = null;
+
+        try
+        {
+            //=== get Customer
+            statement = conn.prepareStatement(SQLString);
+            statement.setString(1, arrival);
+            statement.setString(2, departure);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next())
+            {
+                r = new Rooms(
+                        rs.getString(1),
+                        rs.getString(2));
+                roomsList.add(b);
+            }
+        } catch (Exception e)
+        {
+            System.out.println("Fail in BookingMapper - getRoomsList");
+            System.out.println(e.getMessage());
+        }
+        if (testRun)
+        {
+            System.out.println("Retrieved RoomsList: ");
+        }
+        return roomsList;
     }
 }

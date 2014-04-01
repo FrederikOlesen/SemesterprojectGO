@@ -7,6 +7,10 @@ public class Rooms {
     private int price;
     private String roomNumber;
 
+    public Rooms(String arrival, String departure) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
          
 
@@ -46,7 +50,7 @@ public class Rooms {
     //toString method added which returns a string of informations from contructor
     @Override
     public String toString() {
-        return "Rooms{" + "roomType=" + roomType + ", price=" + price + ", roomNumber=" + roomNumber + '}';
+        return "roomType: " + roomType + " Price: " + price + " roomNumber: " + roomNumber;
     }
 
 }

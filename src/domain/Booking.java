@@ -47,7 +47,7 @@ public class Booking {
     }
 
     public int getRoomNumber() {
-        return roomNumber = 1;
+        return roomNumber;
     }
 
     public void setArrival(String arrival) {

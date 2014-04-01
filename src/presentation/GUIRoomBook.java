@@ -15,6 +15,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
     ArrayList b;
     ArrayList ka;
     ArrayList id;
+    ArrayList r;
 
     public GUIRoomBook() {
         initComponents();
@@ -88,6 +89,14 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jTextFieldcheckRoomArrival = new javax.swing.JTextField();
+        jTextFieldcheckRoomDeparture = new javax.swing.JTextField();
+        jButtonCheckRooms = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jListRooms = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -485,6 +494,65 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Booking list", jPanel2);
 
+        jTextFieldcheckRoomDeparture.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldcheckRoomDepartureActionPerformed(evt);
+            }
+        });
+
+        jButtonCheckRooms.setText("Check Rooms");
+        jButtonCheckRooms.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCheckRoomsActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setText("Arrival");
+
+        jLabel26.setText("Departue");
+
+        jScrollPane3.setViewportView(jListRooms);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel25)
+                            .addComponent(jTextFieldcheckRoomArrival, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jTextFieldcheckRoomDeparture, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonCheckRooms, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(376, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldcheckRoomArrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldcheckRoomDeparture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCheckRooms))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(330, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Room list", jPanel3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -634,6 +702,29 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jTextFieldgetcustomerID.setText("");
     }//GEN-LAST:event_jButtonSearchCustomerIDActionPerformed
 
+    private void jButtonCheckRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckRoomsActionPerformed
+        String arrival = jTextFieldcheckRoomArrival.getText();
+        String departure = jTextFieldcheckRoomDeparture.getText();     
+        r = con.getRoomsList(arrival, departure);
+        if (r != null) {
+            DefaultListModel df3 = new DefaultListModel();
+            jListRooms.setModel(df3);
+            for (int i = 0; i < r.size(); i++) {
+
+                df3.addElement(r.get(i).toString());
+
+            }
+
+        } else {
+            Statuslabel.setText("Could not get Rooms");
+        }
+        con.resetRooms();
+    }//GEN-LAST:event_jButtonCheckRoomsActionPerformed
+
+    private void jTextFieldcheckRoomDepartureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldcheckRoomDepartureActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldcheckRoomDepartureActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -687,6 +778,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JComboBox Travelagencycombobox;
     private javax.swing.JButton Undobutton;
     private javax.swing.JButton jButtonAddCustomer;
+    private javax.swing.JButton jButtonCheckRooms;
     private javax.swing.JButton jButtonResetCustomer;
     private javax.swing.JButton jButtonSearchCustomerID;
     private javax.swing.JButton jButtongetArrivals;
@@ -708,6 +800,8 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -717,13 +811,18 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
+    private javax.swing.JList jListRooms;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldCustomerID;
+    private javax.swing.JTextField jTextFieldcheckRoomArrival;
+    private javax.swing.JTextField jTextFieldcheckRoomDeparture;
     private javax.swing.JTextField jTextFieldgetArrival;
     private javax.swing.JTextField jTextFieldgetDepature;
     private javax.swing.JTextField jTextFieldgetLastName;

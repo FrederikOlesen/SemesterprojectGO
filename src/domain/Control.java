@@ -12,8 +12,10 @@ public class Control
     // Booleans and objects used to keep track of bussiness transactions.
     private boolean processingBooking;
     private boolean processingCustomer;
+    private boolean processingRooms;
     private Customer currentCustomer;
     private Booking currentBooking;
+    private Rooms currentRooms;
 
     // Instances of classes needed in methods 
     UOWPBook uow = new UOWPBook();
@@ -21,6 +23,7 @@ public class Control
     BookingMapper bm = new BookingMapper();
     ArrayList currentBookingList = new ArrayList();
     ArrayList currentCustomerList = new ArrayList();
+    ArrayList currentRoomsList = new ArrayList();
 
     // Contructor
     public Control()
@@ -29,6 +32,8 @@ public class Control
         currentBooking = null;
         processingCustomer = false;
         currentCustomer = null;
+        processingRooms = false;
+        currentRooms = null;
         dbFacade = DBFacade.getInstance();
     }
 
@@ -42,7 +47,7 @@ public class Control
         dbFacade.startNewBusinessTransactionBook();
         int nextResNr = dbFacade.getNextResnr();// rDB-generated unique ID
         int payment = 1;
-        int roomNumber = 1;
+        int roomNumber = 10;
 
         if (nextResNr != 0)
         {
@@ -119,6 +124,12 @@ public class Control
         processingCustomer = false;
         currentCustomer = null;
     }
+    
+        public void resetRooms()
+    {
+        processingRooms = false;
+        currentRooms = null;
+    }
 
     //Method used for getting customer data from database, returns customer object
     public ArrayList getCustomer(String lname)
@@ -154,5 +165,17 @@ public class Control
         processingCustomer = true;
         currentCustomerList = dbFacade.getCustomerID(customerID);
         return currentCustomerList;
+    }
+        
+            public ArrayList getRoomsList(String arrival, String departure)
+    {
+        if (processingRooms)
+        {
+            return null;
+        }
+        dbFacade.startNewBusinessTransactionBook();
+        processingRooms = true;
+        currentRoomsList = dbFacade.getRoomsList(arrival, departure);
+        return currentRoomsList;
     }
 }

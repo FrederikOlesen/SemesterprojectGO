@@ -168,4 +168,18 @@ public class UOWPBook
             modifiedBooking.add(b);
         }
     }
+        public ArrayList getRoomsList(String arrival, String departure, Connection con)
+    {
+        ArrayList r = null;
+        try
+        {
+            r = new BookingMapper().getRoomsList(arrival, departure, con);
+        } catch (Exception e)
+        {
+            System.out.println("fail in UnitOfWork - getRoomsList");
+            System.err.println(e);
+        }
+        return r;
+
+    }
 }
