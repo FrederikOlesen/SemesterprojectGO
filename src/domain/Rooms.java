@@ -7,18 +7,40 @@ public class Rooms {
     private int price;
     private String roomNumber;
 
+    
+         
+
     // Getters and setters
-    public String getRoomType() {
+    public String getRoomType()
+    {
         return roomType;
     }
 
-    public int getPrice() {
+    public void setRoomType(String roomType)
+    {
+        this.roomType = roomType;
+    }
+
+    public int getPrice()
+    {
         return price;
     }
 
-    public String getRoomNumber() {
+    public void setPrice(int price)
+    {
+        this.price = price;
+    }
+
+    public String getRoomNumber()
+    {
         return roomNumber;
     }
+
+    public void setRoomNumber(String roomNumber)
+    {
+        this.roomNumber = roomNumber;
+    }
+
     // End of getters and setters
     
     //toString method added which returns a string of informations from contructor
