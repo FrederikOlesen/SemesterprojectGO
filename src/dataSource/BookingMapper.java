@@ -272,9 +272,8 @@ public class BookingMapper
             {
                 r = new Rooms(
                         rs.getString(1),
-                        rs.getInt(2),
-                        rs.getString(3));
-                roomsList.add(b);
+                        rs.getString(2));
+                roomsList.add(r);
             }
         } catch (Exception e)
         {

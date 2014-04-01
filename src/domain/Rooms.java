@@ -7,7 +7,7 @@ public class Rooms {
     private int price;
     private String roomNumber;
 
-    public Rooms(String roomType, int price, String roomNumber) {
+    public Rooms(String roomType, String roomNumber) {
         this.roomType = roomType;
         this.price = price;
         this.roomNumber = roomNumber;
