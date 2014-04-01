@@ -602,6 +602,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
         } else {
             Statuslabel.setText("Could not get Customer");
         }
+        con.resetBooking();
 
     }//GEN-LAST:event_jButtongetArrivalsActionPerformed
 
