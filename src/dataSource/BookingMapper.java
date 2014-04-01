@@ -172,7 +172,7 @@ public class BookingMapper
         Booking b = null;
         String SQLString = // get Booking
                 "select * from booking where arrival between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')";
-
+//                "select * from booking where arrival between to_char(sysdate, 'yyyy-mm-dd') and to_char(sysdate, 'yyyy-mm-dd');"
         PreparedStatement statement = null;
 
         try
