@@ -3,14 +3,14 @@ package domain;
 public class Rooms {
 
     // Variables used for room creation
-    private String roomType;
-    private int price;
     private String roomNumber;
+    private int price;
+    private String roomType;
 
-    public Rooms(String roomType, String roomNumber) {
-        this.roomType = roomType;
-        this.price = price;
+    public Rooms(String roomNumber, String roomType) {
         this.roomNumber = roomNumber;
+        this.price = price;
+        this.roomType = roomType;
     }
 
     
