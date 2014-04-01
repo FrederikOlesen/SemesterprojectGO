@@ -710,8 +710,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
             DefaultListModel df3 = new DefaultListModel();
             jListRooms.setModel(df3);
             for (int i = 0; i < r.size(); i++) {
-                System.out.println("R.Size: " + r.size());
-                System.out.println("R.get: " + r.get(i));
                 df3.addElement(r.get(i).toString());
 
             }
