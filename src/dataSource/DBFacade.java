@@ -170,7 +170,7 @@ public class DBFacade
         public ArrayList findResNumber(int resNo)
     {
         ArrayList resNumber = null;
-        resNo = new BookingMapper().findResNumber(resNo, con);
+        resNumber = new BookingMapper().findResNumber(resNo, con);
         return resNumber;
     }
 }

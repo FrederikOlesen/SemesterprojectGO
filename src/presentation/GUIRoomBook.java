@@ -16,9 +16,15 @@ public class GUIRoomBook extends javax.swing.JFrame {
     ArrayList ka;
     ArrayList id;
     ArrayList r;
+    DefaultListModel dflCreate = new DefaultListModel();
+    DefaultListModel dflBooking = new DefaultListModel();
+    DefaultListModel dflRooms = new DefaultListModel();
 
     public GUIRoomBook() {
         initComponents();
+        jListRooms.setModel(dflRooms);
+        jListBooking.setModel(dflBooking);
+        jListCreate.setModel(dflCreate);
 
     }
 
@@ -69,7 +75,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        jListCreate = new javax.swing.JList();
         jButtonResetCustomer = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
         jTextFieldgetcustomerID = new javax.swing.JTextField();
@@ -84,7 +90,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jListBooking = new javax.swing.JList();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -198,7 +204,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
         jLabel14.setText("Enter last name");
 
-        jScrollPane1.setViewportView(jList2);
+        jScrollPane1.setViewportView(jListCreate);
 
         jButtonResetCustomer.setText("Clear field");
         jButtonResetCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -435,7 +441,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
         jLabel16.setText("Depature");
 
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(jListBooking);
 
         jLabel17.setText("Arrival");
 
@@ -620,10 +626,8 @@ public class GUIRoomBook extends javax.swing.JFrame {
         //String s = String.valueOf(k.getCustomerID());
         //jTextFieldCustomerID.setText(s);
         if (ka != null) {
-            DefaultListModel df2 = new DefaultListModel();
-            jList2.setModel(df2);
             for (int i = 0; i < ka.size(); i++) {
-                df2.addElement(ka.get(i).toString());
+                dflCreate.addElement(ka.get(i).toString());
             }
 
         } else {
@@ -702,11 +706,9 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
         b = con.getBookingList(arrival, departure);
         if (b != null) {
-            DefaultListModel dfl = new DefaultListModel();
-            jList1.setModel(dfl);
             for (int i = 0; i < b.size(); i++) {
 
-                dfl.addElement(b.get(i).toString());
+                dflBooking.addElement(b.get(i).toString());
 
             }
 
@@ -719,7 +721,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
     private void jButtonResetCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetCustomerActionPerformed
         if (evt.getSource() == jButtonResetCustomer) {
-            DefaultListModel listModel = (DefaultListModel) jList2.getModel();
+            DefaultListModel listModel = (DefaultListModel) jListCreate.getModel();
             listModel.removeAllElements();
         }
     }//GEN-LAST:event_jButtonResetCustomerActionPerformed
@@ -735,10 +737,8 @@ public class GUIRoomBook extends javax.swing.JFrame {
         //String s = String.valueOf(k.getCustomerID());
         //jTextFieldCustomerID.setText(s);
         if (id != null) {
-            DefaultListModel df2 = new DefaultListModel();
-            jList2.setModel(df2);
             for (int i = 0; i < id.size(); i++) {
-                df2.addElement(id.get(i).toString());
+                dflCreate.addElement(id.get(i).toString());
             }
         } else {
             Statuslabel.setText("Could not get Customer");
@@ -753,10 +753,8 @@ public class GUIRoomBook extends javax.swing.JFrame {
         String departure = jTextFieldcheckRoomDeparture.getText();
         r = con.getRoomsList(arrival, departure);
         if (r != null) {
-            DefaultListModel df3 = new DefaultListModel();
-            jListRooms.setModel(df3);
             for (int i = 0; i < r.size(); i++) {
-                df3.addElement(r.get(i).toString());
+                dflRooms.addElement(r.get(i).toString());
 
             }
 
@@ -769,23 +767,27 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private void jTextFieldcheckRoomDepartureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldcheckRoomDepartureActionPerformed
         // TODO add your handling code here:
         String departure = jTextFieldgetDepature.getText();
-        int customerID = jList2.getSelectedValue();
+        //int customerID = jList2.getSelectedValue();
         con.changeDepartureForBooking(departure);
-        Statuslabel.setText("Great Success");
+        Statuslabel.setText("Departure changed");
     }//GEN-LAST:event_jTextFieldcheckRoomDepartureActionPerformed
 
     private void jButtonChangeArrivalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeArrivalActionPerformed
 
         String arrival = jTextFieldgetArrival.getText();
         con.changeArrivalForBooking(arrival);
-        Statuslabel.setText("Great Success");
+        Statuslabel.setText("Arrival changed");
     }//GEN-LAST:event_jButtonChangeArrivalActionPerformed
 
     private void jbuttonGetArrivalsFromResNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonGetArrivalsFromResNoActionPerformed
         // TODO add your handling code here:
         int resno = Integer.parseInt(jTextFieldresNo.getText());
-        con.
-        
+        ArrayList arrival = con.findResNumber(resno);
+        if (arrival != null) {
+            for (int i = 0; i < arrival.size(); i++) {
+                dflBooking.addElement(arrival.get(i).toString());
+            }
+        }
     }//GEN-LAST:event_jbuttonGetArrivalsFromResNoActionPerformed
 
     /**
@@ -876,8 +878,8 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
+    private javax.swing.JList jListBooking;
+    private javax.swing.JList jListCreate;
     private javax.swing.JList jListRooms;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
