@@ -13,9 +13,11 @@ public class Control
     private boolean processingBooking;
     private boolean processingCustomer;
     private boolean processingRooms;
+    private boolean processingFindBooking;
     private Customer currentCustomer;
     private Booking currentBooking;
     private Rooms currentRooms;
+    
 
     // Instances of classes needed in methods 
     UOWPBook uow = new UOWPBook();
@@ -24,6 +26,7 @@ public class Control
     ArrayList currentBookingList = new ArrayList();
     ArrayList currentCustomerList = new ArrayList();
     ArrayList currentRoomsList = new ArrayList();
+    ArrayList currentFindBooking = new ArrayList();
 
     // Contructor
     public Control()
@@ -35,6 +38,8 @@ public class Control
         processingRooms = false;
         currentRooms = null;
         dbFacade = DBFacade.getInstance();
+        processingFindBooking = false;
+        currentFindBooking = null;
     }
 
     // Method for creating a new booking, returns a booking object.
@@ -201,5 +206,16 @@ public class Control
         processingRooms = true;
         currentRoomsList = dbFacade.getRoomsList(arrival, departure);
         return currentRoomsList;
+    }
+        public ArrayList findResNumber(int resNo)
+    {
+        if (processingFindBooking)
+        {
+            return null;
+        }
+        dbFacade.startNewBusinessTransactionBook();
+        processingFindBooking = true;
+        currentFindBooking = dbFacade.findResNumber(resNo);
+        return currentFindBooking;
     }
 }

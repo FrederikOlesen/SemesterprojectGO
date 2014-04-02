@@ -167,4 +167,10 @@ public class DBFacade
         r = new BookingMapper().getRoomsList(arrival, departure, con);
         return r;
     }
+        public ArrayList findResNumber(int resNo)
+    {
+        ArrayList resNumber = null;
+        resNo = new BookingMapper().findResNumber(resNo, con);
+        return resNumber;
+    }
 }
