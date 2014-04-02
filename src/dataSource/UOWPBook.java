@@ -182,4 +182,19 @@ public class UOWPBook
         return r;
 
     }
+        
+        public int findResNo(int resNo, Connection con) {
+        
+            int r = 0;
+        try
+        {
+            r = new BookingMapper().findResNumber(resNo, con);
+        } catch (Exception e)
+        {
+            System.out.println("fail in UnitOfWork - getRoomsList");
+            System.err.println(e);
+        }
+        return r;
+
+    }
 }
