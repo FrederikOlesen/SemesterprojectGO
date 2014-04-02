@@ -80,9 +80,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jTextFieldgetcustomerID = new javax.swing.JTextField();
         jButtonSearchCustomerID = new javax.swing.JButton();
-        jButtonChangeArrival = new javax.swing.JButton();
-        jButtonChangeDeparture = new javax.swing.JButton();
-        jButtonChangeNoG = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTextFieldgetArrival = new javax.swing.JTextField();
         jTextFieldgetDepature = new javax.swing.JTextField();
@@ -101,6 +98,9 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jTextFieldresNo = new javax.swing.JTextField();
         jbuttonGetArrivalsFromResNo = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
+        jButtonChangeArrival = new javax.swing.JButton();
+        jButtonChangeDeparture = new javax.swing.JButton();
+        jButtonChangeNoG = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jTextFieldcheckRoomArrival = new javax.swing.JTextField();
         jTextFieldcheckRoomDeparture = new javax.swing.JTextField();
@@ -228,17 +228,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
             }
         });
 
-        jButtonChangeArrival.setText("Change Arrival");
-        jButtonChangeArrival.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonChangeArrivalActionPerformed(evt);
-            }
-        });
-
-        jButtonChangeDeparture.setText("Change Departure");
-
-        jButtonChangeNoG.setText("Change NumberOfGuests");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -306,9 +295,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
                                     .addComponent(jLabel13)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jTextFieldCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(jButtonChangeNoG)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(221, 221, 221)
                                         .addComponent(jLabel9))))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -340,11 +327,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(Undobutton)
                                 .addGap(25, 25, 25)
-                                .addComponent(Clearfieldsbutton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonChangeArrival)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonChangeDeparture)))
+                                .addComponent(Clearfieldsbutton)))
                         .addGap(0, 64, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -387,7 +370,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
                             .addComponent(jLabel24)
                             .addComponent(jTextFieldgetcustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jButtonResetCustomer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -395,7 +378,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Roomtypecombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Travelagencycombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -413,15 +396,12 @@ public class GUIRoomBook extends javax.swing.JFrame {
                             .addComponent(Noofguestfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Arrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Depature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonChangeNoG))
-                        .addGap(41, 41, 41))
+                            .addComponent(Depature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Bookbutton)
                         .addComponent(Undobutton)
-                        .addComponent(Clearfieldsbutton)
-                        .addComponent(jButtonChangeArrival)
-                        .addComponent(jButtonChangeDeparture)))
+                        .addComponent(Clearfieldsbutton)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Statuslabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Statuslabeldontchange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -429,6 +409,12 @@ public class GUIRoomBook extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Create", jPanel1);
+
+        jTextFieldgetArrival.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldgetArrivalActionPerformed(evt);
+            }
+        });
 
         jButtongetArrivals.setText("Get Arrivals");
         jButtongetArrivals.addActionListener(new java.awt.event.ActionListener() {
@@ -466,15 +452,35 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
         jLabel27.setText("Res no.");
 
+        jButtonChangeArrival.setText("Change Arrival");
+        jButtonChangeArrival.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangeArrivalActionPerformed(evt);
+            }
+        });
+
+        jButtonChangeDeparture.setText("Change Departure");
+        jButtonChangeDeparture.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangeDepartureActionPerformed(evt);
+            }
+        });
+
+        jButtonChangeNoG.setText("Change NumberOfGuests");
+        jButtonChangeNoG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangeNoGActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
@@ -512,8 +518,19 @@ public class GUIRoomBook extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbuttonGetArrivalsFromResNo))
-                        .addGap(0, 39, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jButtonChangeNoG)
+                .addGap(46, 46, 46)
+                .addComponent(jButtonChangeArrival)
+                .addGap(51, 51, 51)
+                .addComponent(jButtonChangeDeparture)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -541,7 +558,12 @@ public class GUIRoomBook extends javax.swing.JFrame {
                     .addComponent(jLabel21))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonChangeDeparture)
+                    .addComponent(jButtonChangeArrival)
+                    .addComponent(jButtonChangeNoG))
+                .addContainerGap(278, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Booking list", jPanel2);
@@ -584,7 +606,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
                                 .addComponent(jTextFieldcheckRoomDeparture, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonCheckRooms, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(376, Short.MAX_VALUE))
+                .addContainerGap(396, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -600,7 +622,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
                     .addComponent(jButtonCheckRooms))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addContainerGap(412, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Room list", jPanel3);
@@ -788,7 +810,20 @@ public class GUIRoomBook extends javax.swing.JFrame {
                 dflBooking.addElement(arrival.get(i).toString());
             }
         }
+        con.resetBooking();
     }//GEN-LAST:event_jbuttonGetArrivalsFromResNoActionPerformed
+
+    private void jButtonChangeNoGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeNoGActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonChangeNoGActionPerformed
+
+    private void jButtonChangeDepartureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeDepartureActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonChangeDepartureActionPerformed
+
+    private void jTextFieldgetArrivalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldgetArrivalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldgetArrivalActionPerformed
 
     /**
      * @param args the command line arguments
