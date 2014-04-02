@@ -99,6 +99,45 @@ public class BookingMapper
         }
         return nextRes;
     }
+    
+    public ArrayList findResNumber(int reservationsnumber,Connection conn)
+    {
+        ArrayList bookingList = new ArrayList();
+        Booking b = null;
+        String SQLString = // find Reservationsnumber
+                "select reservationsnumber from booking where reservationsnumber = ?";
+        
+        PreparedStatement statement = null;
+
+        try
+        {
+            //=== get Customer
+            statement = conn.prepareStatement(SQLString);
+            statement.setInt(1, reservationsnumber);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next())
+            {
+                b = new Booking(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        rs.getInt(6),
+                        rs.getInt(7));
+                bookingList.add(b);
+            }
+        } catch (Exception e)
+        {
+            System.out.println("Fail in BookingMapper - getBookingList");
+            System.out.println(e.getMessage());
+        }
+        if (testRun)
+        {
+            System.out.println("Retrieved BookingList: ");
+        }
+        return bookingList;
+    }
 
 // Method to get next Customer ID from database
 // sequencer on database counts up for each request
