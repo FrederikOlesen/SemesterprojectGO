@@ -84,6 +84,30 @@ public class Control
         }
         return currentCustomer;
     }
+    
+    public Booking changeArrivalForBooking(String arrival) {
+        if (processingBooking) {
+            currentBooking.setArrival(arrival);
+            dbFacade.registerDirtyBooking(currentBooking);
+        }
+        return currentBooking;
+    }
+    
+    public Booking changeDepartureForBooking(String departure) {
+        if (processingBooking) {
+            currentBooking.setDeparture(departure);
+            dbFacade.registerDirtyBooking(currentBooking);
+        }
+        return currentBooking;
+    }
+    
+    public Booking changeNumberOfGuestForBooking(int numberOfGuests) {
+        if (processingBooking) {
+            currentBooking.setNumberOfGuests(numberOfGuests);
+            dbFacade.registerDirtyBooking(currentBooking);
+        }
+        return currentBooking;
+    }
 
     // Method for saving the curent booking, returns true if succesfull
     public boolean saveBooking()

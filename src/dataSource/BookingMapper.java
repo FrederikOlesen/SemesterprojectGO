@@ -166,6 +166,26 @@ public class BookingMapper
         }
         return customerList;
     }
+    
+    public boolean updateBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
+        int rowsUpdated = 0;
+        String SQLString = "update booking "
+                + "set arrival = ?, departure = ?, numberofguests = ?";
+        PreparedStatement statement = null;
+
+        statement = conn.prepareStatement(SQLString);
+        for (int i = 0; i < bl.size(); i++) {
+            Booking b = bl.get(i);
+            statement.setString(1, b.getArrival());
+            statement.setString(2, b.getDeparture());
+            statement.setInt(3, b.getNumberOfGuests());
+
+        }
+        if (testRun) {
+            System.out.println("updateOrders: " + (rowsUpdated == bl.size())); // for test
+        }
+        return (rowsUpdated == bl.size());    // false if any conflict in version number             
+    }
 
     // Method to get data on bookings between 2 dates. 
     public ArrayList getBookingList(String arrival, String departure, Connection conn)
