@@ -100,9 +100,8 @@ public class BookingMapper
         return nextRes;
     }
     
-    public ArrayList findResNumber(int reservationsnumber,Connection conn)
+    public int findResNumber(int resNo, Connection conn)
     {
-        ArrayList bookingList = new ArrayList();
         Booking b = null;
         String SQLString = // find Reservationsnumber
                 "select reservationsnumber from booking where reservationsnumber = ?";
@@ -113,7 +112,7 @@ public class BookingMapper
         {
             //=== get Customer
             statement = conn.prepareStatement(SQLString);
-            statement.setInt(1, reservationsnumber);
+            statement.setInt(1, resNo);
             ResultSet rs = statement.executeQuery();
             while (rs.next())
             {
@@ -125,7 +124,6 @@ public class BookingMapper
                         rs.getInt(5),
                         rs.getInt(6),
                         rs.getInt(7));
-                bookingList.add(b);
             }
         } catch (Exception e)
         {
@@ -136,7 +134,7 @@ public class BookingMapper
         {
             System.out.println("Retrieved BookingList: ");
         }
-        return bookingList;
+        return resNo;
     }
 
 // Method to get next Customer ID from database
