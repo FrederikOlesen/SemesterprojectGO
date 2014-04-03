@@ -4,7 +4,8 @@ import domain.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
-public class GUIRoomBook extends javax.swing.JFrame {
+public class GUIRoomBook extends javax.swing.JFrame
+{
 
     /**
      * Creates new form GUIRoomBook
@@ -20,7 +21,8 @@ public class GUIRoomBook extends javax.swing.JFrame {
     DefaultListModel dflBooking = new DefaultListModel();
     DefaultListModel dflRooms = new DefaultListModel();
 
-    public GUIRoomBook() {
+    public GUIRoomBook()
+    {
         initComponents();
         jListRooms.setModel(dflRooms);
         jListBooking.setModel(dflBooking);
@@ -672,12 +674,15 @@ public class GUIRoomBook extends javax.swing.JFrame {
         ka = con.getCustomer(lname);
         //String s = String.valueOf(k.getCustomerID());
         //jTextFieldCustomerID.setText(s);
-        if (ka != null) {
-            for (int i = 0; i < ka.size(); i++) {
+        if (ka != null)
+        {
+            for (int i = 0; i < ka.size(); i++)
+            {
                 dflCreate.addElement(ka.get(i).toString());
             }
 
-        } else {
+        } else
+        {
             Statuslabel.setText("Could not get Customer");
 
         }
@@ -689,9 +694,11 @@ public class GUIRoomBook extends javax.swing.JFrame {
         con.createNewCustomer(Fnamefield.getText(), Snamefield.getText(), Countryfield.getText(), Emailfield.getText(), Integer.parseInt(Phonefield.getText()), Addressfield.getText());
 
         boolean status = con.saveCustomer();
-        if (status) {
+        if (status)
+        {
             Statuslabel.setText("Customer saved");
-        } else {
+        } else
+        {
             Statuslabel.setText("Customer could not be saved!");
         }
     }//GEN-LAST:event_jButtonAddCustomerActionPerformed
@@ -722,9 +729,11 @@ public class GUIRoomBook extends javax.swing.JFrame {
         int CustomerID = Integer.parseInt(jTextFieldCustomerID.getText());
         con.createNewBooking(Arrival.getText(), Depature.getText(), Integer.parseInt(Noofguestfield.getText()), 1, CustomerID);
         boolean status = con.saveBooking();
-        if (status) {
+        if (status)
+        {
             Statuslabel.setText("Booking saved");
-        } else {
+        } else
+        {
             Statuslabel.setText("Booking could not be saved");
         }
 
@@ -752,14 +761,17 @@ public class GUIRoomBook extends javax.swing.JFrame {
         String departure = jTextFieldgetDepature.getText();
 
         b = con.getBookingList(arrival, departure);
-        if (b != null) {
-            for (int i = 0; i < b.size(); i++) {
+        if (b != null)
+        {
+            for (int i = 0; i < b.size(); i++)
+            {
 
                 dflBooking.addElement(b.get(i).toString());
 
             }
 
-        } else {
+        } else
+        {
             Statuslabel.setText("Could not get Customer");
         }
         con.resetBooking();
@@ -767,7 +779,8 @@ public class GUIRoomBook extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtongetArrivalsActionPerformed
 
     private void jButtonResetCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetCustomerActionPerformed
-        if (evt.getSource() == jButtonResetCustomer) {
+        if (evt.getSource() == jButtonResetCustomer)
+        {
             DefaultListModel listModel = (DefaultListModel) jListCreate.getModel();
             listModel.removeAllElements();
         }
@@ -783,11 +796,14 @@ public class GUIRoomBook extends javax.swing.JFrame {
         id = con.getCustomerID(customerID);
         //String s = String.valueOf(k.getCustomerID());
         //jTextFieldCustomerID.setText(s);
-        if (id != null) {
-            for (int i = 0; i < id.size(); i++) {
+        if (id != null)
+        {
+            for (int i = 0; i < id.size(); i++)
+            {
                 dflCreate.addElement(id.get(i).toString());
             }
-        } else {
+        } else
+        {
             Statuslabel.setText("Could not get Customer");
 
         }
@@ -799,13 +815,16 @@ public class GUIRoomBook extends javax.swing.JFrame {
         String arrival = jTextFieldcheckRoomArrival.getText();
         String departure = jTextFieldcheckRoomDeparture.getText();
         r = con.getRoomsList(arrival, departure);
-        if (r != null) {
-            for (int i = 0; i < r.size(); i++) {
+        if (r != null)
+        {
+            for (int i = 0; i < r.size(); i++)
+            {
                 dflRooms.addElement(r.get(i).toString());
 
             }
 
-        } else {
+        } else
+        {
             Statuslabel.setText("Could not get Rooms");
         }
         con.resetRooms();
@@ -822,17 +841,20 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private void jButtonChangeArrivalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeArrivalActionPerformed
 
         Object booking = jListBooking.getSelectedValue();
-        String arrival = jTextFieldgetArrival.getText();
-        bo = con.changeArrivalForBooking(arrival);
-        arrivalEditField.setText(booking.toString());
+//        String arrival = jTextFieldgetArrival.getText();
+//        bo = con.changeArrivalForBooking(arrival);
+        arrivalEditField.setText(booking.toString().substring(0, 10));
+        departureEditField.setText(booking.toString().substring(20, 30));
+        noOfGuestsEditField.setText(booking.toString().substring(140, 141));
     }//GEN-LAST:event_jButtonChangeArrivalActionPerformed
 
     private void jbuttonGetArrivalsFromResNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonGetArrivalsFromResNoActionPerformed
 
         int resno = Integer.parseInt(jTextFieldresNo.getText());
         Booking arrival = con.findResNumber(resno);
-        if (arrival != null) {
-            
+        if (arrival != null)
+        {
+
             dflBooking.addElement(arrival);
         }
 //        con.resetBooking();
@@ -845,39 +867,49 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
         boolean status = con.saveBooking();
-        
+
     }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(GUIRoomBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(GUIRoomBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(GUIRoomBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(GUIRoomBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new GUIRoomBook().setVisible(true);
             }
         });
