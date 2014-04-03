@@ -841,11 +841,9 @@ public class GUIRoomBook extends javax.swing.JFrame
     private void jButtonChangeArrivalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeArrivalActionPerformed
 
         Object booking = jListBooking.getSelectedValue();
-//        String arrival = jTextFieldgetArrival.getText();
-//        bo = con.changeArrivalForBooking(arrival);
         arrivalEditField.setText(booking.toString().substring(0, 10));
-        departureEditField.setText(booking.toString().substring(20, 30));
-        noOfGuestsEditField.setText(booking.toString().substring(140, 141));
+        departureEditField.setText(booking.toString().substring(10, 20));
+        noOfGuestsEditField.setText(booking.toString().substring(20, 21));
     }//GEN-LAST:event_jButtonChangeArrivalActionPerformed
 
     private void jbuttonGetArrivalsFromResNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonGetArrivalsFromResNoActionPerformed
@@ -866,6 +864,8 @@ public class GUIRoomBook extends javax.swing.JFrame
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
+        String arrival = arrivalEditField.getText();
+        bo = con.changeArrivalForBooking(arrival);
         boolean status = con.saveBooking();
 
     }//GEN-LAST:event_saveButtonActionPerformed
