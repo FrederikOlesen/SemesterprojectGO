@@ -208,7 +208,8 @@ public class BookingMapper
     public boolean updateBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
         int rowsUpdated = 0;
         String SQLString = "update booking "
-                + "set arrival = ?, departure = ?, numberofguests = ?"
+                + "set arrival = TO_DATE(?,'YYYY-MM-DD hh:mm:ss.f'), "
+                + "departure = TO_DATE(?,'YYYY-MM-DD hh:mm:ss.f'), numberofguests = ? "
                 + "where reservationsnumber = ?";
         PreparedStatement statement = null;
 
