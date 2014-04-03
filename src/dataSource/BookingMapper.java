@@ -104,7 +104,9 @@ public class BookingMapper
     {
         Booking b = null;
         String SQLString = // find Reservationsnumber
-                "select to_char(arrival, 'yyyy-mm-dd'), to_char(departure, 'yyyy-mm-dd'), reservationsnumber, roomnumber, paid, customerID, numberOfGuests from booking where reservationsnumber = ?";
+                "select to_char(arrival, 'yyyy-mm-dd'), to_char(departure, 'yyyy-mm-dd'),"
+                + " reservationsnumber, roomnumber, paid, customerID, numberOfGuests from booking "
+                + "where reservationsnumber = ?";
         
         PreparedStatement statement = null;
 
@@ -257,8 +259,6 @@ public class BookingMapper
                         rs.getInt(6),
                         rs.getInt(7));
                 bookingList.add(b);
-                System.out.println(b.getArrival());
-                System.out.println(b.getDeparture());
             }
         } catch (Exception e)
         {
