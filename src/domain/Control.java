@@ -91,6 +91,7 @@ public class Control
     
     public Booking changeArrivalForBooking(String arrival) {
         if (processingBooking) {
+            System.out.println(processingBooking);
             currentBooking.setArrival(arrival);
             dbFacade.registerDirtyBooking(currentBooking);
         }

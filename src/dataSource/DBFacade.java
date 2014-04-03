@@ -173,4 +173,7 @@ public class DBFacade
         resNumber = new BookingMapper().findResNumber(resNo, con);
         return resNumber;
     }
+        public boolean changeArrivalForBooking(Booking booking){
+        return BookingMapper.testRun;
+          }
 }

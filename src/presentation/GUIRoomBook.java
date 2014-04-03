@@ -1,5 +1,6 @@
 package presentation;
 
+import domain.Booking;
 import domain.Control;
 import domain.Customer;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
      */
     Control con = new Control();
     Customer k;
+    Booking bo;
     ArrayList b;
     ArrayList ka;
     ArrayList id;
@@ -796,9 +798,9 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
     private void jButtonChangeArrivalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeArrivalActionPerformed
 
-        Object selected = jListBooking.getSelectedValue();
+        Object booking = jListBooking.getSelectedValue();
         String arrival = jTextFieldgetArrival.getText();
-        selected = con.changeArrivalForBooking(arrival);
+        bo = con.changeArrivalForBooking(arrival);
     }//GEN-LAST:event_jButtonChangeArrivalActionPerformed
 
     private void jbuttonGetArrivalsFromResNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonGetArrivalsFromResNoActionPerformed
@@ -810,7 +812,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
                 dflBooking.addElement(arrival.get(i).toString());
             }
         }
-        con.resetBooking();
+//        con.resetBooking();
     }//GEN-LAST:event_jbuttonGetArrivalsFromResNoActionPerformed
 
     private void jButtonChangeNoGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeNoGActionPerformed
