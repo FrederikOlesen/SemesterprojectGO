@@ -104,7 +104,7 @@ public class BookingMapper
     {
         Booking b = null;
         String SQLString = // find Reservationsnumber
-                "select * from booking where reservationsnumber = ?";
+                "select to_char(arrival, 'yyyy-mm-dd'), to_char(departure, 'yyyy-mm-dd'), reservationsnumber, roomnumber, paid, customerID, numberOfGuests from booking where reservationsnumber = ?";
         
         PreparedStatement statement = null;
 
@@ -208,8 +208,8 @@ public class BookingMapper
     public boolean updateBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
         int rowsUpdated = 0;
         String SQLString = "update booking "
-                + "set arrival = TO_DATE(?,'YYYY-MM-DD hh:mm:ss.f'), "
-                + "departure = TO_DATE(?,'YYYY-MM-DD hh:mm:ss.f'), numberofguests = ? "
+                + "set arrival = TO_DATE(?,'YYYY-MM-DD'), "
+                + "departure = TO_DATE(?,'YYYY-MM-DD'), numberofguests = ? "
                 + "where reservationsnumber = ?";
         PreparedStatement statement = null;
 
@@ -235,7 +235,7 @@ public class BookingMapper
         ArrayList bookingList = new ArrayList();
         Booking b = null;
         String SQLString = // get Booking
-                "select * from booking where arrival between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')";
+                "select to_char(arrival, 'yyyy-mm-dd'), to_char(departure, 'yyyy-mm-dd'), reservationsnumber, roomnumber, paid, customerID, numberOfGuests from booking where arrival between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')";
 //                "select * from booking where arrival between to_char(sysdate, 'yyyy-mm-dd') and to_char(sysdate, 'yyyy-mm-dd');"
         PreparedStatement statement = null;
 
@@ -257,6 +257,8 @@ public class BookingMapper
                         rs.getInt(6),
                         rs.getInt(7));
                 bookingList.add(b);
+                System.out.println(b.getArrival());
+                System.out.println(b.getDeparture());
             }
         } catch (Exception e)
         {

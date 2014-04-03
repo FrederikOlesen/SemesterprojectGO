@@ -816,7 +816,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonChangeArrivalActionPerformed
 
     private void jbuttonGetArrivalsFromResNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonGetArrivalsFromResNoActionPerformed
-        // TODO add your handling code here:
+
         int resno = Integer.parseInt(jTextFieldresNo.getText());
         Booking arrival = con.findResNumber(resno);
         if (arrival != null) {
