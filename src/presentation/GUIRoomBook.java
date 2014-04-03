@@ -796,9 +796,9 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
     private void jButtonChangeArrivalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeArrivalActionPerformed
 
+        Object selected = jListBooking.getSelectedValue();
         String arrival = jTextFieldgetArrival.getText();
-        con.changeArrivalForBooking(arrival);
-        Statuslabel.setText("Arrival changed");
+        selected = con.changeArrivalForBooking(arrival);
     }//GEN-LAST:event_jButtonChangeArrivalActionPerformed
 
     private void jbuttonGetArrivalsFromResNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonGetArrivalsFromResNoActionPerformed

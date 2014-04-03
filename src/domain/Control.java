@@ -1,6 +1,5 @@
 package domain;
 
-import dataSource.*;
 import java.util.ArrayList;
 import dataSource.BookingMapper;
 import dataSource.DBFacade;
@@ -92,13 +91,12 @@ public class Control
     
     public Booking changeArrivalForBooking(String arrival) {
         if (processingBooking) {
-            System.out.println(currentBooking.getArrival() + "før");
             currentBooking.setArrival(arrival);
             dbFacade.registerDirtyBooking(currentBooking);
-            System.out.println(currentBooking.getArrival() + "efter");
         }
         return currentBooking;
     }
+    
     
     public Booking changeDepartureForBooking(String departure) {
         if (processingBooking) {
