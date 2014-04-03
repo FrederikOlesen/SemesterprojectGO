@@ -78,7 +78,7 @@ public class UOWPBook
             conn.setAutoCommit(false);
             BookingMapper bm = new BookingMapper();
             status = status && bm.addNewBooking(newBooking, conn);
-//            status = status && bm.updateBooking(modifiedBooking, conn);
+            status = status && bm.updateBooking(modifiedBooking, conn);
 //            status = status && bm.deleteBooking(deleteBooking, conn);
             if (!status)
             {

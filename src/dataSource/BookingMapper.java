@@ -209,7 +209,8 @@ public class BookingMapper
     public boolean updateBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
         int rowsUpdated = 0;
         String SQLString = "update booking "
-                + "set arrival = ?, departure = ?, numberofguests = ?";
+                + "set arrival = ?, departure = ?, numberofguests = ?"
+                + "where reservationsnumber = ?";
         PreparedStatement statement = null;
 
         statement = conn.prepareStatement(SQLString);
@@ -218,6 +219,7 @@ public class BookingMapper
             statement.setString(1, b.getArrival());
             statement.setString(2, b.getDeparture());
             statement.setInt(3, b.getNumberOfGuests());
+            statement.setInt(4, b.getResNumber());
 
         }
         if (testRun) {

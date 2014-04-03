@@ -37,7 +37,7 @@ public class Control
         processingRooms = false;
         currentRooms = null;
         dbFacade = DBFacade.getInstance();
-        processingFindBooking = false;
+       // processingFindBooking = false;
         currentFindBooking = null;
     }
 
@@ -209,12 +209,12 @@ public class Control
     }
         public ArrayList findResNumber(int resNo)
     {
-        if (processingFindBooking)
+        if (processingBooking)
         {
             return null;
         }
         dbFacade.startNewBusinessTransactionBook();
-        processingFindBooking = true;
+        processingBooking = true;
         currentFindBooking = dbFacade.findResNumber(resNo);
         return currentFindBooking;
     }
