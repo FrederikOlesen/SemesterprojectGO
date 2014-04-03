@@ -208,7 +208,7 @@ public class Control
         currentRoomsList = dbFacade.getRoomsList(arrival, departure);
         return currentRoomsList;
     }
-        public ArrayList findResNumber(int resNo)
+        public Booking findResNumber(int resNo)
     {
         if (processingBooking)
         {
@@ -216,7 +216,7 @@ public class Control
         }
         dbFacade.startNewBusinessTransactionBook();
         processingBooking = true;
-        currentFindBooking = dbFacade.findResNumber(resNo);
-        return currentFindBooking;
+        currentBooking = dbFacade.findResNumber(resNo);
+        return currentBooking;
     }
 }

@@ -183,9 +183,9 @@ public class UOWPBook
 
     }
         
-        public ArrayList findResNo(int resNo, Connection con) {
+        public Booking findResNo(int resNo, Connection con) {
         
-            ArrayList r = null;
+            Booking r = null;
         try
         {
             r = new BookingMapper().findResNumber(resNo, con);
