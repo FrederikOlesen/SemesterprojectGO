@@ -350,4 +350,24 @@ public class BookingMapper
         }
         return roomsList;
     }
+    
+    boolean deleteBooking(ArrayList<Booking> deleteBooking, Connection conn) {
+        String SQLString = "delete from booking where reservationsnumber = ?";
+        
+        PreparedStatement statement = null;
+        int noOfRowsDeleteInBooking = 0;
+        
+        try {
+            statement = conn.prepareCall(SQLString);
+            
+            statement.setInt(1, deleteBooking.get(0).getResNumber());
+            
+            noOfRowsDeleteInBooking = statement.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Fail in BookingMapper - deleteBooking");
+            System.out.println(e.getMessage());
+        }
+        return noOfRowsDeleteInBooking == 1;
+        
+    }
 }

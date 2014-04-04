@@ -88,33 +88,17 @@ public class Control
         }
         return currentCustomer;
     }
-    
-    public Booking changeArrivalForBooking(String arrival) {
+    //Created a method to change all three booking information in a booking.
+    public Booking changeBookingInformation(String arrival, String departure, int nog) {
         if (processingBooking) {
             System.out.println(processingBooking);
             currentBooking.setArrival(arrival);
-            dbFacade.registerDirtyBooking(currentBooking);
-        }
-        return currentBooking;
-    }
-    
-    
-    public Booking changeDepartureForBooking(String departure) {
-        if (processingBooking) {
             currentBooking.setDeparture(departure);
+            currentBooking.setNumberOfGuests(nog);
             dbFacade.registerDirtyBooking(currentBooking);
         }
         return currentBooking;
     }
-    
-    public Booking changeNumberOfGuestForBooking(int numberOfGuests) {
-        if (processingBooking) {
-            currentBooking.setNumberOfGuests(numberOfGuests);
-            dbFacade.registerDirtyBooking(currentBooking);
-        }
-        return currentBooking;
-    }
-
     // Method for saving the curent booking, returns true if succesfull
     public boolean saveBooking()
     {
@@ -218,5 +202,11 @@ public class Control
         processingBooking = true;
         currentBooking = dbFacade.findResNumber(resNo);
         return currentBooking;
+    }
+        
+        public void deleteBooking() {
+        if (processingBooking) {
+            dbFacade.registerDeleteBooking(currentBooking);
+        }
     }
 }

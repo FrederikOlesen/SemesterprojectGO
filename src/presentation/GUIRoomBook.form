@@ -550,7 +550,7 @@
                                                       <Component id="jTextFieldresNo" min="-2" pref="62" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="jbuttonGetArrivalsFromResNo" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                      <EmptySpace min="0" pref="44" max="32767" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -576,11 +576,13 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-                                      <Component id="jButtonChangeArrival" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                      <Component id="saveButton" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                      <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                                      <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                                      <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -590,19 +592,31 @@
                                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                                       <Component id="noOfGuestsEditField" min="-2" pref="87" max="-2" attributes="0"/>
                                   </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jTextFieldDeleteFromResNo" min="-2" pref="57" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                      <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
-                                      <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                                      <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                      <Component id="jButtonEditBooking" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButtonDelete" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="saveButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -640,19 +654,23 @@
                           <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="departureEditField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="noOfGuestsEditField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="arrivalEditField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldDeleteFromResNo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="saveButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="saveButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonChangeArrival" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonEditBooking" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonDelete" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="223" max="32767" attributes="0"/>
+                      <EmptySpace pref="224" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -749,12 +767,12 @@
                 <Property name="text" type="java.lang.String" value="Res no."/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonChangeArrival">
+            <Component class="javax.swing.JButton" name="jButtonEditBooking">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Change Arrival"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonChangeArrivalActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditBookingActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="saveButton">
@@ -784,6 +802,21 @@
             <Component class="javax.swing.JLabel" name="jLabel30">
               <Properties>
                 <Property name="text" type="java.lang.String" value="No of Guests"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonDelete">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Delete"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextFieldDeleteFromResNo">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel31">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Res. no"/>
               </Properties>
             </Component>
           </SubComponents>

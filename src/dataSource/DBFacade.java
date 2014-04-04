@@ -176,4 +176,10 @@ public class DBFacade
         public boolean changeArrivalForBooking(Booking booking){
         return BookingMapper.testRun;
           }
+        
+        public void registerDeleteBooking(Booking b) {
+        if (uowb !=null) {
+            uowb.registerDeleteBooking(b);
+        }
+    }
 }

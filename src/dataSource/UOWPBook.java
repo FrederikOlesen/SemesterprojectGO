@@ -79,7 +79,7 @@ public class UOWPBook
             BookingMapper bm = new BookingMapper();
             status = status && bm.addNewBooking(newBooking, conn);
             status = status && bm.updateBooking(modifiedBooking, conn);
-//            status = status && bm.deleteBooking(deleteBooking, conn);
+            status = status && bm.deleteBooking(deleteBooking, conn);
             if (!status)
             {
 
@@ -160,12 +160,11 @@ public class UOWPBook
 
     }
 
-    public void registerDeletedBooking(Booking b)
-    {
+    void registerDeleteBooking(Booking b) {
         if (!newBooking.contains(b) && // if not allready registered in any list
-                !deleteBooking.contains(b))
-        {
-            modifiedBooking.add(b);
+                !modifiedBooking.contains(b)
+                && !deleteBooking.contains(b)) {
+            deleteBooking.add(b);
         }
     }
         public ArrayList getRoomsList(String arrival, String departure, Connection con)
