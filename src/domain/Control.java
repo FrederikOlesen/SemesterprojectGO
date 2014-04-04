@@ -81,7 +81,6 @@ public class Control {
     //Created a method to change all three booking information in a booking.
     public Booking changeBookingInformation(String arrival, String departure, int nog) {
         if (processingBooking) {
-            System.out.println(processingBooking);
             currentBooking.setArrival(arrival);
             currentBooking.setDeparture(departure);
             currentBooking.setNumberOfGuests(nog);
