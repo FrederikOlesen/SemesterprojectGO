@@ -13,42 +13,32 @@ public class Rooms {
         this.roomType = roomType;
     }
 
-    
-         
-
     // Getters and setters
-    public String getRoomType()
-    {
+    public String getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(String roomType)
-    {
+    public void setRoomType(String roomType) {
         this.roomType = roomType;
     }
 
-    public int getPrice()
-    {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price)
-    {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public String getRoomNumber()
-    {
+    public String getRoomNumber() {
         return roomNumber;
     }
 
-    public void setRoomNumber(String roomNumber)
-    {
+    public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
 
     // End of getters and setters
-    
     //toString method added which returns a string of informations from contructor
     @Override
     public String toString() {
