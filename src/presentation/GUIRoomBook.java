@@ -108,9 +108,6 @@ public class GUIRoomBook extends javax.swing.JFrame
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jButtonDelete = new javax.swing.JButton();
-        jTextFieldDeleteFromResNo = new javax.swing.JTextField();
-        jLabel31 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jTextFieldcheckRoomArrival = new javax.swing.JTextField();
         jTextFieldcheckRoomDeparture = new javax.swing.JTextField();
@@ -482,15 +479,6 @@ public class GUIRoomBook extends javax.swing.JFrame
 
         jLabel30.setText("No of Guests");
 
-        jButtonDelete.setText("Delete");
-        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeleteActionPerformed(evt);
-            }
-        });
-
-        jLabel31.setText("Res. no");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -559,24 +547,14 @@ public class GUIRoomBook extends javax.swing.JFrame
                                 .addComponent(departureEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(66, 66, 66)
                                 .addComponent(noOfGuestsEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldDeleteFromResNo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel31)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(jButtonEditBooking)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonDelete)
-                .addGap(132, 132, 132))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(updateButton)
-                .addGap(56, 56, 56))
+                .addGap(127, 127, 127))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,20 +586,19 @@ public class GUIRoomBook extends javax.swing.JFrame
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
                     .addComponent(jLabel29)
-                    .addComponent(jLabel30)
-                    .addComponent(jLabel31))
+                    .addComponent(jLabel30))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(departureEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(noOfGuestsEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(arrivalEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDeleteFromResNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(updateButton)
-                .addGap(1, 1, 1)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEditBooking)
-                    .addComponent(jButtonDelete))
+                    .addComponent(arrivalEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jButtonEditBooking))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(updateButton)))
                 .addContainerGap(224, Short.MAX_VALUE))
         );
 
@@ -907,11 +884,6 @@ public class GUIRoomBook extends javax.swing.JFrame
 
     }//GEN-LAST:event_updateButtonActionPerformed
 
-    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-       
-        con.deleteBooking();
-    }//GEN-LAST:event_jButtonDeleteActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -978,7 +950,6 @@ public class GUIRoomBook extends javax.swing.JFrame
     private javax.swing.JTextField departureEditField;
     private javax.swing.JButton jButtonAddCustomer;
     private javax.swing.JButton jButtonCheckRooms;
-    private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonEditBooking;
     private javax.swing.JButton jButtonResetCustomer;
     private javax.swing.JButton jButtonSearchCustomerID;
@@ -1008,7 +979,6 @@ public class GUIRoomBook extends javax.swing.JFrame
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1027,7 +997,6 @@ public class GUIRoomBook extends javax.swing.JFrame
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldCustomerID;
-    private javax.swing.JTextField jTextFieldDeleteFromResNo;
     private javax.swing.JTextField jTextFieldcheckRoomArrival;
     private javax.swing.JTextField jTextFieldcheckRoomDeparture;
     private javax.swing.JTextField jTextFieldgetArrival;
