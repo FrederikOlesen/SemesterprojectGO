@@ -335,4 +335,32 @@ public class BookingMapper {
         return true;
 
     }
+
+    public String lookAtResNumber(int resNumber, Connection conn) {
+        String name = "";
+        String SQLString = // get Booking
+                "select fname, lname from customer where customerID = "
+                + " (select reservationsnumber from booking where reservationsnumber = ? )";
+
+        PreparedStatement statement = null;
+
+        try {
+            //=== get Customer
+            statement = conn.prepareStatement(SQLString);
+            statement.setInt(1, resNumber);
+            ResultSet rs = statement.executeQuery();
+            
+            name = rs.getString(1);
+            name = name +  " " + rs.getString(2);
+            
+
+        } catch (Exception e) {
+            System.out.println("Fail in BookingMapper - getRoomsList");
+            System.out.println(e.getMessage());
+        }
+        if (testRun) {
+            System.out.println("Retrieved RoomsList: ");
+        }
+        return name;
+    }
 }

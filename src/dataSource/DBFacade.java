@@ -145,6 +145,11 @@ public class DBFacade {
         resNumber = new BookingMapper().findResNumber(resNo, con);
         return resNumber;
     }
+    
+    public void locateResNumber(int resNo) {
+        int resNumber = 0;
+        resNumber = new BookingMapper().lookAtResNumber(resNumber, con);
+    }
 
     public boolean changeArrivalForBooking(Booking booking) {
         return BookingMapper.testRun;

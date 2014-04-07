@@ -183,4 +183,9 @@ public class Control {
             dbFacade.registerDeleteBooking(currentBooking);
         }
     }
+    
+    public void findResNo(int resNo)
+    {
+        
+    }
 }
