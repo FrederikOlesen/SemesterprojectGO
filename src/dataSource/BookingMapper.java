@@ -338,9 +338,11 @@ public class BookingMapper {
 
     public String lookAtResNumber(int resNumber, Connection conn) {
         String name = "";
+        String fname = "";
+        String lname = "";
         String SQLString = // get Booking
-                "select fname, lname from customer where customerID = "
-                + " (select reservationsnumber from booking where reservationsnumber = ? )";
+                "select fname, lname from customer where customerID ="
+                + "(select customerID from booking where reservationsnumber = ? )";
 
         PreparedStatement statement = null;
 
@@ -349,13 +351,14 @@ public class BookingMapper {
             statement = conn.prepareStatement(SQLString);
             statement.setInt(1, resNumber);
             ResultSet rs = statement.executeQuery();
-            
-            name = rs.getString(1);
-            name = name +  " " + rs.getString(2);
-            
 
+            while (rs.next()) { 
+                fname = rs.getString(1);
+                lname = rs.getString(2);
+            }
+            name = fname + " " + lname;
         } catch (Exception e) {
-            System.out.println("Fail in BookingMapper - getRoomsList");
+            System.out.println("Fail in BookingMapper - getName");
             System.out.println(e.getMessage());
         }
         if (testRun) {

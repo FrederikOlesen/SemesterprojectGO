@@ -183,9 +183,10 @@ public class Control {
             dbFacade.registerDeleteBooking(currentBooking);
         }
     }
-    
-    public void findResNo(int resNo)
-    {
-        
+
+    public String findResNo(int resNo) {
+        String name = dbFacade.locateResNumber(resNo);
+        return name;
+
     }
 }

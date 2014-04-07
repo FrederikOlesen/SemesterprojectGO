@@ -7,6 +7,7 @@
 package presentation;
 
 import domain.Control;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,8 +53,14 @@ public class GUICheckIn extends javax.swing.JFrame {
 
     private void jButtonCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckInActionPerformed
        String resNumber = jTextFieldresNumber.getText();
-       
-       
+       String name = con.findResNo(Integer.parseInt(resNumber));
+       //jTextFieldresNumber.setText("Whalecum " + name);
+       if(" ".equals(name)) {
+          JOptionPane.showMessageDialog(rootPane, "Invalid reservation number");
+          JOptionPane.showMessageDialog(rootPane, "Contact hotel management!");
+       }else {
+       JOptionPane.showMessageDialog(rootPane, "Welcome to Hotel Casablanca " + name);
+       }
     }//GEN-LAST:event_jButtonCheckInActionPerformed
 
     /**
