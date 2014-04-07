@@ -39,18 +39,16 @@ public class Control {
     }
 
     // Method for creating a new booking, returns a booking object.
-    public Booking createNewBooking(String arrival, String departure, int numberOfGuests, int roomType, int CustomerID) {
+    public Booking createNewBooking(String arrival, String departure, int numberOfGuests, int paid, int roomNumber, int CustomerID) {
         if (processingBooking) {
             return null;
         }
         dbFacade.startNewBusinessTransactionBook();
         int nextResNr = dbFacade.getNextResnr();// rDB-generated unique ID
-        int payment = 1;
-        int roomNumber = 10;
 
         if (nextResNr != 0) {
             processingBooking = true;
-            currentBooking = new Booking(arrival, departure, nextResNr, payment, roomNumber, CustomerID, numberOfGuests);
+            currentBooking = new Booking(arrival, departure, nextResNr, paid, roomNumber, CustomerID, numberOfGuests);
             dbFacade.registerNewBooking(currentBooking);
         } else {
             processingBooking = false;
@@ -79,11 +77,12 @@ public class Control {
     }
 
     //Created a method to change all three booking information in a booking.
-    public Booking changeBookingInformation(String arrival, String departure, int nog) {
+    public Booking changeBookingInformation(String arrival, String departure, int nog, int paid) {
         if (processingBooking) {
             currentBooking.setArrival(arrival);
             currentBooking.setDeparture(departure);
             currentBooking.setNumberOfGuests(nog);
+            currentBooking.setPayment(paid);
             dbFacade.registerDirtyBooking(currentBooking);
         }
         return currentBooking;

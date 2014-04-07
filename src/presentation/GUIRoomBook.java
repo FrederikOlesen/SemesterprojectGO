@@ -60,7 +60,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         Bookbutton = new javax.swing.JButton();
         Undobutton = new javax.swing.JButton();
-        Roomtypecombobox = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         Noofguestfield = new javax.swing.JTextField();
@@ -80,6 +79,9 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jTextFieldgetcustomerID = new javax.swing.JTextField();
         jButtonSearchCustomerID = new javax.swing.JButton();
+        jTextFieldRoomNo = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        jCheckBoxPaid = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jTextFieldgetArrival = new javax.swing.JTextField();
         jTextFieldgetDepature = new javax.swing.JTextField();
@@ -107,6 +109,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jButtonDelete = new javax.swing.JButton();
+        jCheckBoxPaidBooking = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jTextFieldcheckRoomArrival = new javax.swing.JTextField();
         jTextFieldcheckRoomDeparture = new javax.swing.JTextField();
@@ -195,14 +198,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
         Undobutton.setText("Undo Book");
         jPanel1.add(Undobutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 598, -1, -1));
 
-        Roomtypecombobox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Family Room", "Double Room", "Single Room" }));
-        Roomtypecombobox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RoomtypecomboboxActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Roomtypecombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 502, -1, -1));
-
         jLabel11.setText("Room Type");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 427, -1, -1));
 
@@ -276,6 +271,13 @@ public class GUIRoomBook extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSearchCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 270, -1, -1));
+        jPanel1.add(jTextFieldRoomNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 60, -1));
+
+        jLabel31.setText("Room Number");
+        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, -1, -1));
+
+        jCheckBoxPaid.setText("Paid");
+        jPanel1.add(jCheckBoxPaid, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 600, -1, -1));
 
         jTabbedPane1.addTab("Create", jPanel1);
 
@@ -314,19 +316,19 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 113, 57, -1));
 
         jLabel19.setText("Customer ID");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 113, 76, -1));
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 76, -1));
 
         jLabel20.setText("Payment");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 113, -1, -1));
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
 
         jLabel21.setText("Room no.");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 113, -1, -1));
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
 
         jLabel22.setText("Guests");
         jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 113, 41, -1));
 
         jLabel23.setText("Res no.");
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 113, 45, -1));
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 45, -1));
         jPanel2.add(jTextFieldresNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 62, -1));
 
         jbuttonGetArrivalsFromResNo.setText("Get Arrivals");
@@ -355,18 +357,18 @@ public class GUIRoomBook extends javax.swing.JFrame {
             }
         });
         jPanel2.add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 400, -1, -1));
-        jPanel2.add(departureEditField, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 373, 87, -1));
-        jPanel2.add(noOfGuestsEditField, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 373, 87, -1));
+        jPanel2.add(departureEditField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 87, -1));
+        jPanel2.add(noOfGuestsEditField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 87, -1));
         jPanel2.add(arrivalEditField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 373, 87, -1));
 
         jLabel28.setText("Arrival");
         jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 338, -1, -1));
 
         jLabel29.setText("Departure");
-        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 338, -1, -1));
+        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
 
         jLabel30.setText("No of Guests");
-        jPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 338, -1, -1));
+        jPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, -1, -1));
 
         jButtonDelete.setText("Delete");
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -375,6 +377,9 @@ public class GUIRoomBook extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, -1, -1));
+
+        jCheckBoxPaidBooking.setText("Paid");
+        jPanel2.add(jCheckBoxPaidBooking, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, -1, -1));
 
         jTabbedPane1.addTab("Booking list", jPanel2);
 
@@ -498,14 +503,15 @@ public class GUIRoomBook extends javax.swing.JFrame {
         con.resetBooking();
     }//GEN-LAST:event_ClearfieldsbuttonActionPerformed
 
-    private void RoomtypecomboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoomtypecomboboxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RoomtypecomboboxActionPerformed
-
     private void BookbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbuttonActionPerformed
         //comment
         int CustomerID = Integer.parseInt(jTextFieldCustomerID.getText());
-        con.createNewBooking(Arrival.getText(), Depature.getText(), Integer.parseInt(Noofguestfield.getText()), 1, CustomerID);
+        int paid = 0;
+        if (jCheckBoxPaid.isSelected() == true) {
+            paid = 1;
+        }
+
+        con.createNewBooking(Arrival.getText(), Depature.getText(), Integer.parseInt(Noofguestfield.getText()), paid, Integer.parseInt(jTextFieldRoomNo.getText()), CustomerID);
         boolean status = con.saveBooking();
         if (status) {
             Statuslabel.setText("Booking saved");
@@ -628,7 +634,11 @@ public class GUIRoomBook extends javax.swing.JFrame {
         String arrival = arrivalEditField.getText();
         String departure = departureEditField.getText();
         int numberOfGuests = Integer.parseInt(noOfGuestsEditField.getText());
-        bo = con.changeBookingInformation(arrival, departure, numberOfGuests);
+        int paid = 0;
+        if (jCheckBoxPaidBooking.isSelected() == true) {
+            paid = 1;
+        }
+        bo = con.changeBookingInformation(arrival, departure, numberOfGuests, paid);
         boolean status = con.saveBooking();
 
     }//GEN-LAST:event_updateButtonActionPerformed
@@ -684,7 +694,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JTextField Fnamefield;
     private javax.swing.JTextField Noofguestfield;
     private javax.swing.JTextField Phonefield;
-    private javax.swing.JComboBox Roomtypecombobox;
     private javax.swing.JTextField Snamefield;
     private javax.swing.JLabel Statuslabel;
     private javax.swing.JLabel Statuslabeldontchange;
@@ -700,6 +709,8 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSearchCustomerID;
     private javax.swing.JButton jButtongetArrivals;
     private javax.swing.JButton jButtongetCustomer;
+    private javax.swing.JCheckBox jCheckBoxPaid;
+    private javax.swing.JCheckBox jCheckBoxPaidBooking;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -724,6 +735,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -742,6 +754,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldCustomerID;
+    private javax.swing.JTextField jTextFieldRoomNo;
     private javax.swing.JTextField jTextFieldcheckRoomArrival;
     private javax.swing.JTextField jTextFieldcheckRoomDeparture;
     private javax.swing.JTextField jTextFieldgetArrival;

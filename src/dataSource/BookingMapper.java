@@ -32,7 +32,7 @@ public class BookingMapper {
             statement.setString(2, b.getDeparture());
             statement.setInt(3, b.getResNumber());
             statement.setInt(4, b.getRoomNumber());
-            statement.setInt(5, 1);
+            statement.setInt(5, b.getPayment());
             statement.setInt(6, b.getCustomerID());
             statement.setInt(7, b.getNumberOfGuests());
 
@@ -186,7 +186,7 @@ public class BookingMapper {
         int rowsUpdated = 0;
         String SQLString = "update booking "
                 + "set arrival = TO_DATE(?,'YYYY-MM-DD'), "
-                + "departure = TO_DATE(?,'YYYY-MM-DD'), numberofguests = ? "
+                + "departure = TO_DATE(?,'YYYY-MM-DD'), numberofguests = ?, paid = ? "
                 + "where reservationsnumber = ?";
         PreparedStatement statement = null;
 
@@ -196,7 +196,8 @@ public class BookingMapper {
             statement.setString(1, b.getArrival());
             statement.setString(2, b.getDeparture());
             statement.setInt(3, b.getNumberOfGuests());
-            statement.setInt(4, b.getResNumber());
+            statement.setInt(4, b.getPayment());
+            statement.setInt(5, b.getResNumber());
             rowsUpdated = statement.executeUpdate();
 
         }
@@ -311,23 +312,27 @@ public class BookingMapper {
         return roomsList;
     }
 
-    boolean deleteBooking(ArrayList<Booking> deleteBooking, Connection conn) {
+    public boolean deleteBooking(ArrayList<Booking> deleteBooking, Connection conn) {
         String SQLString = "delete from booking where reservationsnumber = ?";
 
         PreparedStatement statement = null;
         int noOfRowsDeleteInBooking = 0;
 
-        try {
-            statement = conn.prepareCall(SQLString);
+        for (int i = 0; i < deleteBooking.size(); i++) {
 
-            statement.setInt(1, deleteBooking.get(0).getResNumber());
+            try {
+                statement = conn.prepareCall(SQLString);
 
-            noOfRowsDeleteInBooking = statement.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("Fail in BookingMapper - deleteBooking");
-            System.out.println(e.getMessage());
+                statement.setInt(1, deleteBooking.get(i).getResNumber());
+
+                noOfRowsDeleteInBooking = statement.executeUpdate();
+            } catch (Exception e) {
+                System.out.println("Fail in BookingMapper - deleteBooking");
+                System.out.println(e.getMessage());
+            }
+            return noOfRowsDeleteInBooking == deleteBooking.size();
         }
-        return noOfRowsDeleteInBooking == 1;
+        return true;
 
     }
 }
