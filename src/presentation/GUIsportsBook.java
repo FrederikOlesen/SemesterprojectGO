@@ -28,8 +28,7 @@ public class GUIsportsBook extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jComboBoxSportsBooking = new javax.swing.JComboBox();
@@ -46,10 +45,8 @@ public class GUIsportsBook extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jComboBoxSportsBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tennis", "Badminton", "Golf", "Swimming" }));
-        jComboBoxSportsBooking.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jComboBoxSportsBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSportsBookingActionPerformed(evt);
             }
         });
@@ -58,7 +55,12 @@ public class GUIsportsBook extends javax.swing.JFrame
 
         jButtonBook.setText("Book");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Time");
 
@@ -144,6 +146,10 @@ public class GUIsportsBook extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jComboBoxSportsBookingActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxSportsBookingActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments

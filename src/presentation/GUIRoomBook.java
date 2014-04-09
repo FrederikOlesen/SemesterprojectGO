@@ -119,6 +119,14 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jListRooms = new javax.swing.JList();
         jPanel4 = new javax.swing.JPanel();
+        jTextFieldSportDate = new javax.swing.JTextField();
+        jButtonCreateSport = new javax.swing.JButton();
+        jComboBoxSports = new javax.swing.JComboBox();
+        jComboBoxTime = new javax.swing.JComboBox();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -443,15 +451,62 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Room list", jPanel3);
 
+        jButtonCreateSport.setText("Create Sport");
+
+        jComboBoxSports.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tennis", "Badminton", "Volleyball", "Handball" }));
+
+        jComboBoxTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00" }));
+
+        jLabel32.setText("Choose date");
+
+        jLabel33.setText("Choose sport");
+
+        jLabel34.setText("Status:");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 681, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBoxSports, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBoxTime, 0, 100, Short.MAX_VALUE))
+                            .addComponent(jLabel33))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel32)
+                            .addComponent(jTextFieldSportDate)
+                            .addComponent(jButtonCreateSport, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel34)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 655, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(jLabel33))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxSports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldSportDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCreateSport))
+                .addGap(77, 77, 77)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(475, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Sport", jPanel4);
@@ -717,6 +772,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JTextField departureEditField;
     private javax.swing.JButton jButtonAddCustomer;
     private javax.swing.JButton jButtonCheckRooms;
+    private javax.swing.JButton jButtonCreateSport;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonEditBooking;
     private javax.swing.JButton jButtonResetCustomer;
@@ -725,6 +781,8 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JButton jButtongetCustomer;
     private javax.swing.JCheckBox jCheckBoxPaid;
     private javax.swing.JCheckBox jCheckBoxPaidBooking;
+    private javax.swing.JComboBox jComboBoxSports;
+    private javax.swing.JComboBox jComboBoxTime;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -750,6 +808,10 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -770,6 +832,7 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldCustomerID;
     private javax.swing.JTextField jTextFieldRoomNo;
+    private javax.swing.JTextField jTextFieldSportDate;
     private javax.swing.JTextField jTextFieldcheckRoomArrival;
     private javax.swing.JTextField jTextFieldcheckRoomDeparture;
     private javax.swing.JTextField jTextFieldgetArrival;
