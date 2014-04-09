@@ -3,6 +3,7 @@ package dataSource;
 import domain.Booking;
 import domain.Customer;
 import domain.Rooms;
+import domain.SportsBooking;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ public class BookingMapper {
     Customer c;
     Booking b;
     Rooms r;
-
+    SportsBooking sb;
     // Method for writing booking to database. Returns 1 / true 
     public boolean addNewBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
         int rowsInserted = 0;
@@ -365,5 +366,52 @@ public class BookingMapper {
             System.out.println("Retrieved RoomsList: ");
         }
         return name;
+    }
+    
+    
+    public boolean createCustomerID(int resNumber, int noOfGuests, Connection conn) {
+        
+        for(int i = 1;i<=noOfGuests;i++) {
+        String SQLString = // get Booking
+                "insert into customerSportsID values (?, ?)";
+
+        PreparedStatement statement = null;
+
+        try {
+            //=== get Customer
+            String customerID = resNumber+"-"+Integer.toString(i);
+            statement = conn.prepareStatement(SQLString);
+            statement.setInt(1, resNumber);
+            statement.setString(2,customerID);
+            ResultSet rs = statement.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Fail in BookingMapper - createCustomerID");
+            System.out.println(e.getMessage());
+        }
+        if (testRun) {
+            System.out.println("Created unique ID");
+        }
+    }
+        return true;
+    }
+    
+    public boolean addNewSportBooking(ArrayList<SportsBooking> sb1, Connection conn) throws SQLException {
+        int rowsInserted = 0;
+        String SQLString = "insert into sportsBooking values (311,'311-1','Tennis',to_timestamp('2014-01-01:09:00'),1)";
+        PreparedStatement statement = null;
+        statement = conn.prepareStatement(SQLString);
+        for (int i = 0; i < sb1.size(); i++) {
+            sb = sb1.get(i);
+            statement.setString(1, sb.getReservationsNumber());
+            statement.setString(2, sb.getSportsID());
+            statement.setString(3, sb.getSportType());
+            statement.setString(4, sb.getSportDate());
+
+            rowsInserted += statement.executeUpdate();
+        }
+        if (testRun) {
+            System.out.println("insertSportsBooking(): " + (rowsInserted == sb1.size())); // for test
+        }
+        return (rowsInserted == sb1.size());
     }
 }

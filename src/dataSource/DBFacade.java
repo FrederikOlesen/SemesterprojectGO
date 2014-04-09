@@ -22,6 +22,7 @@ public class DBFacade {
     // Variables used in class
     private int nextResNr;
     private int nextCustomerID;
+    BookingMapper bm;
 
     // Singleton
     private static DBFacade instance;
@@ -159,5 +160,11 @@ public class DBFacade {
         if (uowb != null) {
             uowb.registerDeleteBooking(b);
         }
+    }
+    
+    public void createSportsID(int resNumber) {
+        Booking bm = new BookingMapper().findResNumber(resNumber, con);
+        int guests = bm.getNumberOfGuests();
+        boolean succes = new BookingMapper().createCustomerID(resNumber, guests, con);
     }
 }

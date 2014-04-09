@@ -118,15 +118,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jListRooms = new javax.swing.JList();
-        jPanel4 = new javax.swing.JPanel();
-        jTextFieldSportDate = new javax.swing.JTextField();
-        jButtonCreateSport = new javax.swing.JButton();
-        jComboBoxSports = new javax.swing.JComboBox();
-        jComboBoxTime = new javax.swing.JComboBox();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -451,66 +442,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Room list", jPanel3);
 
-        jButtonCreateSport.setText("Create Sport");
-
-        jComboBoxSports.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tennis", "Badminton", "Volleyball", "Handball" }));
-
-        jComboBoxTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00" }));
-
-        jLabel32.setText("Choose date");
-
-        jLabel33.setText("Choose sport");
-
-        jLabel34.setText("Status:");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBoxSports, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBoxTime, 0, 100, Short.MAX_VALUE))
-                            .addComponent(jLabel33))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel32)
-                            .addComponent(jTextFieldSportDate)
-                            .addComponent(jButtonCreateSport, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel34)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(324, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32)
-                    .addComponent(jLabel33))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxSports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldSportDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCreateSport))
-                .addGap(77, 77, 77)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel34)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(475, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Sport", jPanel4);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -524,6 +455,114 @@ public class GUIRoomBook extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCheckRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckRoomsActionPerformed
+        String arrival = jTextFieldcheckRoomArrival.getText();
+        String departure = jTextFieldcheckRoomDeparture.getText();
+        r = con.getRoomsList(arrival, departure);
+        if (r != null) {
+            for (int i = 0; i < r.size(); i++) {
+                dflRooms.addElement(r.get(i).toString());
+
+            }
+
+        } else {
+            Statuslabel.setText("Could not get Rooms");
+        }
+        con.resetRooms();
+    }//GEN-LAST:event_jButtonCheckRoomsActionPerformed
+
+    private void jTextFieldcheckRoomDepartureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldcheckRoomDepartureActionPerformed
+
+    }//GEN-LAST:event_jTextFieldcheckRoomDepartureActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        con.deleteBooking();
+        boolean status = con.saveBooking();
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+
+        String arrival = arrivalEditField.getText();
+        String departure = departureEditField.getText();
+        int numberOfGuests = Integer.parseInt(noOfGuestsEditField.getText());
+        int paid = 0;
+        if (jCheckBoxPaidBooking.isSelected() == true) {
+            paid = 1;
+        }
+        bo = con.changeBookingInformation(arrival, departure, numberOfGuests, paid);
+        boolean status = con.saveBooking();
+    }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void jButtonEditBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditBookingActionPerformed
+
+        Object booking = jListBooking.getSelectedValue();
+        arrivalEditField.setText(booking.toString().substring(0, 10));
+        departureEditField.setText(booking.toString().substring(20, 30));
+        noOfGuestsEditField.setText(booking.toString().substring(40, 41));
+    }//GEN-LAST:event_jButtonEditBookingActionPerformed
+
+    private void jbuttonGetArrivalsFromResNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonGetArrivalsFromResNoActionPerformed
+
+        int resno = Integer.parseInt(jTextFieldresNo.getText());
+        Booking arrival = con.findResNumber(resno);
+        if (arrival != null) {
+
+            dflBooking.addElement(arrival);
+        }
+        //        con.resetBooking();
+    }//GEN-LAST:event_jbuttonGetArrivalsFromResNoActionPerformed
+
+    private void jButtongetArrivalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtongetArrivalsActionPerformed
+        String arrival = jTextFieldgetArrival.getText();
+        String departure = jTextFieldgetDepature.getText();
+
+        b = con.getBookingList(arrival, departure);
+        if (b != null) {
+            for (int i = 0; i < b.size(); i++) {
+
+                dflBooking.addElement(b.get(i).toString());
+
+            }
+
+        } else {
+            Statuslabel.setText("Could not get Customer");
+        }
+        con.resetBooking();
+    }//GEN-LAST:event_jButtongetArrivalsActionPerformed
+
+    private void jTextFieldgetArrivalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldgetArrivalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldgetArrivalActionPerformed
+
+    private void jButtonSearchCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchCustomerIDActionPerformed
+        String customerID = jTextFieldgetcustomerID.getText();
+
+        id = con.getCustomerID(customerID);
+        //String s = String.valueOf(k.getCustomerID());
+        //jTextFieldCustomerID.setText(s);
+        if (id != null) {
+            for (int i = 0; i < id.size(); i++) {
+                dflCreate.addElement(id.get(i).toString());
+            }
+        } else {
+            Statuslabel.setText("Could not get Customer");
+
+        }
+        con.resetCustomer();
+        jTextFieldgetcustomerID.setText("");
+    }//GEN-LAST:event_jButtonSearchCustomerIDActionPerformed
+
+    private void jTextFieldgetcustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldgetcustomerIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldgetcustomerIDActionPerformed
+
+    private void jButtonResetCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetCustomerActionPerformed
+        if (evt.getSource() == jButtonResetCustomer) {
+            DefaultListModel listModel = (DefaultListModel) jListCreate.getModel();
+            listModel.removeAllElements();
+        }
+    }//GEN-LAST:event_jButtonResetCustomerActionPerformed
 
     private void jButtongetCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtongetCustomerActionPerformed
         String lname = jTextFieldgetLastName.getText();
@@ -607,116 +646,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FnamefieldActionPerformed
 
-    private void jButtongetArrivalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtongetArrivalsActionPerformed
-        String arrival = jTextFieldgetArrival.getText();
-        String departure = jTextFieldgetDepature.getText();
-
-        b = con.getBookingList(arrival, departure);
-        if (b != null) {
-            for (int i = 0; i < b.size(); i++) {
-
-                dflBooking.addElement(b.get(i).toString());
-
-            }
-
-        } else {
-            Statuslabel.setText("Could not get Customer");
-        }
-        con.resetBooking();
-
-    }//GEN-LAST:event_jButtongetArrivalsActionPerformed
-
-    private void jButtonResetCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetCustomerActionPerformed
-        if (evt.getSource() == jButtonResetCustomer) {
-            DefaultListModel listModel = (DefaultListModel) jListCreate.getModel();
-            listModel.removeAllElements();
-        }
-    }//GEN-LAST:event_jButtonResetCustomerActionPerformed
-
-    private void jTextFieldgetcustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldgetcustomerIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldgetcustomerIDActionPerformed
-
-    private void jButtonSearchCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchCustomerIDActionPerformed
-        String customerID = jTextFieldgetcustomerID.getText();
-
-        id = con.getCustomerID(customerID);
-        //String s = String.valueOf(k.getCustomerID());
-        //jTextFieldCustomerID.setText(s);
-        if (id != null) {
-            for (int i = 0; i < id.size(); i++) {
-                dflCreate.addElement(id.get(i).toString());
-            }
-        } else {
-            Statuslabel.setText("Could not get Customer");
-
-        }
-        con.resetCustomer();
-        jTextFieldgetcustomerID.setText("");
-    }//GEN-LAST:event_jButtonSearchCustomerIDActionPerformed
-
-    private void jButtonCheckRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckRoomsActionPerformed
-        String arrival = jTextFieldcheckRoomArrival.getText();
-        String departure = jTextFieldcheckRoomDeparture.getText();
-        r = con.getRoomsList(arrival, departure);
-        if (r != null) {
-            for (int i = 0; i < r.size(); i++) {
-                dflRooms.addElement(r.get(i).toString());
-
-            }
-
-        } else {
-            Statuslabel.setText("Could not get Rooms");
-        }
-        con.resetRooms();
-    }//GEN-LAST:event_jButtonCheckRoomsActionPerformed
-
-    private void jTextFieldcheckRoomDepartureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldcheckRoomDepartureActionPerformed
-
-    }//GEN-LAST:event_jTextFieldcheckRoomDepartureActionPerformed
-
-    private void jButtonEditBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditBookingActionPerformed
-
-        Object booking = jListBooking.getSelectedValue();
-        arrivalEditField.setText(booking.toString().substring(0, 10));
-        departureEditField.setText(booking.toString().substring(20, 30));
-        noOfGuestsEditField.setText(booking.toString().substring(40, 41));
-    }//GEN-LAST:event_jButtonEditBookingActionPerformed
-
-    private void jbuttonGetArrivalsFromResNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonGetArrivalsFromResNoActionPerformed
-
-        int resno = Integer.parseInt(jTextFieldresNo.getText());
-        Booking arrival = con.findResNumber(resno);
-        if (arrival != null) {
-
-            dflBooking.addElement(arrival);
-        }
-//        con.resetBooking();
-    }//GEN-LAST:event_jbuttonGetArrivalsFromResNoActionPerformed
-
-    private void jTextFieldgetArrivalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldgetArrivalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldgetArrivalActionPerformed
-
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-
-        String arrival = arrivalEditField.getText();
-        String departure = departureEditField.getText();
-        int numberOfGuests = Integer.parseInt(noOfGuestsEditField.getText());
-        int paid = 0;
-        if (jCheckBoxPaidBooking.isSelected() == true) {
-            paid = 1;
-        }
-        bo = con.changeBookingInformation(arrival, departure, numberOfGuests, paid);
-        boolean status = con.saveBooking();
-
-    }//GEN-LAST:event_updateButtonActionPerformed
-
-    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        con.deleteBooking();
-        boolean status = con.saveBooking();
-    }//GEN-LAST:event_jButtonDeleteActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -772,7 +701,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JTextField departureEditField;
     private javax.swing.JButton jButtonAddCustomer;
     private javax.swing.JButton jButtonCheckRooms;
-    private javax.swing.JButton jButtonCreateSport;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonEditBooking;
     private javax.swing.JButton jButtonResetCustomer;
@@ -781,8 +709,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JButton jButtongetCustomer;
     private javax.swing.JCheckBox jCheckBoxPaid;
     private javax.swing.JCheckBox jCheckBoxPaidBooking;
-    private javax.swing.JComboBox jComboBoxSports;
-    private javax.swing.JComboBox jComboBoxTime;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -808,10 +734,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -824,7 +746,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -832,7 +753,6 @@ public class GUIRoomBook extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldCustomerID;
     private javax.swing.JTextField jTextFieldRoomNo;
-    private javax.swing.JTextField jTextFieldSportDate;
     private javax.swing.JTextField jTextFieldcheckRoomArrival;
     private javax.swing.JTextField jTextFieldcheckRoomDeparture;
     private javax.swing.JTextField jTextFieldgetArrival;

@@ -20,6 +20,7 @@ public class Control {
     UOWPBook uow = new UOWPBook();
     private DBFacade dbFacade;
     BookingMapper bm = new BookingMapper();
+    Booking booking;
     ArrayList currentBookingList = new ArrayList();
     ArrayList currentCustomerList = new ArrayList();
     ArrayList currentRoomsList = new ArrayList();
@@ -184,9 +185,13 @@ public class Control {
         }
     }
 
-    public String findResNo(int resNo) {
+    public String findNameFromResNo(int resNo) {
         String name = dbFacade.locateResNumber(resNo);
         return name;
 
+    }
+    
+    public void createCustomerID(int resNo){
+        dbFacade.createSportsID(resNo);
     }
 }
