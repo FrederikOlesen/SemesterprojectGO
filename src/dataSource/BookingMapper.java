@@ -314,18 +314,24 @@ public class BookingMapper {
     }
 
     public boolean deleteBooking(ArrayList<Booking> deleteBooking, Connection conn) {
+        
+        String SQLString1 = "delete from customersportsid where reservationsnumber = ?";
         String SQLString = "delete from booking where reservationsnumber = ?";
 
         PreparedStatement statement = null;
+        PreparedStatement statement1 = null;
         int noOfRowsDeleteInBooking = 0;
 
         for (int i = 0; i < deleteBooking.size(); i++) {
 
             try {
                 statement = conn.prepareCall(SQLString);
+                statement1 = conn.prepareCall(SQLString1);
 
                 statement.setInt(1, deleteBooking.get(i).getResNumber());
-
+                statement1.setInt(1, deleteBooking.get(i).getResNumber());
+                
+                statement1.executeUpdate();
                 noOfRowsDeleteInBooking = statement.executeUpdate();
             } catch (Exception e) {
                 System.out.println("Fail in BookingMapper - deleteBooking");
