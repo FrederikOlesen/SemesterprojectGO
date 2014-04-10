@@ -38,6 +38,16 @@ public class GUICheckIn extends javax.swing.JFrame {
 
         jTextFieldresNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldresNumber.setText(" Enter Reservationsnumber");
+        jTextFieldresNumber.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldresNumberMouseClicked(evt);
+            }
+        });
+        jTextFieldresNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldresNumberActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextFieldresNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 252, -1));
 
         jButtonCheckIn.setText("Check In");
@@ -62,6 +72,14 @@ public class GUICheckIn extends javax.swing.JFrame {
        JOptionPane.showMessageDialog(rootPane, "Welcome to Hotel Casablanca " + name);
        }//error handling messages to inform the user about incorrect information
     }//GEN-LAST:event_jButtonCheckInActionPerformed
+
+    private void jTextFieldresNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldresNumberActionPerformed
+        
+    }//GEN-LAST:event_jTextFieldresNumberActionPerformed
+
+    private void jTextFieldresNumberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldresNumberMouseClicked
+        jTextFieldresNumber.setText("");
+    }//GEN-LAST:event_jTextFieldresNumberMouseClicked
 
     /**
      * @param args the command line arguments
