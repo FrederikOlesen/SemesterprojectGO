@@ -92,8 +92,8 @@ public class DBFacade {
     }
     
     public void registerNewSPBooking(SportsBooking b) {
-        if (uowc != null) {
-            uowc.registerNewSPBooking(b);
+        if (uows != null) {
+            uows.registerNewSPBooking(b);
         }
     }
 
@@ -108,6 +108,20 @@ public class DBFacade {
                 System.err.println(e);
             }
             uowb = null;
+        }
+        return status;
+    }
+    
+    public boolean commitBusinessTransactionSportsBooking() {
+        boolean status = false;
+        if (uows != null) {
+            try {
+                status = uows.commit(con);
+            } catch (Exception e) {
+                System.out.println("Fail in DBFacade - commitBusinessTransaction");
+                System.err.println(e);
+            }
+            uows = null;
         }
         return status;
     }
