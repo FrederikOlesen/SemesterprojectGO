@@ -137,7 +137,7 @@ public class Control
         if (processingSPBooking)
         {
             //== ends ongoing business transaction
-            status = dbFacade.commitBusinessTransactionBooking();
+            status = dbFacade.commitBusinessTransactionSportsBooking();
             processingSPBooking = false;
             currentSPBooking = null;
         }
