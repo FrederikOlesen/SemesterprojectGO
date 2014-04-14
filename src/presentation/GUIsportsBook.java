@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package presentation;
+
+import domain.Control;
+import domain.SportsBooking;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -16,6 +21,9 @@ public class GUIsportsBook extends javax.swing.JFrame
     /**
      * Creates new form GUIsportsBook
      */
+    Control con = new Control();
+    SportsBooking sp;
+
     public GUIsportsBook()
     {
         initComponents();
@@ -28,7 +36,8 @@ public class GUIsportsBook extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jPanel1 = new javax.swing.JPanel();
         jComboBoxSportsBooking = new javax.swing.JComboBox();
@@ -41,12 +50,15 @@ public class GUIsportsBook extends javax.swing.JFrame
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5status = new javax.swing.JLabel();
+        jXDatePickerSportDate = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jComboBoxSportsBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tennis", "Badminton", "Golf", "Swimming" }));
-        jComboBoxSportsBooking.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jComboBoxSportsBooking.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jComboBoxSportsBookingActionPerformed(evt);
             }
         });
@@ -54,15 +66,19 @@ public class GUIsportsBook extends javax.swing.JFrame
         jLabel1.setText("Sports activity");
 
         jButtonBook.setText("Book");
-        jButtonBook.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonBook.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonBookActionPerformed(evt);
             }
         });
 
         jComboBoxTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00" }));
-        jComboBoxTime.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jComboBoxTime.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jComboBoxTimeActionPerformed(evt);
             }
         });
@@ -73,6 +89,8 @@ public class GUIsportsBook extends javax.swing.JFrame
 
         jLabel4.setText("ID");
 
+        jXDatePickerSportDate.setFormats(new String[] {"yyyy-MM-dd"});
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -81,29 +99,28 @@ public class GUIsportsBook extends javax.swing.JFrame
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jComboBoxSportsBooking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jComboBoxTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jCheckBoxInstructor))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBoxSportsBooking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(jComboBoxTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(jCheckBoxInstructor))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(56, 56, 56)
-                                .addComponent(jLabel2)
-                                .addGap(96, 96, 96)
-                                .addComponent(jLabel3)))
-                        .addContainerGap(53, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2))
                             .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonBook))
                             .addComponent(jLabel5status, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(96, 96, 96)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jXDatePickerSportDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +144,8 @@ public class GUIsportsBook extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBook))
+                    .addComponent(jButtonBook)
+                    .addComponent(jXDatePickerSportDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addComponent(jLabel5status, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
@@ -158,10 +176,26 @@ public class GUIsportsBook extends javax.swing.JFrame
 
     private void jButtonBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBookActionPerformed
         // TODO add your handling code here:
-        String a = (String)jComboBoxSportsBooking.getSelectedItem();
-        String b = (String)jComboBoxTime.getSelectedItem();
-        Boolean c = jCheckBoxInstructor.isSelected();
+        int trainer;
+        String sportsType = (String) jComboBoxSportsBooking.getSelectedItem();
+        String Time = (String) jComboBoxTime.getSelectedItem();
+        if (jCheckBoxInstructor.isSelected())
+        {
+            trainer = 1;
+        } else
+        {
+            trainer = 0;
+        }
+        Time = ":"+Time.substring(0, 5); 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        jXDatePickerSportDate.setFormats(dateFormat);
+        DateFormat sysDate = new SimpleDateFormat("yyyy-MM-dd");
+        String Date = sysDate.format(jXDatePickerSportDate.getDate());
         String ID = jTextFieldID.getText();
+        String reservationsNumber = ID.substring(0, 3);
+        Date = Date.concat(Time);
+        System.out.println(ID + " " + sportsType + " " + Date + " " + 1 + " " + trainer);
+        con.createNewSPBooking(reservationsNumber,ID,sportsType,Date,1,trainer);
     }//GEN-LAST:event_jButtonBookActionPerformed
 
     /**
@@ -221,5 +255,6 @@ public class GUIsportsBook extends javax.swing.JFrame
     private javax.swing.JLabel jLabel5status;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldID;
+    private org.jdesktop.swingx.JXDatePicker jXDatePickerSportDate;
     // End of variables declaration//GEN-END:variables
 }

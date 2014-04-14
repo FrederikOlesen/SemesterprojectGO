@@ -3,72 +3,76 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package domain;
 
 /**
  *
  * @author Uffe
  */
-public class SportsBooking {
-    
+public class SportsBooking
+{
+
     String reservationsNumber;
     String sportsID;
     String sportDate;
     String SportType;
-    Boolean trainer;
-    String time;
+    int trainer;
+    int counter = 0;
 
-    public SportsBooking(String reservationsNumber, String sportsID, String sportDate, String SportType, Boolean trainer, String time) {
+    public SportsBooking(String reservationsNumber, String sportsID, String SportType, String sportDate, int counter,int trainer)
+    {
         this.reservationsNumber = reservationsNumber;
         this.sportsID = sportsID;
         this.sportDate = sportDate;
         this.SportType = SportType;
         this.trainer = trainer;
-        this.time = time;
+       
     }
 
-    public String getReservationsNumber() {
+    public int counter()
+    {
+        counter = counter + 1;
+        return counter;
+    }
+
+    public String getReservationsNumber()
+    {
         return reservationsNumber;
     }
 
-    public String getSportsID() {
+    public String getSportsID()
+    {
         return sportsID;
     }
 
-    public String getSportDate() {
+    public String getSportDate()
+    {
         return sportDate;
     }
 
-    public void setSportDate(String sportDate) {
+    public void setSportDate(String sportDate)
+    {
         this.sportDate = sportDate;
     }
 
-    public String getSportType() {
+    public String getSportType()
+    {
         return SportType;
     }
 
-    public void setSportType(String SportType) {
+    public void setSportType(String SportType)
+    {
         this.SportType = SportType;
     }
 
-    public Boolean isTrainer() {
+    public int getTrainer()
+    {
         return trainer;
     }
 
-    public void setTrainer(Boolean trainer) {
+    public void setTrainer(int trainer)
+    {
         this.trainer = trainer;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-    
-    
-    
-    
 }

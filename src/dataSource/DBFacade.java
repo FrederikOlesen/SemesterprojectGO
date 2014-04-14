@@ -84,6 +84,13 @@ public class DBFacade {
     public void startNewBusinessTransactionCus() {
         uowc = new UOWPBook();
     }
+    
+    
+    public void registerNewSPBooking(SportsBooking b) {
+        if (uowc != null) {
+            uowc.registerNewSPBooking(b);
+        }
+    }
 
     // Methods to save transactions to database
     public boolean commitBusinessTransactionBooking() {
