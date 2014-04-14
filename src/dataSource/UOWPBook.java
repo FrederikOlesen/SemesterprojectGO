@@ -90,7 +90,6 @@ public class UOWPBook
             status = status && bm.addNewBooking(newBooking, conn);
             status = status && bm.updateBooking(modifiedBooking, conn);
             status = status && bm.deleteBooking(deleteBooking, conn);
-            status = status && bm.addNewSportBooking(newSPBooking, conn); 
             if (!status)
             {
 
@@ -120,6 +119,34 @@ public class UOWPBook
             BookingMapper bm = new BookingMapper();
             System.out.println("CommitCustomer");
             status = status && bm.addNewCustomer(newCustomers, conn);
+
+            if (!status)
+            {
+                throw new Exception("Business Transaction aborted");
+            }
+            // System transaction ends with success
+            conn.commit();
+        } catch (Exception e)
+        {
+            System.out.println("fail in UnitOfWork - commit()");
+            System.err.println(e);
+            // System transaction fails, rollsback
+            conn.rollback();
+            status = false;// rettelse
+        }
+        return status;
+    }
+    
+    public boolean commitSportsBooking(Connection conn) throws SQLException
+    {
+        boolean status = true;
+        try
+        {
+            // Start of system transaction
+            conn.setAutoCommit(false);
+            BookingMapper bm = new BookingMapper();
+            System.out.println("CommitSportsBooking");
+            status = status && bm.addNewSportBooking(newSPBooking, conn);
 
             if (!status)
             {

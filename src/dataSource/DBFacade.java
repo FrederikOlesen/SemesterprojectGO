@@ -116,7 +116,7 @@ public class DBFacade {
         boolean status = false;
         if (uows != null) {
             try {
-                status = uows.commit(con);
+                status = uows.commitSportsBooking(con);
             } catch (Exception e) {
                 System.out.println("Fail in DBFacade - commitBusinessTransaction");
                 System.err.println(e);
