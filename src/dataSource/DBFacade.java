@@ -18,6 +18,7 @@ public class DBFacade {
     // objects used in class
     private UOWPBook uowb;
     private UOWPBook uowc;
+    private UOWPBook uows;
     private Connection con;
     // Variables used in class
     private int nextResNr;
@@ -85,6 +86,10 @@ public class DBFacade {
         uowc = new UOWPBook();
     }
     
+    public void StartNewSPBookingTransaction()
+    {
+        uows = new UOWPBook();
+    }
     
     public void registerNewSPBooking(SportsBooking b) {
         if (uowc != null) {

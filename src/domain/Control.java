@@ -96,7 +96,7 @@ public class Control
         {
             return null;
         }
-        dbFacade.startNewBusinessTransactionBook();
+        dbFacade.StartNewSPBookingTransaction();
         processingSPBooking = true;
         currentSPBooking = new SportsBooking(reservationsNumber, sportsID, SportType, sportDate, counter, trainer);
         dbFacade.registerNewSPBooking(currentSPBooking);
