@@ -196,6 +196,7 @@ public class GUIsportsBook extends javax.swing.JFrame
         Date = Date.concat(Time);
         System.out.println(ID + " " + sportsType + " " + Date + " " + 1 + " " + trainer);
         con.createNewSPBooking(reservationsNumber,ID,sportsType,Date,1,trainer);
+        con.saveSPBooking();
     }//GEN-LAST:event_jButtonBookActionPerformed
 
     /**
