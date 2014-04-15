@@ -188,13 +188,13 @@ public class GUIsportsBook extends javax.swing.JFrame {
         String Date = sysDate.format(jXDatePickerSportDate.getDate());
         String ID = jTextFieldID.getText();
         String reservationsNumber = ID.substring(0, 3);
-        String Date1 = sysDate.format(jXDatePickerSportDate.getDate());
-        String Date2 = Date1.substring(2, 10); 
-        int counter = con.countSportsBooking(Date2, ID);
+        //String Date1 = sysDate.format(jXDatePickerSportDate.getDate());
+        String Date1 = Date.substring(2, 10); 
+        int counter = con.countSportsBooking(Date1, ID);
         
         Date = Date.concat(Time);
         
-        //System.out.println(con.countSportsBooking(Date, ID));
+       
         
         if (counter < 5) {
 
@@ -204,7 +204,7 @@ public class GUIsportsBook extends javax.swing.JFrame {
                 trainer = 0;
             }
 
-            System.out.println(ID + " " + sportsType + " " + Date + " " + Date2 + " " + " " + trainer);
+            System.out.println(ID + " " + sportsType + " " + Date + " " + Date1 + " " + " " + trainer);
             con.createNewSPBooking(reservationsNumber, ID, sportsType, Date, trainer);
             con.saveSPBooking();
         } else {
