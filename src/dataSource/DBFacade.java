@@ -85,12 +85,11 @@ public class DBFacade {
     public void startNewBusinessTransactionCus() {
         uowc = new UOWPBook();
     }
-    
-    public void StartNewSPBookingTransaction()
-    {
+
+    public void StartNewSPBookingTransaction() {
         uows = new UOWPBook();
     }
-    
+
     public void registerNewSPBooking(SportsBooking b) {
         if (uows != null) {
             uows.registerNewSPBooking(b);
@@ -111,7 +110,7 @@ public class DBFacade {
         }
         return status;
     }
-    
+
     public boolean commitBusinessTransactionSportsBooking() {
         boolean status = false;
         if (uows != null) {
@@ -172,7 +171,7 @@ public class DBFacade {
         resNumber = new BookingMapper().findResNumber(resNo, con);
         return resNumber;
     }
-    
+
     public String locateResNumber(int resNo) {
         String name = new BookingMapper().lookAtResNumber(resNo, con);
         return name;
@@ -187,10 +186,16 @@ public class DBFacade {
             uowb.registerDeleteBooking(b);
         }
     }
-    
+
     public void createSportsID(int resNumber) {
         Booking bm = new BookingMapper().findResNumber(resNumber, con);
         int guests = bm.getNumberOfGuests();
         boolean succes = new BookingMapper().createCustomerID(resNumber, guests, con);
     }
+
+    public int countSportsBookings(String date, String sportsID) {
+        int count = new BookingMapper().countBookingsForSportsId(con, date, sportsID);
+        return count;
+    }
+
 }

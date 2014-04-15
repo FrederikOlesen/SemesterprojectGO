@@ -10,13 +10,13 @@ import domain.SportsBooking;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Mads
  */
-public class GUIsportsBook extends javax.swing.JFrame
-{
+public class GUIsportsBook extends javax.swing.JFrame {
 
     /**
      * Creates new form GUIsportsBook
@@ -24,9 +24,11 @@ public class GUIsportsBook extends javax.swing.JFrame
     Control con = new Control();
     SportsBooking sp;
 
-    public GUIsportsBook()
-    {
+    public GUIsportsBook() {
         initComponents();
+//        DateFormat sysdate = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = new Date();
+//        con.deleteOldSportsBooking(sysdate.format(date));
     }
 
     /**
@@ -179,66 +181,64 @@ public class GUIsportsBook extends javax.swing.JFrame
         int trainer;
         String sportsType = (String) jComboBoxSportsBooking.getSelectedItem();
         String Time = (String) jComboBoxTime.getSelectedItem();
-        if (jCheckBoxInstructor.isSelected())
-        {
-            trainer = 1;
-        } else
-        {
-            trainer = 0;
-        }
-        Time = ":"+Time.substring(0, 5); 
+        Time = ":" + Time.substring(0, 5);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         jXDatePickerSportDate.setFormats(dateFormat);
         DateFormat sysDate = new SimpleDateFormat("yyyy-MM-dd");
         String Date = sysDate.format(jXDatePickerSportDate.getDate());
         String ID = jTextFieldID.getText();
         String reservationsNumber = ID.substring(0, 3);
+        System.out.println(con.countSportsBooking(Date, ID));
         Date = Date.concat(Time);
-        System.out.println(ID + " " + sportsType + " " + Date + " " + 1 + " " + trainer);
-        con.createNewSPBooking(reservationsNumber,ID,sportsType,Date,1,trainer);
-        con.saveSPBooking();
+        
+        System.out.println(con.countSportsBooking(Date, ID));
+        
+        if (true) {
+
+            if (jCheckBoxInstructor.isSelected()) {
+                trainer = 1;
+            } else {
+                trainer = 0;
+            }
+
+            System.out.println(ID + " " + sportsType + " " + Date + " " + " " + trainer);
+            con.createNewSPBooking(reservationsNumber, ID, sportsType, Date, trainer);
+            con.saveSPBooking();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "You have to many bookings");
+        }
     }//GEN-LAST:event_jButtonBookActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(GUIsportsBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(GUIsportsBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(GUIsportsBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GUIsportsBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 new GUIsportsBook().setVisible(true);
             }
         });

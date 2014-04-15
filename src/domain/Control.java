@@ -5,8 +5,7 @@ import dataSource.BookingMapper;
 import dataSource.DBFacade;
 import dataSource.UOWPBook;
 
-public class Control
-{
+public class Control {
 
     // Booleans and objects used to keep track of bussiness transactions.
     private boolean processingBooking;
@@ -31,8 +30,7 @@ public class Control
   //  ArrayList currentSPBooking = new ArrayList();
 
     // Contructor
-    public Control()
-    {
+    public Control() {
         processingBooking = false;
         currentBooking = null;
         processingCustomer = false;
@@ -45,22 +43,18 @@ public class Control
     }
 
     // Method for creating a new booking, returns a booking object.
-    public Booking createNewBooking(String arrival, String departure, int numberOfGuests, int paid, int roomNumber, int CustomerID)
-    {
-        if (processingBooking)
-        {
+    public Booking createNewBooking(String arrival, String departure, int numberOfGuests, int paid, int roomNumber, int CustomerID) {
+        if (processingBooking) {
             return null;
         }
         dbFacade.startNewBusinessTransactionBook();
         int nextResNr = dbFacade.getNextResnr();// rDB-generated unique ID
 
-        if (nextResNr != 0)
-        {
+        if (nextResNr != 0) {
             processingBooking = true;
             currentBooking = new Booking(arrival, departure, nextResNr, paid, roomNumber, CustomerID, numberOfGuests);
             dbFacade.registerNewBooking(currentBooking);
-        } else
-        {
+        } else {
             processingBooking = false;
             currentBooking = null;
         }
@@ -68,46 +62,38 @@ public class Control
     }
 
     // Method for creating a new customer. Returns a customer object.
-    public Customer createNewCustomer(String FirstName, String LastName, String Country, String Email, int Phone, String Address)
-    {
-        if (processingCustomer)
-        {
+    public Customer createNewCustomer(String FirstName, String LastName, String Country, String Email, int Phone, String Address) {
+        if (processingCustomer) {
             return null;
         }
         dbFacade.startNewBusinessTransactionCus();
 
         int customerID = dbFacade.getNextCustomerID();
-        if (customerID != 0)
-        {
+        if (customerID != 0) {
             processingCustomer = true;
             currentCustomer = new Customer(customerID, FirstName, LastName, Country, Email, Phone, Address);
             dbFacade.registerNewCustomer(currentCustomer);
-        } else
-        {
+        } else {
             processingCustomer = false;
             currentCustomer = null;
         }
         return currentCustomer;
     }
 
-    public SportsBooking createNewSPBooking(String reservationsNumber, String sportsID, String SportType, String sportDate, int counter, int trainer)
-    {
-        if (processingSPBooking)
-        {
+    public SportsBooking createNewSPBooking(String reservationsNumber, String sportsID, String SportType, String sportDate, int trainer) {
+        if (processingSPBooking) {
             return null;
         }
         dbFacade.StartNewSPBookingTransaction();
         processingSPBooking = true;
-        currentSPBooking = new SportsBooking(reservationsNumber, sportsID, SportType, sportDate, counter, trainer);
+        currentSPBooking = new SportsBooking(reservationsNumber, sportsID, SportType, sportDate, trainer);
         dbFacade.registerNewSPBooking(currentSPBooking);
         return currentSPBooking;
     }
 
     //Created a method to change all three booking information in a booking.
-    public Booking changeBookingInformation(String arrival, String departure, int nog, int paid)
-    {
-        if (processingBooking)
-        {
+    public Booking changeBookingInformation(String arrival, String departure, int nog, int paid) {
+        if (processingBooking) {
             currentBooking.setArrival(arrival);
             currentBooking.setDeparture(departure);
             currentBooking.setNumberOfGuests(nog);
@@ -118,11 +104,9 @@ public class Control
     }
 
     // Method for saving the curent booking, returns true if succesfull
-    public boolean saveBooking()
-    {
+    public boolean saveBooking() {
         boolean status = false;
-        if (processingBooking)
-        {
+        if (processingBooking) {
             //== ends ongoing business transaction
             status = dbFacade.commitBusinessTransactionBooking();
             processingBooking = false;
@@ -131,11 +115,9 @@ public class Control
         return status;
     }
 
-    public boolean saveSPBooking()
-    {
+    public boolean saveSPBooking() {
         boolean status = false;
-        if (processingSPBooking)
-        {
+        if (processingSPBooking) {
             //== ends ongoing business transaction
             status = dbFacade.commitBusinessTransactionSportsBooking();
             processingSPBooking = false;
@@ -144,24 +126,20 @@ public class Control
         return status;
     }
 
-    public void resetSPBooking()
-    {
+    public void resetSPBooking() {
         processingSPBooking = false;
         currentSPBooking = null;
     }
 
-    public void resetBooking()
-    {
+    public void resetBooking() {
         processingBooking = false;
         currentBooking = null;
     }
 
     // Method for saving the curent customer, returns true if succesfull
-    public boolean saveCustomer()
-    {
+    public boolean saveCustomer() {
         boolean status = false;
-        if (processingCustomer)
-        {
+        if (processingCustomer) {
             //== ends ongoing business transaction
             status = dbFacade.commitBusinessTransactionCustomer();
             processingCustomer = false;
@@ -170,23 +148,19 @@ public class Control
         return status;
     }
 
-    public void resetCustomer()
-    {
+    public void resetCustomer() {
         processingCustomer = false;
         currentCustomer = null;
     }
 
-    public void resetRooms()
-    {
+    public void resetRooms() {
         processingRooms = false;
         currentRooms = null;
     }
 
     //Method used for getting customer data from database, returns customer object
-    public ArrayList getCustomer(String lname)
-    {
-        if (processingCustomer)
-        {
+    public ArrayList getCustomer(String lname) {
+        if (processingCustomer) {
             return null;
         }
         dbFacade.startNewBusinessTransactionCus();
@@ -195,10 +169,8 @@ public class Control
         return currentCustomerList;
     }
 
-    public ArrayList getBookingList(String arrival, String departure)
-    {
-        if (processingBooking)
-        {
+    public ArrayList getBookingList(String arrival, String departure) {
+        if (processingBooking) {
             return null;
         }
         dbFacade.startNewBusinessTransactionBook();
@@ -207,10 +179,8 @@ public class Control
         return currentBookingList;
     }
 
-    public ArrayList getCustomerID(String customerID)
-    {
-        if (processingCustomer)
-        {
+    public ArrayList getCustomerID(String customerID) {
+        if (processingCustomer) {
             return null;
         }
         dbFacade.startNewBusinessTransactionCus();
@@ -219,10 +189,8 @@ public class Control
         return currentCustomerList;
     }
 
-    public ArrayList getRoomsList(String arrival, String departure)
-    {
-        if (processingRooms)
-        {
+    public ArrayList getRoomsList(String arrival, String departure) {
+        if (processingRooms) {
             return null;
         }
         dbFacade.startNewBusinessTransactionBook();
@@ -231,10 +199,8 @@ public class Control
         return currentRoomsList;
     }
 
-    public Booking findResNumber(int resNo)
-    {
-        if (processingBooking)
-        {
+    public Booking findResNumber(int resNo) {
+        if (processingBooking) {
             return null;
         }
         dbFacade.startNewBusinessTransactionBook();
@@ -243,23 +209,24 @@ public class Control
         return currentBooking;
     }
 
-    public void deleteBooking()
-    {
-        if (processingBooking)
-        {
+    public void deleteBooking() {
+        if (processingBooking) {
             dbFacade.registerDeleteBooking(currentBooking);
         }
     }
 
-    public String findNameFromResNo(int resNo)
-    {
+    public String findNameFromResNo(int resNo) {
         String name = dbFacade.locateResNumber(resNo);
         return name;
 
     }
 
-    public void createCustomerID(int resNo)
-    {
+    public void createCustomerID(int resNo) {
         dbFacade.createSportsID(resNo);
+    }
+
+    public int countSportsBooking(String date, String sportsID) {
+        int count = dbFacade.countSportsBookings(date, sportsID);
+        return count;
     }
 }

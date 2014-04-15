@@ -19,7 +19,7 @@ public class SportsBooking
     int trainer;
     int counter = 0;
 
-    public SportsBooking(String reservationsNumber, String sportsID, String SportType, String sportDate, int counter,int trainer)
+    public SportsBooking(String reservationsNumber, String sportsID, String SportType, String sportDate, int trainer)
     {
         this.reservationsNumber = reservationsNumber;
         this.sportsID = sportsID;
@@ -29,11 +29,6 @@ public class SportsBooking
        
     }
 
-    public int counter()
-    {
-        counter = counter + 1;
-        return counter;
-    }
 
     public String getReservationsNumber()
     {
