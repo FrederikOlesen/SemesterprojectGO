@@ -197,7 +197,7 @@ public class GUIsportsBook extends javax.swing.JFrame {
         
        
         
-        if (counter < 5) {
+        if (counter < 4) {
 
             if (jCheckBoxInstructor.isSelected()) {
                 trainer = 1;
