@@ -231,6 +231,7 @@ public class GUIsportsBook extends javax.swing.JFrame {
            
         } else {
             JOptionPane.showMessageDialog(rootPane, "You have to many bookings");
+            jLabelSportsBookStatus.setText("Sports booking not saved");
         }
     }//GEN-LAST:event_jButtonBookActionPerformed
 

@@ -25,49 +25,52 @@ public class BookingMapper {
     // Method for writing booking to database. Returns 1 / true 
     public boolean addNewBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
         int rowsInserted = 0;
-        String SQLString = "insert into booking values (to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?,?,?,?)";
-        PreparedStatement statement = null;
-        statement = conn.prepareStatement(SQLString);
-        for (int i = 0; i < bl.size(); i++) {
-            b = bl.get(i);
-            statement.setString(1, b.getArrival());
-            statement.setString(2, b.getDeparture());
-            statement.setInt(3, b.getResNumber());
-            statement.setInt(4, b.getRoomNumber());
-            statement.setInt(5, b.getPayment());
-            statement.setInt(6, b.getCustomerID());
-            statement.setInt(7, b.getNumberOfGuests());
+        try {
+            String SQLString = "insert into booking values (to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?,?,?,?)";
+            PreparedStatement statement = null;
+            statement = conn.prepareStatement(SQLString);
+            for (int i = 0; i < bl.size(); i++) {
+                b = bl.get(i);
+                statement.setString(1, b.getArrival());
+                statement.setString(2, b.getDeparture());
+                statement.setInt(3, b.getResNumber());
+                statement.setInt(4, b.getRoomNumber());
+                statement.setInt(5, b.getPayment());
+                statement.setInt(6, b.getCustomerID());
+                statement.setInt(7, b.getNumberOfGuests());
 
-            rowsInserted += statement.executeUpdate();
+                rowsInserted += statement.executeUpdate();
+            }
+        } catch (Exception e) {
+            System.out.println("Fail in BookingMapper - addNewBooking");
+            System.out.println(e.getMessage());
         }
-        if (testRun) {
-            System.out.println("insertBooking(): " + (rowsInserted == bl.size())); // for test
-        }
+
         return (rowsInserted == bl.size());
     }
 
     // Method for writing customer to database. Returns 1 / true
     public boolean addNewCustomer(ArrayList<Customer> cu, Connection conn) throws SQLException {
         int rowsInserted = 0;
-        String SQLString = "insert into customer values (?,?,?,?,?,?,?)";
-        PreparedStatement statement = null;
-        statement = conn.prepareStatement(SQLString);
-        for (int i = 0; i < cu.size(); i++) {
-            c = cu.get(i);
-            statement.setInt(1, c.getCustomerID());
-            statement.setString(2, c.getFirstName());
-            statement.setString(3, c.getLastName());
-            statement.setString(4, c.getCountry());
-            statement.setString(5, c.getEmail());
-            statement.setInt(6, c.getPhone());
-            statement.setString(7, c.getAddress());
-            rowsInserted += statement.executeUpdate();
+        try {
+            String SQLString = "insert into customer values (?,?,?,?,?,?,?)";
+            PreparedStatement statement = null;
+            statement = conn.prepareStatement(SQLString);
+            for (int i = 0; i < cu.size(); i++) {
+                c = cu.get(i);
+                statement.setInt(1, c.getCustomerID());
+                statement.setString(2, c.getFirstName());
+                statement.setString(3, c.getLastName());
+                statement.setString(4, c.getCountry());
+                statement.setString(5, c.getEmail());
+                statement.setInt(6, c.getPhone());
+                statement.setString(7, c.getAddress());
+                rowsInserted += statement.executeUpdate();
+            }
+        } catch (Exception e) {
+            System.out.println("Fail in BookingMapper - addNewCustomer");
+            System.out.println(e.getMessage());
         }
-
-        if (testRun) {
-            System.out.println("insertBooking(): " + (rowsInserted == cu.size())); // for test
-        }
-
         return (rowsInserted == cu.size());
 
     }
@@ -119,9 +122,6 @@ public class BookingMapper {
         } catch (Exception e) {
             System.out.println("Fail in BookingMapper - findResNo");
             System.out.println(e.getMessage());
-        }
-        if (testRun) {
-            System.out.println("Retrieved resNo: ");
         }
         return b;
     }
@@ -337,7 +337,7 @@ public class BookingMapper {
 
     }
 
-    public String lookAtResNumber(int resNumber, Connection conn) {
+     public String lookAtResNumber(int resNumber, Connection conn) {
         String name = "";
         String fname = "";
         String lname = "";
@@ -359,12 +359,12 @@ public class BookingMapper {
             }
             name = fname + " " + lname;
         } catch (Exception e) {
-            System.out.println("Fail in BookingMapper - getNameFromResNumber");
+            System.out.println("Fail in BookingMapper - lookAtResNumber");
             System.out.println(e.getMessage());
         }
         return name;
     }
-
+     
     public boolean createCustomerID(int resNumber, int noOfGuests, Connection conn) {
 
         for (int i = 1; i <= noOfGuests; i++) {
@@ -431,7 +431,7 @@ public class BookingMapper {
                 trainerID = rs.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("Fail in BookingMapper - addTrainerToBooking 1");
+            System.out.println("Fail in BookingMapper - addTrainerToBooking #1");
             System.out.println(e.getMessage());
         }
         try {
@@ -442,7 +442,7 @@ public class BookingMapper {
             success = true;
             statement2.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Fail in Booking Mapper - AddTrainerToBooking 2");
+            System.out.println("Fail in Booking Mapper - AddTrainerToBooking #2");
             System.out.println(e.getMessage());
         }
         return success;
@@ -464,7 +464,7 @@ public class BookingMapper {
             }
 
         } catch (Exception e) {
-            System.out.println("Fail in countBookingsForSportsId");
+            System.out.println("Fail in Booking Mapper - countBookingsForSportsId");
             System.out.println(e.getMessage());
         }
         return count;
