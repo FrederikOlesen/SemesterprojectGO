@@ -53,6 +53,8 @@ public class GUIsportsBook extends javax.swing.JFrame {
         jLabel5status = new javax.swing.JLabel();
         jXDatePickerSportDate = new org.jdesktop.swingx.JXDatePicker();
         jLabel5 = new javax.swing.JLabel();
+        jLabelStatusSportsBook = new javax.swing.JLabel();
+        jLabelSportsBookStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,11 +85,13 @@ public class GUIsportsBook extends javax.swing.JFrame {
 
         jLabel3.setText("Do you want an instructor? ");
 
-        jLabel4.setText("ID");
+        jLabel4.setText("ID (i.e. 333-3)");
 
         jXDatePickerSportDate.setFormats(new String[] {"yyyy-MM-dd"});
 
         jLabel5.setText("Date");
+
+        jLabelStatusSportsBook.setText("Status:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,6 +100,10 @@ public class GUIsportsBook extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelStatusSportsBook)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSportsBookStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButtonBook)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,19 +111,19 @@ public class GUIsportsBook extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(43, 43, 43)
                                 .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(101, 101, 101)
-                                .addComponent(jLabel5))
                             .addComponent(jLabel5status, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxSportsBooking, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldID))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jComboBoxSportsBooking, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextFieldID))
+                                    .addComponent(jLabel4))
                                 .addGap(37, 37, 37)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jXDatePickerSportDate, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jXDatePickerSportDate, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(jComboBoxTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBoxInstructor)
@@ -151,7 +159,11 @@ public class GUIsportsBook extends javax.swing.JFrame {
                 .addComponent(jButtonBook)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(jLabel5status, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelStatusSportsBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelSportsBookStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -207,7 +219,16 @@ public class GUIsportsBook extends javax.swing.JFrame {
 
             System.out.println(ID + " " + sportsType + " " + Date + " " + Date1 + " " + " " + trainer);
             con.createNewSPBooking(reservationsNumber, ID, sportsType, Date, trainer);
-            con.saveSPBooking();
+            boolean status = con.saveSPBooking();
+            if (status)
+            {
+                jLabelSportsBookStatus.setText("Sports booking saved");
+            }
+            else
+            {
+                 jLabelSportsBookStatus.setText("Sports booking not saved");
+            }
+           
         } else {
             JOptionPane.showMessageDialog(rootPane, "You have to many bookings");
         }
@@ -259,6 +280,8 @@ public class GUIsportsBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel5status;
+    private javax.swing.JLabel jLabelSportsBookStatus;
+    private javax.swing.JLabel jLabelStatusSportsBook;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldID;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerSportDate;

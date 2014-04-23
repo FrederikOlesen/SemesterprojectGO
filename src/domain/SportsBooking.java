@@ -40,7 +40,7 @@ public class SportsBooking
         return sportsID;
     }
 
-    public String getSportDate()
+    public String getSportsDate()
     {
         return sportDate;
     }
@@ -50,7 +50,7 @@ public class SportsBooking
         this.sportDate = sportDate;
     }
 
-    public String getSportType()
+    public String getSportsType()
     {
         return SportType;
     }

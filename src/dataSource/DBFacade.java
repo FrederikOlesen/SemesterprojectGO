@@ -150,7 +150,7 @@ public class DBFacade {
 
     public ArrayList getCustomerID(String customerID) {
         ArrayList c = null;
-        c = new BookingMapper().getCustomerID(customerID, con);
+        c = new BookingMapper().getCustomerFromID(customerID, con);
         return c;
     }
 

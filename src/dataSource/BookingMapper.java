@@ -214,8 +214,10 @@ public class BookingMapper {
         ArrayList bookingList = new ArrayList();
         Booking b = null;
         String SQLString = // get Booking
-                "select to_char(arrival, 'yyyy-mm-dd'), to_char(departure, 'yyyy-mm-dd'), reservationsnumber, roomnumber, paid, customerID, numberOfGuests from booking where arrival between to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')";
-//                "select * from booking where arrival between to_char(sysdate, 'yyyy-mm-dd') and to_char(sysdate, 'yyyy-mm-dd');"
+                "select to_char(arrival, 'yyyy-mm-dd'), to_char(departure, 'yyyy-mm-dd'), "
+                + "reservationsnumber, roomnumber, paid, customerID, "
+                + "numberOfGuests from booking where arrival between "
+                + "to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')";
         PreparedStatement statement = null;
 
         try {
@@ -239,13 +241,10 @@ public class BookingMapper {
             System.out.println("Fail in BookingMapper - getBookingList");
             System.out.println(e.getMessage());
         }
-        if (testRun) {
-            System.out.println("Retrieved BookingList: ");
-        }
         return bookingList;
     }
 
-    public ArrayList getCustomerID(String customerID, Connection conn) {
+    public ArrayList getCustomerFromID(String customerID, Connection conn) {
         ArrayList customerList = new ArrayList();
         Customer c = null;
         String SQLString = // get Customer
@@ -272,11 +271,8 @@ public class BookingMapper {
                 customerList.add(c);
             }
         } catch (Exception e) {
-            System.out.println("Fail in BookingMapper - getCustomer");
+            System.out.println("Fail in BookingMapper - getCustomerFromID");
             System.out.println(e.getMessage());
-        }
-        if (testRun) {
-            System.out.println("Retrieved CustomerID: ");
         }
         return customerList;
     }
@@ -307,9 +303,6 @@ public class BookingMapper {
         } catch (Exception e) {
             System.out.println("Fail in BookingMapper - getRoomsList");
             System.out.println(e.getMessage());
-        }
-        if (testRun) {
-            System.out.println("Retrieved RoomsList: ");
         }
         return roomsList;
     }
@@ -366,11 +359,8 @@ public class BookingMapper {
             }
             name = fname + " " + lname;
         } catch (Exception e) {
-            System.out.println("Fail in BookingMapper - getName");
+            System.out.println("Fail in BookingMapper - getNameFromResNumber");
             System.out.println(e.getMessage());
-        }
-        if (testRun) {
-            System.out.println("Retrieved RoomsList: ");
         }
         return name;
     }
@@ -394,32 +384,31 @@ public class BookingMapper {
                 System.out.println("Fail in BookingMapper - createCustomerID");
                 System.out.println(e.getMessage());
             }
-            if (testRun) {
-                System.out.println("Created unique ID");
-            }
         }
         return true;
     }
 
-    public boolean addNewSportBooking(ArrayList<SportsBooking> sb1, Connection conn) throws SQLException {
+    public boolean addNewSportsBooking(ArrayList<SportsBooking> sb1, Connection conn) throws SQLException {
         int rowsInserted = 0;
-        String SQLString = "insert into sportsBooking values (?,?,?,to_timestamp(?),?)";
-        PreparedStatement statement = null;
-        statement = conn.prepareStatement(SQLString);
-        for (int i = 0; i < sb1.size(); i++) {
-            sb = sb1.get(i);
-            statement.setString(1, sb.getReservationsNumber());
-            statement.setString(2, sb.getSportsID());
-            statement.setString(3, sb.getSportType());
-            statement.setString(4, sb.getSportDate());
-            statement.setInt(5, sb.getTrainer());
-            rowsInserted += statement.executeUpdate();
-        }
-//        if (testRun) {
-//            System.out.println("insertSportsBooking(): " + (rowsInserted == sb1.size())); // for test
-//        }
-        if (sb.getTrainer() == 1) {
-            addTrainerToBooking(conn);
+        try {
+            String SQLString = "insert into sportsBooking values (?,?,?,to_timestamp(?),?)";
+            PreparedStatement statement = null;
+            statement = conn.prepareStatement(SQLString);
+            for (int i = 0; i < sb1.size(); i++) {
+                sb = sb1.get(i);
+                statement.setString(1, sb.getReservationsNumber());
+                statement.setString(2, sb.getSportsID());
+                statement.setString(3, sb.getSportsType());
+                statement.setString(4, sb.getSportsDate());
+                statement.setInt(5, sb.getTrainer());
+                rowsInserted += statement.executeUpdate();
+            }
+            if (sb.getTrainer() == 1) {
+                addTrainerToBooking(conn);
+            }
+        } catch (Exception e) {
+            System.out.println("Fail in BookingMapper - addNewSportsBooking");
+            System.out.println(e.getMessage());
         }
         return (rowsInserted == sb1.size());
     }
@@ -428,7 +417,7 @@ public class BookingMapper {
         boolean success = false;
         int rowsInserted = 0;
         int trainerID = 0;
-        String sportsType = sb.getSportType();
+        String sportsType = sb.getSportsType();
         String SQLString1 = "select trainerID from trainer where sportstype = ?";
         String SQLString2 = "insert into trainerBooking values(?,to_timestamp(?))";
         PreparedStatement statement1 = null;
@@ -449,7 +438,7 @@ public class BookingMapper {
 
             statement2 = conn.prepareStatement(SQLString2);
             statement2.setInt(1, trainerID);
-            statement2.setString(2, sb.getSportDate());
+            statement2.setString(2, sb.getSportsDate());
             success = true;
             statement2.executeUpdate();
         } catch (Exception e) {
@@ -460,29 +449,6 @@ public class BookingMapper {
 
     }
 
-//    public boolean deleteOldSportsBooking(String date, Connection conn) {
-//        String SQLString1 = "delete from trainerbooking where sportsdate < ?";
-//        String SQLString2 = "delete from sportsBooking where sportsdate < ?";
-//        PreparedStatement statement1 = null;
-//        PreparedStatement statement2 = null;
-//
-//        try {
-//            statement1 = conn.prepareStatement(SQLString1);
-//            statement1.setString(1, date);
-//            statement1.executeUpdate();
-//        } catch (Exception e) {
-//            System.out.println("Fail in BookingMapper - deleteOldSportsBooking");
-//        }
-//
-//        try {
-//            statement2 = conn.prepareStatement(SQLString2);
-//            statement2.setString(1, date);
-//            statement2.executeUpdate();
-//        } catch (Exception e) {
-//            System.out.println("Fail in BookingMapper - deleteOldSportsBooking");
-//        }
-//        return true;
-//    }
     public int countBookingsForSportsId(Connection conn, String date, String sportsID) {
         String SQLString = "Select count (sportsid) from sportsbooking where sportsid = ? and sportsdate like ?";
         PreparedStatement statement = null;
@@ -499,6 +465,7 @@ public class BookingMapper {
 
         } catch (Exception e) {
             System.out.println("Fail in countBookingsForSportsId");
+            System.out.println(e.getMessage());
         }
         return count;
     }

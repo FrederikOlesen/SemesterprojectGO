@@ -146,7 +146,7 @@ public class UOWPBook
             conn.setAutoCommit(false);
             BookingMapper bm = new BookingMapper();
             System.out.println("CommitSportsBooking");
-            status = status && bm.addNewSportBooking(newSPBooking, conn);
+            status = status && bm.addNewSportsBooking(newSPBooking, conn);
 
             if (!status)
             {
