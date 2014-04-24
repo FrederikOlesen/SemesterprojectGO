@@ -208,73 +208,59 @@ public class GUIsportsBook extends javax.swing.JFrame {
 
     private void jButtonBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBookActionPerformed
         // TODO add your handling code here:
-        if (!jTextFieldID.getText().equals(""))
-        {
+        if (!jTextFieldID.getText().equals("")) {
             String dato = jXDatePickerSportDate.getEditor().getText();
             System.out.println(dato);
-            if(!dato.equals(""))
-            {
-        
-        int trainer;
-        String sportsType = (String) jComboBoxSportsBooking.getSelectedItem();
-        String Time = (String) jComboBoxTime.getSelectedItem();
-        Time = ":" + Time.substring(0, 5);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        jXDatePickerSportDate.setFormats(dateFormat);
-        DateFormat sysDate = new SimpleDateFormat("yyyy-MM-dd");
-        String Date = sysDate.format(jXDatePickerSportDate.getDate());
-        String ID = jTextFieldID.getText();
-        String reservationsNumber = ID.substring(0, 3);
-        //String Date1 = sysDate.format(jXDatePickerSportDate.getDate());
-        String Date1 = Date.substring(2, 10); 
-        int counter = con.countSportsBooking(Date1, ID);
-        
-        Date = Date.concat(Time);
-        
-       
-        
-        
-          if (counter < 4) {
+            if (!dato.equals("")) {
 
-            if (jCheckBoxInstructor.isSelected()) {
-                trainer = 1;
-            } else {
-                trainer = 0;
-            }
+                int trainer;
+                String sportsType = (String) jComboBoxSportsBooking.getSelectedItem();
+                String Time = (String) jComboBoxTime.getSelectedItem();
+                Time = ":" + Time.substring(0, 5);
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                jXDatePickerSportDate.setFormats(dateFormat);
+                DateFormat sysDate = new SimpleDateFormat("yyyy-MM-dd");
+                String Date = sysDate.format(jXDatePickerSportDate.getDate());
+                String ID = jTextFieldID.getText();
+                String reservationsNumber = ID.substring(0, 3);
+                //String Date1 = sysDate.format(jXDatePickerSportDate.getDate());
+                String Date1 = Date.substring(2, 10);
+                int counter = con.countSportsBooking(Date1, ID);
 
-            System.out.println(ID + " " + sportsType + " " + Date + " " + Date1 + " " + " " + trainer);
-            con.createNewSPBooking(reservationsNumber, ID, sportsType, Date, trainer);
-            boolean status = con.saveSPBooking();
-            if (status)
-            {
-                jLabelSportsBookStatus.setText("Sports booking saved");
-            }
-            else
-            {
-                 jLabelSportsBookStatus.setText("Sports booking not saved");
-            }
-           
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "You have to many bookings");
-            jLabelSportsBookStatus.setText("Sports booking not saved");
-        }}
-        
-        else{
-            JOptionPane.showMessageDialog(rootPane, "Date box is empty");
-            jLabelSportsBookStatus.setText("Sports booking not saved");
-            
-        }
-        }
-         
-        else{
-                JOptionPane.showMessageDialog(rootPane, "ID box is empty");
-            jLabelSportsBookStatus.setText("Sports booking not saved");
+                Date = Date.concat(Time);
+
+                if (counter < 4) {
+
+                    if (jCheckBoxInstructor.isSelected()) {
+                        trainer = 1;
+                    } else {
+                        trainer = 0;
+                    }
+
+                    System.out.println(ID + " " + sportsType + " " + Date + " " + Date1 + " " + " " + trainer);
+                    con.createNewSPBooking(reservationsNumber, ID, sportsType, Date, trainer);
+                    boolean status = con.saveSPBooking();
+                    if (status) {
+                        jLabelSportsBookStatus.setText("Sports booking saved");
+                    } else {
+                        jLabelSportsBookStatus.setText("Sports booking not saved");
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "You have to many bookings");
+                    jLabelSportsBookStatus.setText("Sports booking not saved");
                 }
-        
-        
-      
-        
-    
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Date box is empty");
+                jLabelSportsBookStatus.setText("Sports booking not saved");
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "ID box is empty");
+            jLabelSportsBookStatus.setText("Sports booking not saved");
+        }
+
+
     }//GEN-LAST:event_jButtonBookActionPerformed
 
     private void jTextFieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDActionPerformed
@@ -282,16 +268,15 @@ public class GUIsportsBook extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldIDActionPerformed
 
     private void jTextFieldIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyTyped
-                                               
         char c = evt.getKeyChar();
-        if ( (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_SPACE)) {
+        if ((c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_SPACE)) {
             getToolkit().beep();
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldIDKeyTyped
 
     private void jXDatePickerSportDateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jXDatePickerSportDateKeyTyped
-      
+
     }//GEN-LAST:event_jXDatePickerSportDateKeyTyped
 
     /**
