@@ -492,7 +492,7 @@ public class GUIAdministration extends javax.swing.JFrame {
                 .addGap(37, 37, 37))
         );
 
-        jTabbedPane1.addTab("Create Booking", jPanel1);
+        jTabbedPane1.addTab("Create", jPanel1);
 
         jButtongetArrivals.setText("Get bookings");
         jButtongetArrivals.addActionListener(new java.awt.event.ActionListener() {
