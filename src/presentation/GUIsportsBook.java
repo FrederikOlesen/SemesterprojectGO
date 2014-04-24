@@ -7,6 +7,7 @@ package presentation;
 
 import domain.Control;
 import domain.SportsBooking;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -67,6 +68,17 @@ public class GUIsportsBook extends javax.swing.JFrame {
 
         jLabel1.setText("Sports activity");
 
+        jTextFieldID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIDActionPerformed(evt);
+            }
+        });
+        jTextFieldID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldIDKeyTyped(evt);
+            }
+        });
+
         jButtonBook.setText("Book");
         jButtonBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +100,11 @@ public class GUIsportsBook extends javax.swing.JFrame {
         jLabel4.setText("ID (i.e. 333-3)");
 
         jXDatePickerSportDate.setFormats(new String[] {"yyyy-MM-dd"});
+        jXDatePickerSportDate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jXDatePickerSportDateKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Date");
 
@@ -122,7 +139,7 @@ public class GUIsportsBook extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jXDatePickerSportDate, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(jXDatePickerSportDate, javax.swing.GroupLayout.PREFERRED_SIZE, 107, Short.MAX_VALUE)
                                         .addComponent(jComboBoxTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,6 +208,13 @@ public class GUIsportsBook extends javax.swing.JFrame {
 
     private void jButtonBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBookActionPerformed
         // TODO add your handling code here:
+        if (!jTextFieldID.getText().equals(""))
+        {
+            String dato = jXDatePickerSportDate.getEditor().getText();
+            System.out.println(dato);
+            if(!dato.equals(""))
+            {
+        
         int trainer;
         String sportsType = (String) jComboBoxSportsBooking.getSelectedItem();
         String Time = (String) jComboBoxTime.getSelectedItem();
@@ -209,7 +233,8 @@ public class GUIsportsBook extends javax.swing.JFrame {
         
        
         
-        if (counter < 4) {
+        
+          if (counter < 4) {
 
             if (jCheckBoxInstructor.isSelected()) {
                 trainer = 1;
@@ -232,8 +257,42 @@ public class GUIsportsBook extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, "You have to many bookings");
             jLabelSportsBookStatus.setText("Sports booking not saved");
+        }}
+        
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Date box is empty");
+            jLabelSportsBookStatus.setText("Sports booking not saved");
+            
         }
+        }
+         
+        else{
+                JOptionPane.showMessageDialog(rootPane, "ID box is empty");
+            jLabelSportsBookStatus.setText("Sports booking not saved");
+                }
+        
+        
+      
+        
+    
     }//GEN-LAST:event_jButtonBookActionPerformed
+
+    private void jTextFieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIDActionPerformed
+
+    private void jTextFieldIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyTyped
+                                               
+        char c = evt.getKeyChar();
+        if ( (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_SPACE)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldIDKeyTyped
+
+    private void jXDatePickerSportDateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jXDatePickerSportDateKeyTyped
+      
+    }//GEN-LAST:event_jXDatePickerSportDateKeyTyped
 
     /**
      * @param args the command line arguments
