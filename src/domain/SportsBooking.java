@@ -9,8 +9,7 @@ package domain;
  *
  * @author Uffe
  */
-public class SportsBooking
-{
+public class SportsBooking {
 
     String reservationsNumber;
     String sportsID;
@@ -19,54 +18,44 @@ public class SportsBooking
     int trainer;
     int counter = 0;
 
-    public SportsBooking(String reservationsNumber, String sportsID, String SportType, String sportDate, int trainer)
-    {
+    public SportsBooking(String reservationsNumber, String sportsID, String SportType, String sportDate, int trainer) {
         this.reservationsNumber = reservationsNumber;
         this.sportsID = sportsID;
         this.sportDate = sportDate;
         this.SportType = SportType;
         this.trainer = trainer;
-       
+
     }
 
-
-    public String getReservationsNumber()
-    {
+    public String getReservationsNumber() {
         return reservationsNumber;
     }
 
-    public String getSportsID()
-    {
+    public String getSportsID() {
         return sportsID;
     }
 
-    public String getSportsDate()
-    {
+    public String getSportsDate() {
         return sportDate;
     }
 
-    public void setSportDate(String sportDate)
-    {
+    public void setSportDate(String sportDate) {
         this.sportDate = sportDate;
     }
 
-    public String getSportsType()
-    {
+    public String getSportsType() {
         return SportType;
     }
 
-    public void setSportType(String SportType)
-    {
+    public void setSportType(String SportType) {
         this.SportType = SportType;
     }
 
-    public int getTrainer()
-    {
+    public int getTrainer() {
         return trainer;
     }
 
-    public void setTrainer(int trainer)
-    {
+    public void setTrainer(int trainer) {
         this.trainer = trainer;
     }
 
