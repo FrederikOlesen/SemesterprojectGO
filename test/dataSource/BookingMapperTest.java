@@ -55,7 +55,7 @@ public class BookingMapperTest {
         ArrayList<Booking> bl = new ArrayList();
         String arrival = "2018-03-04";
         String departure = "2019-03-04";
-        Booking b = new Booking(arrival, departure, 2102, 8, 1, 212, 2);
+        Booking b = new Booking(arrival, departure, 2103, 8, 1, 212, 2);
         bl.add(b);
         boolean saveOk = bm.addNewBooking(bl, con);
         ArrayList<Booking> bl1 = bm.getBookingList(arrival, departure, con);

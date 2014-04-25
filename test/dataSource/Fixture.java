@@ -4,13 +4,13 @@ import java.sql.*;
 import dataSource.BookingMapper;
 
 public class Fixture {
-    
+
     int resnumber = 0;
 
     // sets up the tables
     public static void setUp(Connection con) {
         try {
-            
+
             Statement st = con.createStatement();
 
             // start transaction
@@ -22,11 +22,9 @@ public class Fixture {
             st.addBatch("delete from rooms");
 
             // insert tuples
-            BookingMapper bm = new BookingMapper();
-            int resnumber = bm.getNextResNumber(con);
             String insertbooking = "insert into booking values ";
-            String insertroom = "insert into rooms";
-            String insertcustomer = "insert into customer values";
+            String insertroom = "Insert into rooms values";
+            String insertcustomer = "Insert into customer values";
             st.addBatch(insertroom + "(1,2,3)");
             st.addBatch(insertcustomer + "(1234567,Hej, Hejsa, Denmark, Asdas@ªsd.com, 12345678, asdsadas)");
             st.addBatch(insertbooking + "(2014-03-02,2015-03-04,600,3,1,1234567, 2) ");
