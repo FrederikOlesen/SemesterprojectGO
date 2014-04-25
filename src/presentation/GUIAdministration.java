@@ -892,6 +892,7 @@ public class GUIAdministration extends javax.swing.JFrame {
             jListBooking.setModel(model);
             model.clear();
         }
+        con.resetBooking();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void jButtonEditBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditBookingActionPerformed
@@ -920,7 +921,6 @@ public class GUIAdministration extends javax.swing.JFrame {
             } else {
                 jLabelStatusBooking.setText("Could not find booking");
             }
-            con.resetBooking();
         }
     }//GEN-LAST:event_jbuttonGetArrivalsFromResNoActionPerformed
 
