@@ -309,7 +309,7 @@ public class BookingMapper {
     }
 
     public boolean deleteBooking(ArrayList<Booking> deleteBooking, Connection conn) {
-
+        
         String SQLString1 = "delete from customersportsid where reservationsnumber = ?";
         String SQLString = "delete from booking where reservationsnumber = ?";
 
