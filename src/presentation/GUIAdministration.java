@@ -814,6 +814,7 @@ public class GUIAdministration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCheckRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckRoomsActionPerformed
+        dflRooms.removeAllElements();
         if ("".equals(jXDatePickercheckRoomArrival.getEditor().getText()) || "".equals(jXDatePickercheckRoomDeparture.getEditor().getText())) {
             JOptionPane.showMessageDialog(rootPane, "Make sure both arrival and departure date are entered and in the correct format");
         } else {

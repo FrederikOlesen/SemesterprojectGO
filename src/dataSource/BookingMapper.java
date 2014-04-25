@@ -280,11 +280,12 @@ public class BookingMapper {
     public ArrayList getRoomsList(String arrival, String departure, Connection conn) {
         ArrayList roomsList = new ArrayList();
         Rooms r = null;
-        String SQLString = // get Booking
-                "select roomnumber,roomtypeid from rooms where roomnumber not in"
-                + " (select roomnumber from booking where arrival "
-                + "<= to_date(?,'yyyy-mm-dd') and departure"
-                + " >= to_date(?,'yyyy-mm-dd'))";
+        String SQLString
+                = // get Booking
+                "select roomnumber, roomtypeid from rooms"
+                + "where roomnumber not in"
+                + "(select roomnumber from booking where arrival between to_date(?, 'yyyy-mm-dd')"
+                + "and to_date(?, 'yyyy-mm-dd'))";
 
         PreparedStatement statement = null;
 
@@ -337,7 +338,7 @@ public class BookingMapper {
 
     }
 
-     public String lookAtResNumber(int resNumber, Connection conn) {
+    public String lookAtResNumber(int resNumber, Connection conn) {
         String name = "";
         String fname = "";
         String lname = "";
@@ -364,7 +365,7 @@ public class BookingMapper {
         }
         return name;
     }
-     
+
     public boolean createCustomerID(int resNumber, int noOfGuests, Connection conn) {
 
         for (int i = 1; i <= noOfGuests; i++) {
