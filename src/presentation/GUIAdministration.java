@@ -843,7 +843,6 @@ public class GUIAdministration extends javax.swing.JFrame {
         } else {
             jLabelStatusBooking.setText("Booking could not be deleted");
         }
-        con.resetBooking();
 
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
