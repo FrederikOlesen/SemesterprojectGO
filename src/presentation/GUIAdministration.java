@@ -1025,7 +1025,7 @@ public class GUIAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_ClearfieldsbuttonActionPerformed
 
     private void BookbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbuttonActionPerformed
-        if ("".equals(jXDatePickergetArrival.getEditor().getText()) || "".equals(jXDatePickergetDeparture.getEditor().getText())) {
+        if ("".equals(jXDatePickerArrival.getEditor().getText()) || "".equals(jXDatePickerDeparture.getEditor().getText())) {
             JOptionPane.showMessageDialog(rootPane, "Make sure both arrival and departure date are entered and in the correct format");
         } else {
             int CustomerID = Integer.parseInt(jTextFieldCustomerID.getText());
