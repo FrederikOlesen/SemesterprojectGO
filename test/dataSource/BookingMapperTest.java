@@ -55,15 +55,21 @@ public class BookingMapperTest {
         ArrayList<Booking> bl = new ArrayList();
         String arrival = "2018-03-04";
         String departure = "2019-03-04";
-        Booking b = new Booking(arrival, departure, 2103, 8, 1, 212, 2);
+        int resnumber = bm.getNextResNumber(con);
+        Booking b = new Booking(arrival, departure, resnumber, 1, 1, 212, 2);
         bl.add(b);
         boolean saveOk = bm.addNewBooking(bl, con);
-        ArrayList<Booking> bl1 = bm.getBookingList(arrival, departure, con);
+        ArrayList<Booking> bl1 = new ArrayList();
+        bl1.clear();
+        bl1 = bm.getBookingList(arrival, departure, con);
+        for (int i = 0; i < bl.size(); i++) {
+            System.out.println(bl.get(i));
+        }
         assertTrue("size not 1 as expected", bl1.size() == 1);
         assertTrue("SaveNewPart failed", saveOk);
 
     }
-    
+
     //=== Connection specifics
     private void getConnection() {
         try {

@@ -1,7 +1,6 @@
 package dataSource;
 
 import java.sql.*;
-import dataSource.BookingMapper;
 
 public class Fixture {
 
@@ -23,11 +22,11 @@ public class Fixture {
 
             // insert tuples
             String insertbooking = "insert into booking values ";
-            String insertroom = "Insert into rooms values";
-            String insertcustomer = "Insert into customer values";
-            st.addBatch(insertroom + "(1,2,3)");
-            st.addBatch(insertcustomer + "(1234567,Hej, Hejsa, Denmark, Asdas@ªsd.com, 12345678, asdsadas)");
-            st.addBatch(insertbooking + "(2014-03-02,2015-03-04,600,3,1,1234567, 2) ");
+            String insertroom = "insert into rooms values";
+            String insertcustomer = "insert into customer values";
+            st.addBatch(insertroom + "(100,2,100)");
+            st.addBatch(insertcustomer + "(123456798,'Hej', 'Hejsa', 'Denmark', 'Asdas@ªsd.com', 12345678, 'asdsadas')");
+            st.addBatch(insertbooking + "(2014-03-02,2015-03-04,601,3,1,1234567, 2) ");
             int[] opcounts = st.executeBatch();
             if (opcounts.length != 9) {
                 throw new Exception();
