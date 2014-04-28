@@ -130,7 +130,7 @@ public class BookingMapper {
 // sequencer on database counts up for each request
     public int getNextCustomerID(Connection conn) {
         nextCustomerID = 0;
-        String SQLString = "select SEQ_CUSTOMERID.NEXTVAL " + "from DUAL";
+        String SQLString = "select CUSTOMER_CUSTOMERID_SEQ.NEXTVAL " + "from DUAL";
         PreparedStatement statement = null;
         try {
 
@@ -280,12 +280,12 @@ public class BookingMapper {
     public ArrayList getRoomsList(String arrival, String departure, Connection conn) {
         ArrayList roomsList = new ArrayList();
         Rooms r = null;
-        String SQLString
-                = // get Booking
-                "select roomnumber, roomtypeid from rooms"
-                + "where roomnumber not in"
-                + "(select roomnumber from booking where arrival between to_date(?, 'yyyy-mm-dd')"
-                + "and to_date(?, 'yyyy-mm-dd'))";
+        // get Booking
+        String SQLString = "select roomnumber, roomtypeid from rooms "
+                + "where roomnumber not in "
+                + "(select roomnumber from booking "
+                + "where arrival between to_date(?, 'yyyy-mm-dd') "
+                + "and to_date(?, 'yyyy-mm-dd')) order by roomnumber";
 
         PreparedStatement statement = null;
 
@@ -309,7 +309,7 @@ public class BookingMapper {
     }
 
     public boolean deleteBooking(ArrayList<Booking> deleteBooking, Connection conn) {
-        
+
         String SQLString1 = "delete from customersportsid where reservationsnumber = ?";
         String SQLString = "delete from booking where reservationsnumber = ?";
 

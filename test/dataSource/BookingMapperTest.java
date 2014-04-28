@@ -59,11 +59,10 @@ public class BookingMapperTest {
         Booking b = new Booking(arrival, departure, resnumber, 1, 1, 212, 2);
         bl.add(b);
         boolean saveOk = bm.addNewBooking(bl, con);
-        ArrayList<Booking> bl1 = new ArrayList();
-        bl1.clear();
-        bl1 = bm.getBookingList(arrival, departure, con);
-        for (int i = 0; i < bl.size(); i++) {
-            System.out.println(bl.get(i));
+
+        ArrayList<Booking> bl1 = bm.getBookingList(arrival, departure, con);
+        for (int i = 0; i < bl1.size(); i++) {
+            System.out.println(bl1.get(i));
         }
         assertTrue("size not 1 as expected", bl1.size() == 1);
         assertTrue("SaveNewPart failed", saveOk);

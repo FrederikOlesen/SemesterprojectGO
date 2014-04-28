@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 
 public class DBConnector {
 
-    private static String id = "SEM2_TEST_GR11";						//Insert ORACLE id and password
-    private static String pw = "SEM2_TEST_GR11";
+    private static String id = "SEM2_GR11";						//Insert ORACLE id and password
+    private static String pw = "SEM2_GR11";
 
     public Connection getConnection() {
         Connection con = null;
