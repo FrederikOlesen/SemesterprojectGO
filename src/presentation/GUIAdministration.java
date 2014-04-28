@@ -1089,7 +1089,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void PhonefieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PhonefieldKeyTyped
         char c = evt.getKeyChar();
-        if ((!Character.isDigit(c)) || (c == KeyEvent.VK_DELETE)) {
+        if ((!Character.isDigit(c))) {
             getToolkit().beep();
             evt.consume();
         }
@@ -1097,7 +1097,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void FnamefieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FnamefieldKeyTyped
         char c = evt.getKeyChar();
-        if ((Character.isDigit(c)) || (c == KeyEvent.VK_DELETE)) {
+        if ((Character.isDigit(c))) {
             getToolkit().beep();
             evt.consume();
         }
@@ -1105,7 +1105,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void SnamefieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SnamefieldKeyTyped
         char c = evt.getKeyChar();
-        if ((Character.isDigit(c)) || (c == KeyEvent.VK_DELETE)) {
+        if ((Character.isDigit(c))) {
             getToolkit().beep();
             evt.consume();
         }
@@ -1117,7 +1117,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void CountryfieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CountryfieldKeyTyped
         char c = evt.getKeyChar();
-        if ((Character.isDigit(c)) || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_SPACE)) {
+        if ((Character.isDigit(c)) || (c == KeyEvent.VK_SPACE)) {
             getToolkit().beep();
             evt.consume();
         }
@@ -1125,7 +1125,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void EmailfieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EmailfieldKeyTyped
         char c = evt.getKeyChar();
-        if ((c == KeyEvent.VK_DELETE) || c == KeyEvent.VK_SPACE) {
+        if (c == KeyEvent.VK_SPACE) {
             getToolkit().beep();
             evt.consume();
         }
@@ -1133,7 +1133,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void jTextFieldgetcustomerIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldgetcustomerIDKeyTyped
         char c = evt.getKeyChar();
-        if ((!Character.isDigit(c)) || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_SPACE)) {
+        if ((!Character.isDigit(c)) || (c == KeyEvent.VK_SPACE)) {
             getToolkit().beep();
             evt.consume();
         }
@@ -1141,7 +1141,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void jTextFieldgetLastNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldgetLastNameKeyTyped
         char c = evt.getKeyChar();
-        if ((Character.isDigit(c)) || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_SPACE)) {
+        if ((Character.isDigit(c)) || (c == KeyEvent.VK_SPACE)) {
             getToolkit().beep();
             evt.consume();
         }
@@ -1149,7 +1149,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void jTextFieldRoomNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRoomNoKeyTyped
         char c = evt.getKeyChar();
-        if ((!Character.isDigit(c)) || (c == KeyEvent.VK_DELETE)) {
+        if ((!Character.isDigit(c))) {
             getToolkit().beep();
             evt.consume();
         }
@@ -1157,7 +1157,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void jTextFieldCustomerIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCustomerIDKeyTyped
         char c = evt.getKeyChar();
-        if ((!Character.isDigit(c)) || (c == KeyEvent.VK_DELETE)) {
+        if ((!Character.isDigit(c))) {
             getToolkit().beep();
             evt.consume();
         }
@@ -1169,7 +1169,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void NoofguestfieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoofguestfieldKeyTyped
         char c = evt.getKeyChar();
-        if ((!Character.isDigit(c)) || (c == KeyEvent.VK_DELETE) || c == KeyEvent.VK_SPACE) {
+        if ((!Character.isDigit(c)) ||  c == KeyEvent.VK_SPACE) {
             getToolkit().beep();
             evt.consume();
         }
@@ -1186,7 +1186,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void jTextFieldresNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldresNoKeyTyped
         char c = evt.getKeyChar();
-        if ((!Character.isDigit(c)) || (c == KeyEvent.VK_DELETE)) {
+        if ((!Character.isDigit(c))) {
             getToolkit().beep();
             evt.consume();
         }
