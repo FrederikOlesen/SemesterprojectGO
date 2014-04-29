@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-
 public class BookingMapperTest {
 
     BookingMapper bm;
@@ -48,14 +47,12 @@ public class BookingMapperTest {
         String arrival = "2018-03-04";
         String departure = "2019-03-04";
         int resnumber = bm.getNextResNumber(con);
-        Booking b = new Booking(arrival, departure, resnumber, 1, 1, 212, 2);
+        Booking b = new Booking(arrival, departure, resnumber, 1, 1, 2, 2);
         bl.add(b);
         boolean saveOk = bm.addNewBooking(bl, con);
 
         ArrayList<Booking> bl1 = bm.getBookingList(arrival, departure, con);
-        for (int i = 0; i < bl1.size(); i++) {
-            System.out.println(bl1.get(i));
-        }
+
         assertTrue("size not 1 as expected", bl1.size() == 1);
         assertTrue("SaveNewBooking failed", saveOk);
 
@@ -64,7 +61,7 @@ public class BookingMapperTest {
     @Test
     public void testUpdateBooking() throws Exception {
         ArrayList<Booking> bl = new ArrayList();
-        Booking b = new Booking("2014-02-03", "2014-03-03", 3212, 1, 12, 212, 2);
+        Booking b = new Booking("2014-02-03", "2014-03-03", 3212, 1, 12, 2, 2);
         bl.add(b);
         boolean saveOk = bm.addNewBooking(bl, con);
         b.setArrival("2014-02-06");
@@ -82,7 +79,7 @@ public class BookingMapperTest {
     @Test
     public void testDeleteBooking() throws Exception {
         ArrayList<Booking> bl = new ArrayList();
-        Booking b = new Booking("2014-02-06", "2014-03-03", 3212, 1, 12, 212, 2);
+        Booking b = new Booking("2014-02-06", "2014-03-03", 3212, 1, 12, 2, 2);
         bl.add(b);
         boolean saveOk = bm.addNewBooking(bl, con);
 
