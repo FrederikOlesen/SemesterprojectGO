@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dataSource;
 
 import domain.Booking;
@@ -15,17 +10,14 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Uffe
- */
+
 public class BookingMapperTest {
 
     BookingMapper bm;
     Connection con;
-    String pw = "SEM2_TEST_GR11";
-    String id = "SEM2_TEST_GR11";
-    boolean hej = false;
+    String pw = "SEM2_GR11";
+    String id = "SEM2_GR11";
+    boolean test = false;
 
     public BookingMapperTest() {
     }
@@ -45,7 +37,7 @@ public class BookingMapperTest {
 
     @After
     public void tearDown() {
-        if (!hej) {
+        if (!test) {
             releaseConnection();
         }
     }
@@ -65,7 +57,7 @@ public class BookingMapperTest {
             System.out.println(bl1.get(i));
         }
         assertTrue("size not 1 as expected", bl1.size() == 1);
-        assertTrue("SaveNewPart failed", saveOk);
+        assertTrue("SaveNewBooking failed", saveOk);
 
     }
 
