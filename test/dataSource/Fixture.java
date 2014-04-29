@@ -4,8 +4,6 @@ import java.sql.*;
 
 public class Fixture {
 
-    int resnumber = 0;
-
     // sets up the tables
     public static void setUp(Connection con) {
         try {
@@ -22,7 +20,7 @@ public class Fixture {
 
             // insert tuples
             int[] opcounts = st.executeBatch();
-            
+
             // end transaction
             System.out.println("opcounts.length = " + opcounts.length);
             con.commit();

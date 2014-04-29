@@ -69,6 +69,45 @@ public class BookingMapperTest {
 
     }
 
+    @Test
+    public void testUpdateBooking() throws Exception {
+        ArrayList<Booking> bl = new ArrayList();
+        Booking b = new Booking("2014-02-03", "2014-03-03", 3212, 1, 12, 212, 2);
+        bl.add(b);
+        boolean saveOk = bm.addNewBooking(bl, con);
+        b.setArrival("2014-02-06");
+        boolean updateOK = bm.updateBooking(bl, con);
+        //== return value correct?
+        assertTrue("UpdateBooking failed1", updateOK);
+        String arrival = "2014-02-06";
+        String departure = "2014-03-03";
+        ArrayList<Booking> bl2 = bm.getBookingList(arrival, departure, con);
+
+        //== end state correct?
+        assertEquals(bl2.get(0).getArrival(), "2014-02-06");
+    }
+
+    @Test
+    public void testDeleteBooking() throws Exception {
+        ArrayList<Booking> bl = new ArrayList();
+        Booking b = new Booking("2014-02-06", "2014-03-03", 3212, 1, 12, 212, 2);
+        bl.add(b);
+        boolean saveOk = bm.addNewBooking(bl, con);
+
+        boolean deleteOK = bm.deleteBooking(bl, con);
+        //== return value correct?
+        assertTrue("DeleteBooking failed1", deleteOK);
+
+        String arrival = "2014-02-06";
+        String departure = "2014-03-03";
+
+        ArrayList<Booking> bl1 = bm.getBookingList(arrival, departure, con);
+        for (int i = 0; i < bl1.size(); i++) {
+            System.out.println(bl1.get(i));
+        }
+        assertFalse("size not 1 as expected", bl1.size() == 1);
+    }
+
     //=== Connection specifics
     private void getConnection() {
         try {
