@@ -30,7 +30,7 @@ public class DBFacade {
     private static DBFacade instance;
 
     public DBFacade() {
-        con = new DBConnector().getConnection();  // the connection will be released upon program 
+        con = new DBConnector().getConnection();  // The connection will be released upon program 
     }
 
     public static DBFacade getInstance() {
@@ -39,7 +39,7 @@ public class DBFacade {
         }
         return instance;
     }
-
+    // Singleton end
     // Method to get next reservation number from database
     public int getNextResnr() {
 
