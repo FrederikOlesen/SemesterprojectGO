@@ -38,6 +38,7 @@ public class DBFacade {
         }
         return instance;
     }
+
     // Singleton end
     // Method to get next reservation number from database
     public int getNextResnr() {

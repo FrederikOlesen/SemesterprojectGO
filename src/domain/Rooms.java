@@ -4,7 +4,6 @@ public class Rooms {
 
     // Variables used for room creation
     private String roomNumber;
-    private int price;
     private String roomType;
 
     public Rooms(String roomNumber, String roomType) {
@@ -19,14 +18,6 @@ public class Rooms {
 
     public void setRoomType(String roomType) {
         this.roomType = roomType;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public String getRoomNumber() {
