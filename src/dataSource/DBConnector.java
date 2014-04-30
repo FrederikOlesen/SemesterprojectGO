@@ -5,9 +5,11 @@ import java.sql.DriverManager;
 
 public class DBConnector {
 
-    private static String id = "SEM2_GR11";						//Insert ORACLE id and password
+    //Credentials used to access our database
+    private static String id = "SEM2_GR11";						
     private static String pw = "SEM2_GR11";
 
+    //Method to establish connection to database
     public Connection getConnection() {
         Connection con = null;
         try {
@@ -23,6 +25,7 @@ public class DBConnector {
         return con;
     }
 
+    //Method to close the connection.
     public void releaseConnection(Connection con) {
         try {
             con.close();
