@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import dataSource.BookingMapper;
 import dataSource.DBFacade;
 import dataSource.UOWPBook;
-import java.sql.SQLException;
 
 public class Control {
 
@@ -12,7 +11,6 @@ public class Control {
     private boolean processingBooking;
     private boolean processingCustomer;
     private boolean processingRooms;
-    private boolean processingFindBooking;
     private boolean processingSPBooking;
     private Customer currentCustomer;
     private Booking currentBooking;
@@ -28,7 +26,6 @@ public class Control {
     ArrayList currentCustomerList = new ArrayList();
     ArrayList currentRoomsList = new ArrayList();
     ArrayList currentFindBooking = new ArrayList();
-  //  ArrayList currentSPBooking = new ArrayList();
 
     // Contructor
     public Control() {
@@ -39,7 +36,6 @@ public class Control {
         processingRooms = false;
         currentRooms = null;
         dbFacade = DBFacade.getInstance();
-        // processingFindBooking = false;
         currentFindBooking = null;
     }
 
@@ -137,7 +133,7 @@ public class Control {
         currentBooking = null;
     }
 
-    // Method for saving the curent customer, returns true if succesfull
+    // Method for saving the curent customer, returns true if succesful
     public boolean saveCustomer() {
         boolean status = false;
         if (processingCustomer) {
