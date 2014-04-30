@@ -59,10 +59,12 @@ public class GUICheckIn extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //This method search after the reservationnumber, and generates sportsID.
     private void jButtonCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckInActionPerformed
             int resNumber = Integer.parseInt(jTextFieldresNumber.getText());
+            //Searchs after reservationnumber. 
             String name = con.findNameFromResNo(resNumber);
+            //Generates sportsID.
             con.createCustomerID(resNumber);
             if (" ".equals(name)) {
                 JOptionPane.showMessageDialog(rootPane, "Invalid reservation number");
