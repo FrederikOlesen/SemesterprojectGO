@@ -812,9 +812,13 @@ public class GUIAdministration extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    // This method shows the room status between af specific date.
     private void jButtonCheckRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckRoomsActionPerformed
+        //Removes all the current elements listed in the jList.
+
         dflRooms.removeAllElements();
+
+        //Error handling which makes sure that the arrival date is before the departure date and they're not empty.
         if ("".equals(jXDatePickercheckRoomArrival.getEditor().getText()) || "".equals(jXDatePickercheckRoomDeparture.getEditor().getText())) {
             JOptionPane.showMessageDialog(rootPane, "Make sure both arrival and departure date are entered and in the correct format");
         } else {
@@ -831,11 +835,13 @@ public class GUIAdministration extends javax.swing.JFrame {
             } else {
                 Statuslabel.setText("Could not get Rooms");
             }
+            //Resets the current session.
             con.resetRooms();
         }
     }//GEN-LAST:event_jButtonCheckRoomsActionPerformed
-
+    //Delete a booking.
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        //Using a method in control-class to delete a booking.
         con.deleteBooking();
         boolean status = con.saveBooking();
         if (status) {
@@ -847,7 +853,7 @@ public class GUIAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        //Check 
+        // Error handling to ensure that arrival is before departure, and one of the fields aint empty.
         if ("".equals(jXDatePickerChangeArrival.getEditor().getText()) || "".equals(jXDatePickerChangeDeparture.getEditor().getText())) {
             JOptionPane.showMessageDialog(rootPane, "Make sure both arrival and departure date are entered and in the correct format");
         } else {
@@ -1169,7 +1175,7 @@ public class GUIAdministration extends javax.swing.JFrame {
 
     private void NoofguestfieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoofguestfieldKeyTyped
         char c = evt.getKeyChar();
-        if ((!Character.isDigit(c)) ||  c == KeyEvent.VK_SPACE) {
+        if ((!Character.isDigit(c)) || c == KeyEvent.VK_SPACE) {
             getToolkit().beep();
             evt.consume();
         }
