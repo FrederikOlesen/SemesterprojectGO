@@ -898,10 +898,12 @@ public class GUIAdministration extends javax.swing.JFrame {
             jListBooking.setModel(model);
             model.clear();
         }
+        //Reset the current transaction
         con.resetBooking();
     }//GEN-LAST:event_updateButtonActionPerformed
-
+    //Method to edit a booking
     private void jButtonEditBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditBookingActionPerformed
+        //Selects a object of booking
         Object booking = jListBooking.getSelectedValue();
         try {
             Date arrival = new SimpleDateFormat("yyyy-MM-dd").parse(booking.toString().substring(0, 10));
@@ -915,10 +917,12 @@ public class GUIAdministration extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditBookingActionPerformed
 
     private void jbuttonGetArrivalsFromResNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonGetArrivalsFromResNoActionPerformed
+        //This methods gets a booking from the reservationsnumber.
         if ("".equals(jTextFieldresNo.getText())) {
             JOptionPane.showMessageDialog(rootPane, "Wrong input");
             System.out.println(jTextFieldresNo.getText());
         } else {
+            //First we removes all elements, and then adds the booking.
             dflBooking.removeAllElements();
             int resno = Integer.parseInt(jTextFieldresNo.getText());
             Booking arrival = con.findResNumber(resno);
@@ -929,7 +933,7 @@ public class GUIAdministration extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jbuttonGetArrivalsFromResNoActionPerformed
-
+    //Here we can search between to dates, and gets all bookings.
     private void jButtongetArrivalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtongetArrivalsActionPerformed
         if ("".equals(jXDatePickergetArrival.getEditor().getText()) || "".equals(jXDatePickergetDeparture.getEditor().getText())) {
             JOptionPane.showMessageDialog(rootPane, "Make sure both arrival and departure date are entered and in the correct format");
@@ -951,25 +955,28 @@ public class GUIAdministration extends javax.swing.JFrame {
                 } else {
                     jLabelStatusBooking.setText("Could not get bookings!");
                 }
+                //Reset the transaction.
                 con.resetBooking();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Make sure arrival date is before departure date");
             }
         }
     }//GEN-LAST:event_jButtongetArrivalsActionPerformed
-
+    //Search for a customer from the CustomerID.
     private void jButtonSearchCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchCustomerIDActionPerformed
         dflCreate.removeAllElements();
         String customerID = jTextFieldgetcustomerID.getText();
         id = con.getCustomerID(customerID);
         if (id != null) {
             for (int i = 0; i < id.size(); i++) {
+                //Adds the customer to the list
                 dflCreate.addElement(id.get(i).toString());
             }
         } else {
             Statuslabel.setText("Could not get Customer");
 
         }
+        //Reset the Customer transaction
         con.resetCustomer();
         jTextFieldgetcustomerID.setText("");
     }//GEN-LAST:event_jButtonSearchCustomerIDActionPerformed
@@ -977,7 +984,7 @@ public class GUIAdministration extends javax.swing.JFrame {
     private void jTextFieldgetcustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldgetcustomerIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldgetcustomerIDActionPerformed
-
+    //Search after customers from there last name
     private void jButtongetCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtongetCustomerActionPerformed
         dflCreate.removeAllElements();
         String lname = jTextFieldgetLastName.getText();
@@ -989,20 +996,21 @@ public class GUIAdministration extends javax.swing.JFrame {
         } else {
             Statuslabel.setText("Could not get Customer");
         }
+        //Reset the transaction
         con.resetCustomer();
         jTextFieldgetLastName.setText("");
     }//GEN-LAST:event_jButtongetCustomerActionPerformed
-
+    //Method to add a customer
     private void jButtonAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCustomerActionPerformed
-
+        //A lot of error handling, to prevent wrong information in the database.
         if ("".equals(Fnamefield.getText()) || "".equals(Snamefield.getText()) || "".equals(Countryfield.getText())
                 || "".equals(Emailfield.getText()) || "".equals(Phonefield.getText()) || "".equals(Addressfield.getText())) {
             JOptionPane.showMessageDialog(rootPane, "One or more fields are left empty. Please make sure all fields are filled properly");
         } else {
-
+            //Makes a new object of customer.
             con.createNewCustomer(Fnamefield.getText(), Snamefield.getText(), Countryfield.getText(), Emailfield.getText(),
                     Integer.parseInt(Phonefield.getText()), Addressfield.getText());
-
+            //Saves the customer
             boolean status = con.saveCustomer();
             if (status) {
                 Statuslabel.setText("Customer saved");
@@ -1011,7 +1019,7 @@ public class GUIAdministration extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonAddCustomerActionPerformed
-
+    //Button to clear textfields.
     private void ClearfieldsbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearfieldsbuttonActionPerformed
         Fnamefield.setText("");
         Snamefield.setText("");
@@ -1025,14 +1033,13 @@ public class GUIAdministration extends javax.swing.JFrame {
         Statuslabel.setText("");
         jTextFieldCustomerID.setText("");
         jTextFieldgetLastName.setText("");
-
-        con.resetBooking();
     }//GEN-LAST:event_ClearfieldsbuttonActionPerformed
-
+    //Method to add a booking, with a lot of error handling
     private void BookbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbuttonActionPerformed
         if ("".equals(jXDatePickerArrival.getEditor().getText()) || "".equals(jXDatePickerDeparture.getEditor().getText())) {
             JOptionPane.showMessageDialog(rootPane, "Make sure both arrival and departure date are entered and in the correct format");
         } else {
+            //Gets the CustomerID
             int CustomerID = Integer.parseInt(jTextFieldCustomerID.getText());
             int paid = 0;
             if (jCheckBoxPaid.isSelected() == true) {
@@ -1092,7 +1099,7 @@ public class GUIAdministration extends javax.swing.JFrame {
     private void FnamefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FnamefieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FnamefieldActionPerformed
-
+    //Error handling to prevent incorrect data in database
     private void PhonefieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PhonefieldKeyTyped
         char c = evt.getKeyChar();
         if ((!Character.isDigit(c))) {
@@ -1100,7 +1107,7 @@ public class GUIAdministration extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_PhonefieldKeyTyped
-
+    //Error handling to prevent incorrect data in database
     private void FnamefieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FnamefieldKeyTyped
         char c = evt.getKeyChar();
         if ((Character.isDigit(c))) {
@@ -1108,7 +1115,7 @@ public class GUIAdministration extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_FnamefieldKeyTyped
-
+    //Error handling to prevent incorrect data in database
     private void SnamefieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SnamefieldKeyTyped
         char c = evt.getKeyChar();
         if ((Character.isDigit(c))) {
@@ -1120,7 +1127,7 @@ public class GUIAdministration extends javax.swing.JFrame {
     private void AddressfieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddressfieldKeyTyped
 
     }//GEN-LAST:event_AddressfieldKeyTyped
-
+    //Error handling to prevent incorrect data in database
     private void CountryfieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CountryfieldKeyTyped
         char c = evt.getKeyChar();
         if ((Character.isDigit(c)) || (c == KeyEvent.VK_SPACE)) {
@@ -1128,7 +1135,7 @@ public class GUIAdministration extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_CountryfieldKeyTyped
-
+    //Error handling to prevent incorrect data in database
     private void EmailfieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EmailfieldKeyTyped
         char c = evt.getKeyChar();
         if (c == KeyEvent.VK_SPACE) {
@@ -1136,7 +1143,7 @@ public class GUIAdministration extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_EmailfieldKeyTyped
-
+    //Error handling to prevent incorrect data in database
     private void jTextFieldgetcustomerIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldgetcustomerIDKeyTyped
         char c = evt.getKeyChar();
         if ((!Character.isDigit(c)) || (c == KeyEvent.VK_SPACE)) {
@@ -1144,7 +1151,7 @@ public class GUIAdministration extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldgetcustomerIDKeyTyped
-
+    //Error handling to prevent incorrect data in database
     private void jTextFieldgetLastNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldgetLastNameKeyTyped
         char c = evt.getKeyChar();
         if ((Character.isDigit(c)) || (c == KeyEvent.VK_SPACE)) {
@@ -1152,7 +1159,7 @@ public class GUIAdministration extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldgetLastNameKeyTyped
-
+    //Error handling to prevent incorrect data in database
     private void jTextFieldRoomNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRoomNoKeyTyped
         char c = evt.getKeyChar();
         if ((!Character.isDigit(c))) {
@@ -1160,7 +1167,7 @@ public class GUIAdministration extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldRoomNoKeyTyped
-
+    //Error handling to prevent incorrect data in database
     private void jTextFieldCustomerIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCustomerIDKeyTyped
         char c = evt.getKeyChar();
         if ((!Character.isDigit(c))) {
@@ -1172,7 +1179,7 @@ public class GUIAdministration extends javax.swing.JFrame {
     private void UndobuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UndobuttonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_UndobuttonActionPerformed
-
+    //Error handling to prevent incorrect data in database
     private void NoofguestfieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoofguestfieldKeyTyped
         char c = evt.getKeyChar();
         if ((!Character.isDigit(c)) || c == KeyEvent.VK_SPACE) {
@@ -1189,7 +1196,7 @@ public class GUIAdministration extends javax.swing.JFrame {
     private void noOfGuestsEditFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfGuestsEditFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_noOfGuestsEditFieldActionPerformed
-
+    //Error handling to prevent incorrect data in database
     private void jTextFieldresNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldresNoKeyTyped
         char c = evt.getKeyChar();
         if ((!Character.isDigit(c))) {
