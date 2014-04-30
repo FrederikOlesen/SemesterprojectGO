@@ -128,9 +128,7 @@ public class DBFacade {
 
     public boolean commitBusinessTransactionCustomer() {
         boolean status = false;
-        System.out.println("CommitBTC out if");
         if (uowc != null) {
-            System.out.println("CommitBTC in if");
             try {
                 status = uowc.commitCustomers(con);
             } catch (Exception e) {

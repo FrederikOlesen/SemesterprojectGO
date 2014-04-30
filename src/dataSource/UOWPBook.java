@@ -97,7 +97,6 @@ public class UOWPBook {
             // Start of system transaction
             conn.setAutoCommit(false);
             BookingMapper bm = new BookingMapper();
-            System.out.println("CommitCustomer");
             status = status && bm.addNewCustomer(newCustomers, conn);
 
             if (!status) {
@@ -194,7 +193,7 @@ public class UOWPBook {
         try {
             r = new BookingMapper().findResNumber(resNo, con);
         } catch (Exception e) {
-            System.out.println("fail in UnitOfWork - getRoomsList");
+            System.out.println("fail in UnitOfWork - findResNo");
             System.err.println(e);
         }
         return r;
