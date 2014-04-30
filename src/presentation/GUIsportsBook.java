@@ -7,7 +7,6 @@ package presentation;
 
 // Our imports for this specific class
 import domain.Control;
-import domain.SportsBooking;
 import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -222,12 +221,9 @@ public class GUIsportsBook extends javax.swing.JFrame {
                 String reservationsNumber = ID.substring(0, 3);
                 // Have to remove (20) from year, because of the database syntax and wildcard
                 String Date1 = Date.substring(2, 10);
-                
                 // Counter, to see how many booking on a specific date
                 int counter = con.countSportsBooking(Date1, ID);
-
                 Date = Date.concat(Time);
-
                 // If more than 4 bookings on a date - Gets error message (See else)
                 if (counter < 4) {
                     //Checks if the customer wants a trainer
@@ -236,22 +232,17 @@ public class GUIsportsBook extends javax.swing.JFrame {
                     } else {
                         trainer = 0;
                     }
-
                     System.out.println(ID + " " + sportsType + " " + Date + " " + Date1 + " " + " " + trainer);
-                    
                     // Running the createNewSPBooking in controller with the attributes from the gui
                     con.createNewSPBooking(reservationsNumber, ID, sportsType, Date, trainer);
-                    
                     // Checks the method saveSPBooking if the booking was succesfull, status then turns true
                     boolean status = con.saveSPBooking();
-                    
                     // Gives a message to the Gui if succesfull or not
                     if (status) {
                         jLabelSportsBookStatus.setText("Sports booking saved");
                     } else {
                         jLabelSportsBookStatus.setText("Sports booking not saved");
                     }
-
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "You have to many bookings");
                     jLabelSportsBookStatus.setText("Sports booking not saved");
@@ -259,14 +250,11 @@ public class GUIsportsBook extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Date box is empty");
                 jLabelSportsBookStatus.setText("Sports booking not saved");
-
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "ID box is empty");
             jLabelSportsBookStatus.setText("Sports booking not saved");
         }
-
-
     }//GEN-LAST:event_jButtonBookActionPerformed
 
     private void jTextFieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDActionPerformed

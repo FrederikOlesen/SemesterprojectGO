@@ -7,7 +7,6 @@ package dataSource;
 
 import domain.*;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -196,5 +195,4 @@ public class DBFacade {
         int count = new BookingMapper().countBookingsForSportsId(con, date, sportsID);
         return count;
     }
-
 }

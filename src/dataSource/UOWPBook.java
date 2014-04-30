@@ -161,7 +161,6 @@ public class UOWPBook {
             System.err.println(e);
         }
         return b;
-
     }
 
     // Method to delete a booking
@@ -183,7 +182,6 @@ public class UOWPBook {
             System.err.println(e);
         }
         return r;
-
     }
 
     //List to find a booking from the reservationnumber

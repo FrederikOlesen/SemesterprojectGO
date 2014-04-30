@@ -21,7 +21,6 @@ public class DBConnector {
             System.out.println("eror in DBConnector.getConnection()");
             System.out.println(e);
         }
-
         return con;
     }
 
@@ -33,5 +32,4 @@ public class DBConnector {
             System.err.println(e);
         }
     }
-
 }

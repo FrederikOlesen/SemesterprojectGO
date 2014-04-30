@@ -207,10 +207,6 @@ public class BookingMapper {
             statement.setInt(4, b.getPayment());
             statement.setInt(5, b.getResNumber());
             rowsUpdated = statement.executeUpdate();
-
-        }
-        if (testRun) {
-            System.out.println("updateOrders: " + (rowsUpdated == bl.size())); // for test
         }
         return (rowsUpdated == bl.size());    // false if any conflict in version number             
     }
@@ -430,7 +426,6 @@ public class BookingMapper {
     //If customers decide, that they want a trainer, this method gives them one.
     public boolean addTrainerToBooking(Connection conn) throws SQLException {
         boolean success = false;
-        int rowsInserted = 0;
         int trainerID = 0;
         String sportsType = sb.getSportsType();
         String SQLString1 = "select trainerID from trainer where sportstype = ?";

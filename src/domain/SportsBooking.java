@@ -24,7 +24,6 @@ public class SportsBooking {
         this.sportDate = sportDate;
         this.SportType = SportType;
         this.trainer = trainer;
-
     }
 
     public String getReservationsNumber() {

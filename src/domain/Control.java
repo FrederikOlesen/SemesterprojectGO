@@ -46,7 +46,6 @@ public class Control {
         }
         dbFacade.startNewBusinessTransactionBook();
         int nextResNr = dbFacade.getNextResnr();// rDB-generated unique ID
-
         if (nextResNr != 0) {
             processingBooking = true;
             currentBooking = new Booking(arrival, departure, nextResNr, paid, roomNumber, CustomerID, numberOfGuests);
@@ -64,7 +63,6 @@ public class Control {
             return null;
         }
         dbFacade.startNewBusinessTransactionCus();
-
         int customerID = dbFacade.getNextCustomerID();
         if (customerID != 0) {
             processingCustomer = true;
@@ -215,7 +213,6 @@ public class Control {
     public String findNameFromResNo(int resNo) {
         String name = dbFacade.locateResNumber(resNo);
         return name;
-
     }
 
     public void createCustomerID(int resNo) {

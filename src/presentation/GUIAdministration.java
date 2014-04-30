@@ -815,9 +815,7 @@ public class GUIAdministration extends javax.swing.JFrame {
     // This method shows the room status between af specific date.
     private void jButtonCheckRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckRoomsActionPerformed
         //Removes all the current elements listed in the jList.
-
         dflRooms.removeAllElements();
-
         //Error handling which makes sure that the arrival date is before the departure date and they're not empty.
         if ("".equals(jXDatePickercheckRoomArrival.getEditor().getText()) || "".equals(jXDatePickercheckRoomDeparture.getEditor().getText())) {
             JOptionPane.showMessageDialog(rootPane, "Make sure both arrival and departure date are entered and in the correct format");
@@ -839,7 +837,7 @@ public class GUIAdministration extends javax.swing.JFrame {
             con.resetRooms();
         }
     }//GEN-LAST:event_jButtonCheckRoomsActionPerformed
-    //Delete a booking.
+
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         //Using a method in control-class to delete a booking.
         con.deleteBooking();
@@ -849,11 +847,10 @@ public class GUIAdministration extends javax.swing.JFrame {
         } else {
             jLabelStatusBooking.setText("Booking could not be deleted");
         }
-
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // Error handling to ensure that arrival is before departure, and one of the fields aint empty.
+        // Error handling to ensure that arrival is before departure, and one of the fields aren't empty.
         if ("".equals(jXDatePickerChangeArrival.getEditor().getText()) || "".equals(jXDatePickerChangeDeparture.getEditor().getText())) {
             JOptionPane.showMessageDialog(rootPane, "Make sure both arrival and departure date are entered and in the correct format");
         } else {
@@ -892,7 +889,6 @@ public class GUIAdministration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Invalid number of guests - check your input");
                 Statuslabel.setText("Booking not updated!");
             }
-
             //Clears the jListBooking
             DefaultListModel model = new DefaultListModel();
             jListBooking.setModel(model);
@@ -945,10 +941,8 @@ public class GUIAdministration extends javax.swing.JFrame {
                 jXDatePickergetDeparture.setFormats(dateFormat);
                 String arrival = dateFormat.format(jXDatePickergetArrival.getDate()).toString();
                 String departure = dateFormat.format(jXDatePickergetDeparture.getDate()).toString();
-
                 b = con.getBookingList(arrival, departure);
                 if (!b.isEmpty()) {
-
                     for (int i = 0; i < b.size(); i++) {
                         dflBooking.addElement(b.get(i).toString());
                     }
@@ -974,7 +968,6 @@ public class GUIAdministration extends javax.swing.JFrame {
             }
         } else {
             Statuslabel.setText("Could not get Customer");
-
         }
         //Reset the Customer transaction
         con.resetCustomer();
@@ -1062,7 +1055,6 @@ public class GUIAdministration extends javax.swing.JFrame {
                             } else {
                                 Statuslabel.setText("Booking could not be saved");
                             }
-
                             con.resetBooking();
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "Make sure arrival date is before departure date");
@@ -1076,7 +1068,6 @@ public class GUIAdministration extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Invalid number of guests - check your input");
                     Statuslabel.setText("Booking not saved!");
                 }
-
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Invalid room number - check your input");
                 Statuslabel.setText("Booking not saved!");

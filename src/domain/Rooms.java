@@ -9,7 +9,6 @@ public class Rooms {
 
     public Rooms(String roomNumber, String roomType) {
         this.roomNumber = roomNumber;
-        this.price = price;
         this.roomType = roomType;
     }
 
