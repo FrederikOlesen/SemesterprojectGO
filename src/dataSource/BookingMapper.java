@@ -26,9 +26,11 @@ public class BookingMapper {
     public boolean addNewBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
         int rowsInserted = 0;
         try {
+            //The SQL-string which is used to insert data into the database.
             String SQLString = "insert into booking values (to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'),?,?,?,?,?)";
             PreparedStatement statement = null;
             statement = conn.prepareStatement(SQLString);
+            //Runs the ArrayList through and add all informations to an booking-object.
             for (int i = 0; i < bl.size(); i++) {
                 b = bl.get(i);
                 statement.setString(1, b.getArrival());
@@ -79,6 +81,7 @@ public class BookingMapper {
     // Sequencer on database counts up for each request
     public int getNextResNumber(Connection conn) {
         nextRes = 0;
+        //Selecting a sequence from the database, which is used to generate a unique reservation number.
         String SQLString = "select BOOKING_RESNUMBER_SEQ.NEXTVAL " + "from DUAL";
         PreparedStatement statement = null;
         try {
@@ -94,10 +97,12 @@ public class BookingMapper {
         return nextRes;
     }
 
+    //This method locate a specific resnumber.
     public Booking findResNumber(int resNo, Connection conn) {
         Booking b = null;
-        String SQLString = // find Reservationsnumber
-                "select to_char(arrival, 'yyyy-mm-dd'), to_char(departure, 'yyyy-mm-dd'),"
+        // find Reservationsnumber
+        String SQLString
+                = "select to_char(arrival, 'yyyy-mm-dd'), to_char(departure, 'yyyy-mm-dd'),"
                 + " reservationsnumber, roomnumber, paid, customerID, numberOfGuests from booking "
                 + "where reservationsnumber = ?";
 
@@ -184,6 +189,7 @@ public class BookingMapper {
         return customerList;
     }
 
+    //This method takes an existing booking and update it. 
     public boolean updateBooking(ArrayList<Booking> bl, Connection conn) throws SQLException {
         int rowsUpdated = 0;
         String SQLString = "update booking "
@@ -244,6 +250,7 @@ public class BookingMapper {
         return bookingList;
     }
 
+    //Find a specific customer based on the customerID.
     public ArrayList getCustomerFromID(String customerID, Connection conn) {
         ArrayList customerList = new ArrayList();
         Customer c = null;
@@ -277,6 +284,7 @@ public class BookingMapper {
         return customerList;
     }
 
+    //This method is used to get the list of bookings between to dates.
     public ArrayList getRoomsList(String arrival, String departure, Connection conn) {
         ArrayList roomsList = new ArrayList();
         Rooms r = null;
@@ -308,6 +316,7 @@ public class BookingMapper {
         return roomsList;
     }
 
+    //This method is used to delete a booking by its reservations number.
     public boolean deleteBooking(ArrayList<Booking> deleteBooking, Connection conn) {
 
         String SQLString1 = "delete from customersportsid where reservationsnumber = ?";
@@ -338,6 +347,8 @@ public class BookingMapper {
 
     }
 
+    //When people check in at the hotel, we use this method to find their name
+    //based on the reservation number.
     public String lookAtResNumber(int resNumber, Connection conn) {
         String name = "";
         String fname = "";
@@ -366,6 +377,7 @@ public class BookingMapper {
         return name;
     }
 
+    // This method generates customerSportsID based on the number of guests
     public boolean createCustomerID(int resNumber, int noOfGuests, Connection conn) {
 
         for (int i = 1; i <= noOfGuests; i++) {
@@ -389,6 +401,7 @@ public class BookingMapper {
         return true;
     }
 
+    //This method adds a new sportBooking.
     public boolean addNewSportsBooking(ArrayList<SportsBooking> sb1, Connection conn) throws SQLException {
         int rowsInserted = 0;
         try {
@@ -414,6 +427,7 @@ public class BookingMapper {
         return (rowsInserted == sb1.size());
     }
 
+    //If customers decide, that they want a trainer, this method gives them one.
     public boolean addTrainerToBooking(Connection conn) throws SQLException {
         boolean success = false;
         int rowsInserted = 0;
@@ -450,6 +464,8 @@ public class BookingMapper {
 
     }
 
+    //The customers are only allowed to have four sportbookings each day. 
+    //This counter makes sure, that they dont have more than four each day.
     public int countBookingsForSportsId(Connection conn, String date, String sportsID) {
         String SQLString = "Select count (sportsid) from sportsbooking where sportsid = ? and sportsdate like ?";
         PreparedStatement statement = null;

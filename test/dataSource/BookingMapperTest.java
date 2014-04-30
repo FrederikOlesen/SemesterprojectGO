@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 
 public class BookingMapperTest {
 
+    //Initializing objects.
     BookingMapper bm;
     Connection con;
     String pw = "SEM2_GR11";
@@ -41,6 +42,7 @@ public class BookingMapperTest {
         }
     }
 
+    //This method test save a booking in our program. 
     @Test
     public void testSaveNewBooking() throws Exception {
         ArrayList<Booking> bl = new ArrayList();
@@ -58,6 +60,7 @@ public class BookingMapperTest {
 
     }
 
+    //This method test the opportunity of updating a booking.
     @Test
     public void testUpdateBooking() throws Exception {
         ArrayList<Booking> bl = new ArrayList();
@@ -76,6 +79,7 @@ public class BookingMapperTest {
         assertEquals(bl2.get(0).getArrival(), "2014-02-06");
     }
 
+    //Its also possible to delete a booking. This method test that.
     @Test
     public void testDeleteBooking() throws Exception {
         ArrayList<Booking> bl = new ArrayList();
