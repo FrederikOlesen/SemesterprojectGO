@@ -6,8 +6,8 @@ import java.sql.DriverManager;
 public class DBConnector {
 
     //Credentials used to access our database
-    private static String id = "SEM2_GR11";
-    private static String pw = "SEM2_GR11";
+    private static String id = "SEM2_TEST_GR11";
+    private static String pw = "SEM2_TEST_GR11";
 
     //Method to establish connection to database
     public Connection getConnection() {

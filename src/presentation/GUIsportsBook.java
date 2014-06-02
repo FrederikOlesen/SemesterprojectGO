@@ -232,7 +232,7 @@ public class GUIsportsBook extends javax.swing.JFrame {
                     } else {
                         trainer = 0;
                     }
-                    System.out.println(ID + " " + sportsType + " " + Date + " " + Date1 + " " + " " + trainer);
+                    
                     // Running the createNewSPBooking in controller with the attributes from the gui
                     con.createNewSPBooking(reservationsNumber, ID, sportsType, Date, trainer);
                     // Checks the method saveSPBooking if the booking was succesfull, status then turns true
